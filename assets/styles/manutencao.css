@@ -1,0 +1,125 @@
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f5a1e;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 30px 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Animated track lines */
+  .track-bg {
+    position: fixed; inset: 0; z-index: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 56px,
+      rgba(255,255,255,.06) 56px, rgba(255,255,255,.06) 60px
+    );
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,.06);
+    border: 2px solid rgba(240,232,0,.3);
+    border-radius: 24px;
+    padding: 60px 50px;
+    max-width: 560px; width: 100%;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    margin: auto;
+  }
+
+  /* Badge */
+  .badge {
+    width: 120px; height: 120px; border-radius: 50%;
+    border: 5px solid #f0e800;
+    background: #1a7a2e;
+    margin: 0 auto 30px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+    box-shadow: 0 0 30px rgba(240,232,0,.35);
+    animation: pulse 2.5s ease-in-out infinite;
+    overflow: hidden;
+  }
+
+  .badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(240,232,0,.35); }
+    50% { box-shadow: 0 0 55px rgba(240,232,0,.7); }
+  }
+
+  h1 { color: #f0e800; font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  h2 { color: #ffffff; font-size: 2rem; font-weight: 900; margin-bottom: 20px; }
+
+  .divider { width: 60px; height: 4px; background: #8b0000; border-radius: 2px; margin: 0 auto 24px; }
+
+  p { color: rgba(255,255,255,.8); font-size: 1rem; line-height: 1.75; margin-bottom: 16px; }
+
+  /* Progress bar */
+  .progress-label { color: #f0e800; font-size: .8rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+  .progress-bar {
+    background: rgba(255,255,255,.15); border-radius: 50px;
+    height: 12px; overflow: hidden; margin-bottom: 32px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b0000, #f0e800);
+    border-radius: 50px;
+    width: 0%;
+    animation: load 2s ease-out forwards;
+  }
+  @keyframes load { to { width: 65%; } }
+
+  /* Icons row */
+  .icons { display: flex; justify-content: center; gap: 18px; margin-bottom: 36px; }
+  .ico {
+    background: rgba(255,255,255,.1); border-radius: 12px;
+    padding: 14px 18px; font-size: 1.6rem;
+    border: 1px solid rgba(240,232,0,.2);
+    transition: transform .2s;
+  }
+  .ico:hover { transform: scale(1.1); }
+
+  /* Contact */
+  .contact-box {
+    background: rgba(0,0,0,.2); border-radius: 14px;
+    padding: 20px 26px; margin-bottom: 30px;
+    border-left: 4px solid #f0e800;
+    text-align: left;
+  }
+  .contact-box p { font-size: .9rem; margin: 4px 0; }
+  .contact-box a { color: #f0e800; text-decoration: none; }
+  .contact-box a:hover { text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    position: relative; z-index: 1;
+    margin-top: 30px; font-size: .82rem; color: rgba(255,255,255,.45);
+  }
+  footer a {
+    color: #f0e800; text-decoration: none; font-weight: 700;
+    transition: color .2s;
+  }
+  footer a:hover { color: #fff; text-decoration: underline; }
+
+  /* Animate runner */
+  .runner {
+    position: fixed; bottom: 20px; left: -80px;
+    font-size: 2.5rem;
+    animation: run 7s linear infinite;
+    z-index: 0;
+  }
+  @keyframes run {
+    0% { left: -80px; }
+    100% { left: 110%; }
+  }
