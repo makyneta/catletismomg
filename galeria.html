@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- Metadados -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Makyneta Unipessoal, Lda.">
+    <!-- Styles -->
+        <link rel="stylesheet" href="assets/styles/galeria.css">
+    <!-- Script -->
+        <script src="assets/scripts/header.js" defer></script>
+        <script src="assets/scripts/galeria.js" defer></script>
+    <!-- Title & Favicon -->
+        <title>Galeria | Clube de Atletismo da Marinha Grande</title>
+        <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" style="color: inherit;">
+    <img src="assets/images/logo.png" alt="Logo CAMG">
+    <div class="nav-logo-text">
+    </div>
+  </a>
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="index.html#modalidades">Modalidades</a></li>
+    <li><a href="index.html#plano">Mensalidade</a></li>
+    <li><a href="noticias.html">Notícias</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="meeting.html">12º Meeting</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>🖼️ Galeria</h1>
+  <p style="font-size: 1.1rem; margin-top: 12px; color: rgba(255,255,255,.9);">Momentos marcantes do CAMG</p>
+</div>
+
+<div class="container">
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openModal(0)">
+      <img src="https://via.placeholder.com/300x250/1a7a2e/ffffff?text=Treinos" alt="Treinos Diários">
+      <div class="desc">
+        <h5>Treinos Diários</h5>
+        <p>Sessões intensivas com especialistas em cada modalidade</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(1)">
+      <img src="https://via.placeholder.com/300x250/0f5a1e/ffffff?text=Competição" alt="Competições">
+      <div class="desc">
+        <h5>Competições</h5>
+        <p>Participação em eventos regionais e nacionais</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(2)">
+      <img src="https://via.placeholder.com/300x250/8b0000/ffffff?text=Pódios" alt="Pódios">
+      <div class="desc">
+        <h5>Pódios e Medalhas</h5>
+        <p>Conquistas e celebrações de sucesso</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(3)">
+      <img src="https://via.placeholder.com/300x250/f0e800/111111?text=Equipa" alt="Equipa">
+      <div class="desc">
+        <h5>Equipa CAMG</h5>
+        <p>Atletas e treinadores unidos pelo desporto</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(4)">
+      <img src="https://via.placeholder.com/300x250/1a7a2e/ffffff?text=Instalações" alt="Instalações">
+      <div class="desc">
+        <h5>Instalações Modernas</h5>
+        <p>Infraestrutura de primeira qualidade</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(5)">
+      <img src="https://via.placeholder.com/300x250/0f5a1e/ffffff?text=Eventos" alt="Eventos">
+      <div class="desc">
+        <h5>Eventos Especiais</h5>
+        <p>Meetings e encontros de atletismo</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(6)">
+      <img src="https://via.placeholder.com/300x250/8b0000/ffffff?text=Treino+Força" alt="Treino Força">
+      <div class="desc">
+        <h5>Treino de Força</h5>
+        <p>Desenvolvimento muscular e potência</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(7)">
+      <img src="https://via.placeholder.com/300x250/1a7a2e/ffffff?text=Saltos" alt="Saltos">
+      <div class="desc">
+        <h5>Modalidades de Salto</h5>
+        <p>Técnica e explosão em ação</p>
+      </div>
+    </div>
+
+    <div class="gallery-item" onclick="openModal(8)">
+      <img src="https://via.placeholder.com/300x250/f0e800/111111?text=Lançamentos" alt="Lançamentos">
+      <div class="desc">
+        <h5>Lançamentos</h5>
+        <p>Especialistas em disco, dardo e peso</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="imageModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="">
+    <h3 class="modal-title" id="modalTitle"></h3>
+  </div>
+</div>
+
+<footer>
+  <p style="margin-bottom:12px;">© 2026 Clube de Atletismo de Marinha Grande. Todos os direitos reservados.</p>
+  <p>Website desenvolvido por <a href="https://makyneta.github.io" target="_blank">Makyneta Unipessoal, Lda.</a></p>
+</footer>
+</body>
+</html>

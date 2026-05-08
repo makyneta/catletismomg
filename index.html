@@ -1,12 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=manutencao.html">
-    <title>Document</title>
+    <!-- Metadados -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Página em construção do Clube de Atletismo de Marinha Grande">
+        <meta name="keywords" content="CAMG, Clube de Atletismo, Marinha Grande, atletismo, corrida, pista, em construção">
+        <meta name="author" content="Makyneta Unipessoal, Lda.">
+    <!-- Styles -->
+        <link rel="stylesheet" href="assets/styles/index.css">
+    <!-- Script -->
+        <script src="assets/scripts/header.js" defer></script>
+    <!-- Title & Favicon -->
+        <title>Clube de Atletismo da Marinha Grande</title>
+        <link rel="icon" type="image/png" href="assets/images/favicon.png">
 </head>
 <body>
-    
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo" style="color: inherit;">
+    <img src="assets/images/logo.png" alt="Logo CAMG">
+    <div class="nav-logo-text">
+    </div>
+  </a>
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="index.html#modalidades">Modalidades</a></li>
+    <li><a href="index.html#plano">Mensalidade</a></li>
+    <li><a href="noticias.html">Notícias</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="meeting.html">12º Meeting</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <img src="assets/images/logo.png" alt="Logo CAMG">
+    </div>
+    <h1>Clube de Atletismo<span>Marinha Grande</span></h1>
+    <p>Excelência, Disciplina e Paixão pelo Atletismo desde 1995</p>
+    <div class="hero-btns">
+      <a href="#modalidades" class="btn-primary">Conhecer Modalidades</a>
+      <a href="contacto.html" class="btn-outline">Contacto</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <h3>30+</h3>
+    <p>Anos de Tradição</p>
+  </div>
+  <div class="stat">
+    <h3>50+</h3>
+    <p>Atletas Ativos</p>
+  </div>
+  <div class="stat">
+    <h3>300+</h3>
+    <p>Medalhas</p>
+  </div>
+  <div class="stat">
+    <h3>5+</h3>
+    <p>Modalidades</p>
+  </div>
+</div>
+
+<!-- MODALIDADES -->
+<!-- <section id="modalidades">
+  <div class="section-title">Modalidades</div>
+  <div class="section-line"></div>
+  <div class="modalidades-grid">
+    <div class="modalidade-card">
+      <div class="icon">🏃</div>
+      <h4>100m Sprint</h4>
+      <p>Prova clássica de velocidade pura. Treino de explosão e coordenação neuromuscular.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🏃‍♂️</div>
+      <h4>200m Sprint</h4>
+      <p>Velocidade e resistência combinadas. Desenvolvimento técnico avançado.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🏃‍♀️</div>
+      <h4>400m Velocidade</h4>
+      <p>Prova que combina potência anaeróbica e resistência relativa.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🏃💨</div>
+      <h4>800m Meio-Fundo</h4>
+      <p>Equilibrio entre velocidade e resistência aeróbica.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🏃‍♂️💪</div>
+      <h4>1500m Fundo</h4>
+      <p>Prova clássica de resistência e tática.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">⛹️</div>
+      <h4>Salto em Altura</h4>
+      <p>Técnica de salto vertical com abordagem rápida e explosiva.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🤸</div>
+      <h4>Salto em Comprimento</h4>
+      <p>Combinação de velocidade e técnica de voo e queda.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🤾</div>
+      <h4>Triplo Salto</h4>
+      <p>Sequência técnica complexa de três movimentos saltadores.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🥏</div>
+      <h4>Lançamento Disco</h4>
+      <p>Lançamento técnico com movimento rotacional.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🎯</div>
+      <h4>Lançamento Dardo</h4>
+      <p>Técnica de lançamento com velocidade máxima.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🏋️</div>
+      <h4>Lançamento Peso</h4>
+      <p>Combinação de força e técnica em movimento explosivo.</p>
+    </div>
+    <div class="modalidade-card">
+      <div class="icon">🏅</div>
+      <h4>Marcha Atlética</h4>
+      <p>Modalidade de resistência com técnica rigorosa.</p>
+    </div>
+  </div>
+</section> -->
+
+<!-- PLANO -->
+<!-- <section id="plano">
+  <div class="section-title">Plano de Inscrição</div>
+  <div class="section-line"></div>
+  <div class="plan-card">
+    <h4>Plano Anual</h4>
+    <div class="price">75€<small>/mês</small></div>
+    <button class="btn-primary" onclick="location.href='contacto'">Inscrever-se Agora</button>
+  </div>
+</section> -->
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:12px;">© 2026 Clube de Atletismo de Marinha Grande. Todos os direitos reservados.</p>
+  <p>Website desenvolvido por <a href="https://makyneta.github.io" target="_blank">Makyneta Unipessoal, Lda.</a></p>
+</footer>
 </body>
 </html>
