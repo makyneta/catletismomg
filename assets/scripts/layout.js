@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Competições</a>
           <div class="dropdown-menu">
-            // <a href="calendario.html">Calendário</a>
-            // <a href="estatisticas.html">Estatísticas</a>
             <a href="meeting.html">12º Meeting FA</a>
           </div>
         </li>
