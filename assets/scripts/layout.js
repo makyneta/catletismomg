@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Competições</a>
           <div class="dropdown-menu">
-            <a href="https://meetingfernandoalves.alfaloc.pt">11º Meeting FA</a>
+            <a href="https://meetingfernandoalves.alfaloc.pt">10º Meeting FA</a>
+            <a href="https://alfaloc.pt/11-meeting-fernando-alves/">11º Meeting FA</a>
             <a href="meeting.html">12º Meeting FA</a>
           </div>
         </li>
