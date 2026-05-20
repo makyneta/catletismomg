@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="footer-bottom">
         <p>© 2026 Clube Atletismo de Marinha Grande. Todos os direitos reservados.</p>
-        <p>Website desenvolvido e controlado por <a href="https://makyneta.github.io" target="_blank">Makyneta Unipessoal, Lda.</a></p>
+        <p>Website desenvolvido por <a href="https://makyneta.github.io" target="_blank">Makyneta Unipessoal, Lda.</a></p>
       </div>
     </footer>
   `;
