@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ── HEADER ─────────────────────────────────────────────────
   const headerHTML = `
     <nav>
-      <a href="${url('/index.html')}" class="nav-logo">
+      <a href="${url('/')}" class="nav-logo">
         <img src="${url('/assets/images/logo.png')}" alt="Logo CAMG">
         <div class="nav-logo-text">
           <strong>CAMG</strong>
@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Clube</a>
           <div class="dropdown-menu">
-            <a href="${url('/sobre.html')}">Sobre</a>
-            <a href="${url('/corpos-sociais.html')}">Corpos Sociais</a>
-            <a href="${url('/noticias.html')}">Notícias</a>
+            <a href="${url('/sobre')}">Sobre</a>
+            <a href="${url('/corpos-sociais')}">Corpos Sociais</a>
+            <a href="${url('/noticias')}">Notícias</a>
           </div>
         </li>
         <li class="dropdown">
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="${url('')}" target="_blank">Meeting Jovem</a>
           </div>
         </li>
-        <li><a href="${url('/galeria.html')}">Galeria</a></li>
-        <li><a href="${url('/contacto.html')}">Contacto</a></li>
+        <li><a href="${url('/galeria')}">Galeria</a></li>
+        <li><a href="${url('/contacto')}">Contacto</a></li>
       </ul>
     </nav>
   `;

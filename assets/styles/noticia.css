@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --primary: #0b1420;
+  --secondary: #d6b900;
+  --light: #ffffff;
+  --text-dark: #1f2937;
+  --text-muted: #4b5563;
+  --bg: #f8fafc;
+  --radius: 16px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  margin: 0;
+  color: var(--text-dark);
+}
+
+/* Barra de Navegação / Voltar */
+.article-nav {
+  background: var(--light);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-container {
+  max-width: 740px; /* Alinhado perfeitamente com o texto da notícia */
+  margin: 0 auto;
+}
+.back-btn {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+.back-btn:hover {
+  color: var(--primary);
+}
+
+/* Contentor do Artigo */
+.article-container {
+  max-width: 740px;
+  margin: 56px auto 80px;
+  padding: 0 24px;
+}
+
+/* Cabeçalho */
+.article-header {
+  margin-bottom: 36px;
+}
+.article-tag {
+  display: inline-block;
+  background: rgba(214, 185, 0, 0.15);
+  color: #b59c00;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.article-header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.15;
+  margin: 0 0 20px 0;
+  letter-spacing: -1px;
+}
+/* Breve descrição (Lead) com mais destaque */
+.article-lead {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Imagem Principal */
+.article-main-image {
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(11, 20, 32, 0.04);
+  margin-bottom: 40px;
+}
+.article-main-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Corpo do Texto (Orgânico e Fluído) */
+.article-content p {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: #2d3748; /* Tom ligeiramente mais suave para leitura prolongada */
+  margin: 0 0 24px 0;
+}
+.article-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Ajustes para Mobile */
+@media (max-width: 720px) {
+  .article-container {
+    margin-top: 32px;
+    margin-bottom: 48px;
+  }
+  .article-header h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  .article-lead {
+    font-size: 1.1rem;
+  }
+  .article-content p {
+    font-size: 1.05rem;
+    line-height: 1.65;
+  }
+}
