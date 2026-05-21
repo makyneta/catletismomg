@@ -274,8 +274,9 @@
   // Procura uma regra que case com o final do pathname (compatível com /repo/instagram)
   let redirectUrl = null;
   for (const key of Object.keys(redirects)) {
-    const k = key.replace(/\/+$/, '').toLowerCase();
-    const testKey = k === '' ? '/' : k;
+    // remove leading AND trailing slashes from the rule, then lowercase
+    const k = key.replace(/^\/+|\/+$/g, '').toLowerCase();
+    const testKey = k === '' ? '/' : '/' + k;
     if (path === testKey || (k !== '' && path.endsWith('/' + k))) {
       redirectUrl = redirects[key];
       break;
