@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="#" class="dropdown-toggle">Meetings</a>
           <div class="dropdown-menu">
             <a href="${url('/meeting/fernando-alves')}" target="_blank">Meeting Fernando Alves</a>
-            <a href="${url('/meeting/jovem')}" target="_blank">Meeting Jovem</a>
+            <a href="${url('')}" target="_blank">Meeting Jovem</a>
           </div>
         </li>
         <li><a href="${url('/galeria.html')}">Galeria</a></li>
