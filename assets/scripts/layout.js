@@ -49,11 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Competições</a>
+          <a href="#" class="dropdown-toggle">Meetings</a>
           <div class="dropdown-menu">
-            <a href="https://meetingfernandoalves.alfaloc.pt" target="_blank">10º Meeting FA</a>
-            <a href="https://alfaloc.pt/11-meeting-fernando-alves/" target="_blank">11º Meeting FA</a>
-            <a href="${url('/meeting.html')}">12º Meeting FA</a>
+            <a href="${url('/meeting/fernando-alves')}" target="_blank">Meeting Fernando Alves</a>
+            <a href="${url('/meeting/jovem')}" target="_blank">Meeting Jovem</a>
           </div>
         </li>
         <li><a href="${url('/galeria.html')}">Galeria</a></li>
