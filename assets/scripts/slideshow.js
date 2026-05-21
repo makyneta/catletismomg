@@ -13,7 +13,7 @@
 (function () {
   'use strict';
 
-  const SLIDE_DURATION = 2500; // ms por slide
+  const SLIDE_DURATION = 3200; // ms por slide
   const PAUSE_ON_HOVER = false;
 
   document.addEventListener('DOMContentLoaded', () => {
