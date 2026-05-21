@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </div>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle">Incrição</a>
+          <a href="#" class="dropdown-toggle">Inscrição</a>
           <div class="dropdown-menu">
             <a href="${url('/regulamento')}" target="_blank">Regulamento</a>
             <a href="${url('/inscrever')}" target="_blank">Inscrever</a>
