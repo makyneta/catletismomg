@@ -260,12 +260,13 @@
 
   // Regras de redirecionamento por slug -> substituir pelo perfil real
   // Nota: se o site estiver hospedado em GitHub Pages como /REPO/instagram,
-  // usamos matching "endsWith" para detectar o slug mesmo com o prefixo do repositório.
+  // matching "endsWith" para detectar o slug mesmo com o prefixo do repositório.
   const redirects = {
     '/instagram': 'https://www.instagram.com/camg_atletismo',
     '/facebook': 'https://www.facebook.com/catletismomg',
     '/youtube': 'https://www.youtube.com/@catletismomg',
     '/inscricoes': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
+    '/regulamento': 'https://makyneta.github.io/catletismomg/assets/pdf/Regulamento_%C3%89poca_2025-26_Forma%C3%A7%C3%A3o.pdf',
   };
 
   const rawPath = normalize(window.location.pathname);

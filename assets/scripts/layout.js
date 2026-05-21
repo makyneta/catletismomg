@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Regulamento / Preços</a>
           <div class="dropdown-menu">
-            <a href="${url('/assets/pdf/Regulamento_Época_2025-26_Formação.pdf')}" target="_blank">Regulamento</a>
-            <a href="https://app.clube.pt/CAMG/Processes/CreatePreRegistration" target="_blank">Inscrever</a>
+            <a href="${url('/regulamento')}" target="_blank">Regulamento</a>
+            <a href="${url('/inscricoes')}" target="_blank">Inscrever</a>
           </div>
         </li>
         <li class="dropdown">
