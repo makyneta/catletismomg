@@ -12,125 +12,77 @@
         <link rel="stylesheet" href="assets/styles/index.css">
     <!-- Script -->
         <script src="assets/scripts/layout.js" defer></script>
+        <script src="assets/scripts/slideshow.js" defer></script>
     <!-- Title & Favicon -->
         <title>Clube Atletismo da Marinha Grande</title>
         <link rel="icon" type="image/png" href="assets/images/favicon.png">
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ============================================================
+     HERO + SLIDESHOW
+     Adiciona as tuas fotografias em assets/images/slideshow/
+     e ajusta os src abaixo conforme os teus ficheiros.
+     Recomendado: imagens de 1920x1080px mínimo.
+============================================================ -->
 <section class="hero" id="inicio">
+ 
+  <!-- SLIDESHOW DE FUNDO -->
+  <div class="slideshow" id="slideshow" aria-hidden="true">
+    <div class="slide active">
+      <img src="assets/images/slideshow/maos-juntas.jpg" alt="">
+    </div>
+    <div class="slide">
+      <img src="assets/images/slideshow/partida-dois.jpg" alt="">
+    </div>
+    <div class="slide">
+      <img src="assets/images/slideshow/partida-todos.jpg" alt="">
+    </div>
+  </div>
+ 
+  <!-- OVERLAY GRADIENTE -->
+  <div class="hero-overlay"></div>
+ 
+  <!-- BARRA DE PROGRESSO -->
+  <div class="hero-progress-bar" id="progressBar" aria-hidden="true">
+    <div class="hero-progress-fill" id="progressFill"></div>
+  </div>
+ 
+  <!-- CONTEÚDO PRINCIPAL -->
   <div class="hero-content">
     <div class="hero-badge">
-      <img src="assets/images/logo.png" alt="Logo CAMG">
+      <img src="assets/images/logo.png" alt="Logótipo do Clube Atletismo da Marinha Grande">
     </div>
-    <h1>Clube Atletismo De<span>Marinha Grande</span></h1>
-    <p>Excelência, Disciplina e Paixão pelo Atletismo desde 1995</p>
+    <p class="hero-eyebrow">Fundado em 1995 &middot; Marinha Grande</p>
+    <h1>Clube Atletismo De<br><span>Marinha Grande</span></h1>
+    <p class="hero-sub">Excelência &middot; Disciplina &middot; Paixão pelo Atletismo</p>
     <div class="hero-btns">
       <a href="sobre" class="btn-primary">Informações</a>
       <a href="contacto" class="btn-outline">Contacto</a>
     </div>
   </div>
+ 
+  <!-- INDICADORES DE SLIDE (DOTS) -->
+  <div class="hero-dots" id="heroDots" role="tablist" aria-label="Navegação de slides"></div>
+ 
+  <!-- STATS NA BASE DA HERO -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <strong>+30</strong>
+      <span>Anos de Tradição</span>
+    </div>
+    <div class="hero-stat">
+      <strong>+100</strong>
+      <span>Atletas Ativos</span>
+    </div>
+    <div class="hero-stat">
+      <strong>+300</strong>
+      <span>Medalhas</span>
+    </div>
+  </div>
+ 
 </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat">
-    <h3>+30</h3>
-    <p>Anos de Tradição</p>
-  </div>
-  <div class="stat">
-    <h3>+100</h3>
-    <p>Atletas Ativos</p>
-  </div>
-  <div class="stat">
-    <h3>+300</h3>
-    <p>Medalhas</p>
-  </div>
-  <!-- <div class="stat">
-    <h3>5+</h3>
-    <p>Modalidades</p>
-  </div> -->
-</div>
-
-<!-- MODALIDADES -->
-<!-- <section id="modalidades">
-  <div class="section-title">Modalidades</div>
-  <div class="section-line"></div>
-  <div class="modalidades-grid">
-    <div class="modalidade-card">
-      <div class="icon">🏃</div>
-      <h4>100m Sprint</h4>
-      <p>Prova clássica de velocidade pura. Treino de explosão e coordenação neuromuscular.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🏃‍♂️</div>
-      <h4>200m Sprint</h4>
-      <p>Velocidade e resistência combinadas. Desenvolvimento técnico avançado.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🏃‍♀️</div>
-      <h4>400m Velocidade</h4>
-      <p>Prova que combina potência anaeróbica e resistência relativa.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🏃💨</div>
-      <h4>800m Meio-Fundo</h4>
-      <p>Equilibrio entre velocidade e resistência aeróbica.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🏃‍♂️💪</div>
-      <h4>1500m Fundo</h4>
-      <p>Prova clássica de resistência e tática.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">⛹️</div>
-      <h4>Salto em Altura</h4>
-      <p>Técnica de salto vertical com abordagem rápida e explosiva.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🤸</div>
-      <h4>Salto em Comprimento</h4>
-      <p>Combinação de velocidade e técnica de voo e queda.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🤾</div>
-      <h4>Triplo Salto</h4>
-      <p>Sequência técnica complexa de três movimentos saltadores.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🥏</div>
-      <h4>Lançamento Disco</h4>
-      <p>Lançamento técnico com movimento rotacional.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🎯</div>
-      <h4>Lançamento Dardo</h4>
-      <p>Técnica de lançamento com velocidade máxima.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🏋️</div>
-      <h4>Lançamento Peso</h4>
-      <p>Combinação de força e técnica em movimento explosivo.</p>
-    </div>
-    <div class="modalidade-card">
-      <div class="icon">🏅</div>
-      <h4>Marcha Atlética</h4>
-      <p>Modalidade de resistência com técnica rigorosa.</p>
-    </div>
-  </div>
-</section> -->
-
-<!-- PLANO -->
-<!-- <section id="plano">
-  <div class="section-title">Plano de Inscrição</div>
-  <div class="section-line"></div>
-  <div class="plan-card">
-    <h4>Plano Anual</h4>
-    <div class="price">75€<small>/mês</small></div>
-    <button class="btn-primary" onclick="location.href='contacto'">Inscrever-se Agora</button>
-  </div>
-</section> -->
 
 </body>
 </html>
