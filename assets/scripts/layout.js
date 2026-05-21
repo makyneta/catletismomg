@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="${url('')}" target="_blank">Meeting Jovem</a>
           </div>
         </li>
+        <li><a href="${url('/noticias')}">Notícias</a></li>
         <li><a href="${url('/galeria')}">Galeria</a></li>
         <li><a href="${url('/contacto')}">Contacto</a></li>
       </ul>
