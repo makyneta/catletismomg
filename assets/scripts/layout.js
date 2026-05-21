@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="dropdown-menu">
             <a href="${url('/sobre')}">Sobre</a>
             <a href="${url('/corpos-sociais')}">Corpos Sociais</a>
-            <a href="${url('/noticias')}">Notícias</a>
           </div>
         </li>
         <li class="dropdown">
