@@ -74,7 +74,6 @@ const museumData = [
     label: '36ª Milha Cristal',
     year: '2026',
     items: [
-      { type: 'youtube', id: 'R2Oj7gshaNA', title: 'Resumo do Meeting',},
       ...Array.from({ length: 55 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/36mc_${String(i + 1).padStart(2, '0')}.jpg`,
@@ -194,7 +193,7 @@ function buildGallery(filter) {
         <div class="card-media">${thumbHTML}</div>
         <div class="card-overlay">
           <div class="card-overlay-inner">
-            <span class="card-type-tag">${item.type === 'photo' ? '📷' : item.type === 'youtube' ? '▶ YouTube' : '🎬 Vídeo'}</span>
+            <span class="card-type-tag">${item.type === 'photo' ? '📷 Fotografia' : item.type === 'youtube' ? '▶ YouTube' : '🎬 Vídeo'}</span>
             <h3>${item.title}</h3>
             ${item.desc ? `<p>${item.desc}</p>` : ''}
             <span class="card-cta">Abrir →</span>
