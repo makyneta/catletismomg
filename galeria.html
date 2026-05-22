@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt"
+<html lang="pt">
 <head>
     <!-- Metadados -->
     <meta charset="UTF-8">
@@ -17,68 +17,63 @@
 </head>
 <body>
 
-<div class="page-header">
-  <h1>Galeria CAMG</h1>
-  <p>Momentos marcantes do Clube de Atletismo da Marinha Grande</p>
-</div>
-
-<div class="container">
-  <div class="gallery-grid" id="galleryGrid">
-    
-    <div class="gallery-item large" onclick="openModal(0)">
-      <img src="assets/images/gallery/DSC01290.JPG" alt="9º Meeting Jovem" loading="lazy">
-      <div class="gallery-overlay">
-        <h3>9º Meeting Jovem</h3>
-        <span class="view-btn">Ver Imagem →</span>
-      </div>
+<!-- ══════════════════════════════════ HERO -->
+<section class="museum-hero">
+  <div class="museum-hero-bg"></div>
+  <div class="museum-hero-content">
+    <div class="museum-hero-label">Arquivo Visual</div>
+    <h1>Galeria <span>CAMG</span></h1>
+    <p>Momentos marcantes do Clube de Atletismo de Marinha Grande</p>
+    <div class="museum-hero-stats">
+      <div class="mh-stat" id="statFotos"><span>—</span><small>Fotografias</small></div>
+      <div class="mh-divider"></div>
+      <div class="mh-stat" id="statVideos"><span>—</span><small>Vídeos</small></div>
+      <div class="mh-divider"></div>
+      <div class="mh-stat" id="statColecoes"><span>—</span><small>Coleções</small></div>
     </div>
+  </div>
+  <div class="museum-hero-scroll">
+    <span>Explorar</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
 
-    <div class="gallery-item" onclick="openModal(1)">
-      <img src="assets/images/gallery/DSC01335.JPG" alt="Equipa Jovem" loading="lazy">
-      <div class="gallery-overlay">
-        <h3>Equipa Jovem</h3>
-        <span class="view-btn">Ver Imagem →</span>
-      </div>
-    </div>
-
-    <div class="gallery-item medium" onclick="openModal(2)">
-      <img src="assets/images/gallery/DSC01524.JPG" alt="12º Meeting Fernando Alves" loading="lazy">
-      <div class="gallery-overlay">
-        <h3>12º Meeting Fernando Alves</h3>
-        <span class="view-btn">Ver Imagem →</span>
-      </div>
-    </div>
-
-    <div class="gallery-item" onclick="openModal(3)">
-      <img src="assets/images/gallery/galeria_2-1024x683.jpg" alt="200 Metros" loading="lazy">
-      <div class="gallery-overlay">
-        <h3>200 Metros</h3>
-        <span class="view-btn">Ver Imagem →</span>
-      </div>
-    </div>
-
+<!-- ══════════════════════════════════ FILTROS -->
+<div class="museum-filters" id="museumFilters">
+  <div class="filters-inner">
+    <button class="filter-btn active" data-filter="all">Tudo</button>
+    <!-- gerado dinamicamente pelo JS com base nas colecoes -->
   </div>
 </div>
 
-<!-- MODAL -->
-<div id="imageModal" class="modal">
-  <div class="modal-nav">
-    <button onclick="previousImage()" title="Anterior">‹</button>
-    <button onclick="nextImage()" title="Próximo">›</button>
-  </div>
-  
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <img id="modalImage" src="" alt="" loading="lazy">
-    <div class="modal-info">
-      <h2 class="modal-title" id="modalTitle"></h2>
-      <p class="modal-description" id="modalDescription"></p>
+<!-- ══════════════════════════════════ GALERIA -->
+<main class="museum-main">
+
+  <!-- As coleções são geradas pelo JS a partir do array museumData em galeria.js -->
+  <div id="museumGallery"></div>
+
+</main>
+
+<!-- ══════════════════════════════════ LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de media">
+  <div class="lb-backdrop" id="lbBackdrop"></div>
+
+  <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Próximo">&#8250;</button>
+
+  <div class="lb-stage">
+    <div class="lb-media" id="lbMedia"></div>
+    <div class="lb-info">
+      <div class="lb-counter" id="lbCounter"></div>
+      <h2 class="lb-title" id="lbTitle"></h2>
+      <p class="lb-desc"  id="lbDesc"></p>
+      <div class="lb-tag"  id="lbTag"></div>
     </div>
   </div>
 
-  <div class="modal-counter">
-    <span id="imageCounter">1 de 4</span>
-  </div>
+  <!-- Strip de miniaturas -->
+  <div class="lb-strip" id="lbStrip"></div>
 </div>
 
 </body>
