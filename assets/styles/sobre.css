@@ -126,24 +126,28 @@
 }
 
 /* ABOUT HERO */
+/* ABOUT HERO - Layout profissional e organizado */
 .about-hero {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
-  align-items: center;
-  padding: 60px 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  padding: 80px 0;
   border-bottom: 1px solid var(--gray);
 }
 
+/* Conteúdo principal da secção "sobre" */
 .about-content {
-  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .about-content h2 {
   font-size: 2.5rem;
   font-weight: 900;
   color: var(--primary);
-  margin-bottom: 25px;
+  margin: 0;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -158,15 +162,12 @@
   border-radius: 2px;
 }
 
+/* Intro em destaque */
 .intro-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--text-dark);
-  font-weight: 500;
-  margin-bottom: 30px;
-  padding: 25px;
-  background: linear-gradient(90deg, rgba(240, 232, 0, 0.1), transparent);
-  border-left: 4px solid var(--secondary);
-  border-radius: 8px;
+  line-height: 1.8;
+  margin: 0;
 }
 
 .intro-text strong {
@@ -174,86 +175,69 @@
   font-weight: 900;
 }
 
+/* Blocos informativos */
 .about-section {
-  margin-bottom: 28px;
-  padding: 25px;
-  background: var(--gray);
+  padding: 20px;
+  background: var(--light);
   border-radius: var(--border-radius);
   border-left: 4px solid var(--secondary);
   transition: var(--transition);
+  text-align: justify;
 }
 
 .about-section:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transform: translateX(8px);
-  background: linear-gradient(90deg, var(--gray) 0%, rgba(240, 232, 0, 0.05) 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transform: translateX(5px);
 }
 
 .about-section h4 {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 900;
   color: var(--primary);
-  margin-bottom: 12px;
+  margin: 0 0 8px 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .about-section p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-light);
-  line-height: 1.7;
+  line-height: 1.6;
   margin: 0;
 }
 
-.about-section strong {
-  color: var(--primary);
-  font-weight: 800;
-}
-
+/* Estatísticas - Coluna lateral direita */
 .about-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
 .about-stats .stat {
   background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
   color: var(--light);
-  padding: 40px 20px;
+  padding: 30px;
   border-radius: var(--border-radius);
-  text-align: center;
   border-top: 4px solid var(--secondary);
   transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.about-stats .stat::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: radial-gradient(circle at 30% 50%, rgba(240, 232, 0, 0.1) 0%, transparent 60%);
-  pointer-events: none;
+  text-align: center;
 }
 
 .about-stats .stat:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(240, 232, 0, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(240, 232, 0, 0.15);
 }
 
 .about-stats .stat h4 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--secondary);
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
 }
 
 .about-stats .stat p {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -263,13 +247,27 @@
 @media (max-width: 1024px) {
   .about-hero {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 60px;
   }
 }
 
 @media (max-width: 768px) {
+  .about-hero {
+    padding: 60px 0;
+    gap: 40px;
+  }
+  .about-content h2 {
+    font-size: 1.8rem;
+  }
   .about-stats {
-    grid-template-columns: 1fr;
+    flex-direction: row;
+    gap: 15px;
+  }
+  .about-stats .stat {
+    padding: 25px 15px;
+  }
+  .about-stats .stat h4 {
+    font-size: 1.5rem;
   }
 }
 
