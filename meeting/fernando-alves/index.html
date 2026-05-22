@@ -40,78 +40,150 @@
 </p>
 
 <style>
-/* Estilos locais para a lista de edições */
 .meeting-editions {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
     margin: 0 auto 40px;
-    padding: 0;
+    padding: 0 16px;
 }
+
 .meeting-card {
-    display: block;
-    width: 260px;
-    padding: 16px;
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    border-radius: 8px;
     background: #fff;
-    color: inherit;
     text-decoration: none;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-    transition: transform .12s ease, box-shadow .12s ease;
+    color: inherit;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
 }
-.meeting-card:hover,
-.meeting-card:focus {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(8,38,77,0.08);
-    outline: none;
+
+.meeting-card:hover {
+    border-color: #0b3a66;
+    box-shadow: 0 8px 24px rgba(11, 58, 102, 0.12);
 }
+
+.meeting-card--featured {
+    border: 2px solid #0b3a66;
+    background: linear-gradient(135deg, #f5f9ff 0%, #fff 100%);
+}
+
+.meeting-card__badge {
+    display: inline-block;
+    background: #0b3a66;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    width: fit-content;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .meeting-card__title {
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #0b3a66;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
+
 .meeting-card__meta {
-    font-size: 0.95rem;
-    color: #5b6b7a;
-    margin-bottom: 10px;
-}
-.meeting-card__desc {
     font-size: 0.9rem;
-    color: #46607f;
+    color: #7a8a9a;
+    margin-bottom: 24px;
 }
-.meeting-card--highlight {
-    background: linear-gradient(180deg,#f8fbff,#fff);
-    box-shadow: 0 6px 20px rgba(8,38,77,0.04);
+
+.meeting-card__button {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    width: 100%;
 }
-@media (max-width: 540px) {
-    .meeting-card { width: 100%; max-width: 320px; }
+
+.meeting-card__button--primary {
+    background-color: #0b3a66;
+    color: #fff;
+    margin-bottom: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.meeting-card__button--primary:hover {
+    background-color: #082550;
+    text-decoration: underline;
+}
+
+.meeting-card__button--secondary {
+    background-color: transparent;
+    color: #0b3a66;
+    border: 1.5px solid #0b3a66;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.meeting-card__button--secondary:hover {
+    background-color: #cde1ff;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .meeting-editions {
+        grid-template-columns: 1fr;
+    }
+    
+    .meeting-card {
+        padding: 24px;
+    }
 }
 </style>
 
 <div class="meeting-editions" role="list">
-    <!-- <a class="meeting-card meeting-card--highlight" href="2027" role="listitem" aria-label="Ver edição 2027">
-        <div class="meeting-card__title">12º Meeting Fernando Alves — 2027</div>
-        <div class="meeting-card__meta">09 Maio 2027 · Estádio Municipal Marinha Grande</div>
-        <div class="meeting-card__desc">Programa, resultados e informação prática.</div>
-    </a> -->
+    <!-- <div class="meeting-card meeting-card--featured" role="listitem">
+        <span class="meeting-card__badge">Edição Atual</span>
+        <div class="meeting-card__title">13º Meeting Fernando Alves</div>
+        <div class="meeting-card__meta">2027 • Estádio Municipal Marinha Grande</div>
+        <a href="2027" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
+        <a href="2027/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+    </div> -->
 
-    <a class="meeting-card" href="2026" role="listitem" aria-label="Ver edição 2026">
+    <div class="meeting-card meeting-card--featured" role="listitem">
+        <span class="meeting-card__badge">Último Meeting</span>
         <div class="meeting-card__title">12º Meeting Fernando Alves</div>
-        <div class="meeting-card__desc">Arquivos da edição de 2026.</div>
-    </a>
+        <div class="meeting-card__meta">2026</div>
+        <a href="2026" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
+        <a href="2026/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+    </div>
 
-    <a class="meeting-card" href="2025" role="listitem" aria-label="Ver edição 2025">
+    <div class="meeting-card" role="listitem">
         <div class="meeting-card__title">11º Meeting Fernando Alves</div>
-        <div class="meeting-card__desc">Arquivos da edição de 2025.</div>
-    </a>
+        <div class="meeting-card__meta">2025</div>
+        <a href="2025" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
+        <a href="2025/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+    </div>
 
-    <a class="meeting-card" href="2024" role="listitem" aria-label="Ver edição 2024">
+    <div class="meeting-card" role="listitem">
         <div class="meeting-card__title">10º Meeting Fernando Alves</div>
-        <div class="meeting-card__desc">Arquivos da edição de 2024.</div>
-    </a>
+        <div class="meeting-card__meta">2024</div>
+        <a href="2024" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
+        <a href="2024/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+    </div>
+</div>
+
+<div style="display: flex; gap: 16px; justify-content: center; max-width: 800px; margin: 40px auto; padding: 0 16px;">
+    <a href="../../assets/pdf/resultados-meetings.pdf" class="meeting-card__button meeting-card__button--primary" style="max-width: 280px;">📊 Resultados dos Meetings</a>
+    <a href="../../assets/pdf/recordes-meetings.pdf" class="meeting-card__button meeting-card__button--primary" style="max-width: 280px;">🎯 Recordes</a>
+</div>
+
 </div>
 </div>
 </body>

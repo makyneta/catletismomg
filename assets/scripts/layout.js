@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="dropdown-menu">
             <a href="${url('/sobre')}">Sobre</a>
             <a href="${url('/corpos-sociais')}">Corpos Sociais</a>
+            <a href="${url('/estatisticas')}">Estatísticas</a>
           </div>
         </li>
         <li class="dropdown">
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle">Provas</a>
           <div class="dropdown-menu">
-            <a href="${url('#')}" target="_blank">Calendário</a>
+            <a href="#" id="btn-calendario">Calendário</a>
             <a href="${url('/meeting/fernando-alves')}" target="_blank">Meeting Fernando Alves</a>
             <a href="${url('/meeting/jovem')}" target="_blank">Meeting Jovem</a>
           </div>
@@ -137,3 +138,4 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
