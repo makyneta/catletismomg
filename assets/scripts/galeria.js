@@ -71,14 +71,14 @@ const museumData = [
 
   {
     id: '36milhacristal',
-    label: '36ª Milhas Cristal',
+    label: '36ª Milha Cristal',
     year: '2026',
     items: [
       { type: 'youtube', id: 'R2Oj7gshaNA', title: 'Resumo do Meeting',},
       ...Array.from({ length: 55 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/36mc_${String(i + 1).padStart(2, '0')}.jpg`,
-        title: '36ª Milhas Cristal',
+        title: '36ª Milha Cristal',
       })),
     ]
   },
