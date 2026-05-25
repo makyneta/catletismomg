@@ -294,7 +294,7 @@
 }
 
 /* ── SECTIONS (para conteúdo abaixo da hero) ────────────── */
-section:not(.hero) {
+/* section:not(.hero) {
   padding: 100px 40px;
   max-width: 1200px;
   margin: 0 auto;
@@ -317,7 +317,7 @@ section:not(.hero) {
   background: var(--secondary);
   border-radius: 2px;
   margin: 0 auto 50px;
-}
+} */
 
 /* ── RESPONSIVE ─────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -372,7 +372,7 @@ section:not(.hero) {
     bottom: 140px;
   }
 
-  section:not(.hero) {
+  /* section:not(.hero) {
     padding: 60px 20px;
-  }
+  } */
 }

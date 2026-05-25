@@ -6,9 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Makyneta Unipessoal, Lda.">
     <!-- Styles -->
+        <link rel="stylesheet" href="../../assets/styles/loading.css">
         <link rel="stylesheet" href="../../assets/styles/layout.css">
         <link rel="stylesheet" href="../../assets/styles/meeting.css">
     <!-- Script -->
+        <script src="../../assets/scripts/loading.js"></script>
         <script src="../../assets/scripts/layout.js" defer></script>
     <!-- Title & Favicon -->
         <title>Meeting Fernando Alves | Clube de Atletismo da Marinha Grande</title>
@@ -16,67 +18,80 @@
 </head>
 <body>
 
-<div class="hero-meeting">
+<header class="hero-meeting">
   <div class="meeting-logo">
     <img src="../../assets/images/meeting.png" alt="Logo Oficial Meeting Fernando Alves">
   </div>
-  <h1>🏆 Meeting Fernando Alves</h1>
-</div>
+  <h1>Meeting Fernando Alves</h1>
+  <div class="hero-accent-line"></div>
+</header>
 
-<div class="container">
-  <div class="section-title">Sobre o Meeting</div>
-  <div class="section-line"></div>
-  <p style="font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 40px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
-    O Meeting Fernando Alves é uma prestigiada competição de atletismo organizada pelo Clube Atletismo de Marinha Grande
-    (CAMG), que homenageia o conceituado treinador Fernando Alves, figura marcante do atletismo nacional. Integrado no
-    Circuito de Meetings de Portugal da Federação Portuguesa de Atletismo, o evento reúne atletas nacionais e estrangeiros.
-  </p>
-<br><br>
+<main class="container">
+  
+  <section class="about-section">
+    <h2 class="section-title">Sobre o Meeting</h2>
+    <div class="section-line"></div>
+    <p class="section-description">
+      O Meeting Fernando Alves é uma prestigiada competição de atletismo organizada pelo Clube Atletismo de Marinha Grande
+      (CAMG), que homenageia o conceituado treinador Fernando Alves, figura marcante do atletismo nacional. Integrado no
+      Circuito de Meetings de Portugal da Federação Portuguesa de Atletismo, o evento reúne atletas nacionais e estrangeiros.
+    </p>
+  </section>
 
-<div class="section-title">Edições</div>
-<div class="section-line"></div>
-<p style="font-size:1.05rem; color:#555; line-height:1.6; text-align:center; max-width:800px; margin:0 auto 28px;">
-    Escolha a edição que pretende consultar. Clique na edição para aceder à página correspondente.
-</p>
+  <section class="editions-section">
+    <h2 class="section-title">Edições</h2>
+    <div class="section-line"></div>
+    <p class="section-description-short">
+      Escolha a edição que pretende consultar. Clique nos botões para aceder à página de informações ou aos resultados oficiais.
+    </p>
 
-<div class="meeting-editions" role="list">
-    <!-- <div class="meeting-card meeting-card--featured" role="listitem">
-        <span class="meeting-card__badge">Edição Atual</span>
-        <div class="meeting-card__title">13º Meeting Fernando Alves</div>
-        <div class="meeting-card__meta">2027 • Estádio Municipal Marinha Grande</div>
-        <a href="2027" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
-        <a href="2027/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
-    </div> -->
+    <div class="meeting-editions" role="list">
+      
+      <div class="meeting-card meeting-card--featured" role="listitem">
+        <div class="card-header-badge">
+          <span class="meeting-card__badge">Último Meeting</span>
+        </div>
+        <h3 class="meeting-card__title">12º Meeting Fernando Alves</h3>
+        <p class="meeting-card__meta">2026 &bull; Estádio Municipal Marinha Grande</p>
+        <div class="meeting-card__actions">
+          <a href="2026" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
+          <a href="2026/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+        </div>
+      </div>
 
-    <div class="meeting-card meeting-card--featured" role="listitem">
-        <span class="meeting-card__badge">Último Meeting</span>
-        <div class="meeting-card__title">12º Meeting Fernando Alves</div>
-        <div class="meeting-card__meta">2026</div>
-        <a href="2026" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
-        <a href="2026/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+      <div class="meeting-card" role="listitem">
+        <h3 class="meeting-card__title">11º Meeting Fernando Alves</h3>
+        <p class="meeting-card__meta">2025 &bull; Estádio Municipal Marinha Grande</p>
+        <div class="meeting-card__actions">
+          <a href="2025" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
+          <a href="2025/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+        </div>
+      </div>
+
+      <div class="meeting-card" role="listitem">
+        <h3 class="meeting-card__title">10º Meeting Fernando Alves</h3>
+        <p class="meeting-card__meta">2024 &bull; Estádio Municipal Marinha Grande</p>
+        <div class="meeting-card__actions">
+          <a href="2024" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
+          <a href="2024/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+        </div>
+      </div>
+      
     </div>
+  </section>
 
-    <div class="meeting-card" role="listitem">
-        <div class="meeting-card__title">11º Meeting Fernando Alves</div>
-        <div class="meeting-card__meta">2025</div>
-        <a href="2025" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
-        <a href="2025/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
+  <section class="global-resources">
+    <div class="resources-container">
+      <a href="../../assets/pdf/VencedoresMeetingFernandoAlves.pdf" target="_blank" class="resource-btn">
+        <span class="btn-icon">📊</span> Histórico de Resultados (PDF)
+      </a>
+      <a href="../../assets/pdf/RecordesMeetingFernandoAlves.pdf" target="_blank" class="resource-btn">
+        <span class="btn-icon">🎯</span> Recordes do Meeting (PDF)
+      </a>
     </div>
+  </section>
 
-    <div class="meeting-card" role="listitem">
-        <div class="meeting-card__title">10º Meeting Fernando Alves</div>
-        <div class="meeting-card__meta">2024</div>
-        <a href="2024" class="meeting-card__button meeting-card__button--primary">Visitar Site</a>
-        <a href="2024/resultados" class="meeting-card__button meeting-card__button--secondary">Resultados</a>
-    </div>
-</div>
+</main>
 
-<div style="display: flex; gap: 16px; justify-content: center; max-width: 800px; margin: 40px auto; padding: 0 16px;">
-    <a href="../../assets/pdf/resultados-meetings.pdf" class="meeting-card__button meeting-card__button--primary" style="max-width: 280px;">📊 Resultados dos Meetings</a>
-    <a href="../../assets/pdf/recordes-meetings.pdf" class="meeting-card__button meeting-card__button--primary" style="max-width: 280px;">🎯 Recordes</a>
-</div>
-
-</div>
-</div>
 </body>
 </html>

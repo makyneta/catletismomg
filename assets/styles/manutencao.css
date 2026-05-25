@@ -59,7 +59,7 @@
   }
 
   h1 { color: #f0e800; font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
-  h2 { color: #ffffff; font-size: 2rem; font-weight: 900; margin-bottom: 20px; }
+  h4 { color: #ffffff; font-size: 1rem; font-weight: 900; margin-bottom: 20px; text-transform: uppercase; }
 
   .divider { width: 60px; height: 4px; background: #8b0000; border-radius: 2px; margin: 0 auto 24px; }
 

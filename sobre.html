@@ -6,9 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Makyneta Unipessoal, Lda.">
     <!-- Styles -->
+        <link rel="stylesheet" href="assets/styles/loading.css">
         <link rel="stylesheet" href="assets/styles/layout.css">
         <link rel="stylesheet" href="assets/styles/sobre.css">
     <!-- Script -->
+        <script src="assets/scripts/loading.js"></script>
         <script src="assets/scripts/layout.js" defer></script>
     <!-- Title & Favicon -->
         <title>Sobre | CAMG</title>
@@ -16,37 +18,41 @@
 </head>
 <body>
 
-<div class="page-header">
-  <h1>Sobre o CAMG</h1>
-  <p>Conheça a história e missão do Clube Atletismo de Marinha Grande</p>
-</div>
+<!-- CABEÇALHO DA PÁGINA -->
+<header class="page-header">
+  <div class="header-content">
+    <h1>Sobre o CAMG</h1>
+    <p>Conheça a história, os valores e a estrutura do Clube de Atletismo de Marinha Grande</p>
+    <div class="header-line"></div>
+  </div>
+</header>
 
-<div class="container">
+<main class="container">
   
-  <!-- QUEM SOMOS -->
-  <div class="about-hero">
+  <!-- QUEM SOMOS & ESTATÍSTICAS -->
+  <section class="about-hero">
     <div class="about-content">
-      <h2>Quem Somos</h2>
+      <h2 class="section-title">Quem Somos</h2>
       <p class="intro-text">
         O Clube de Atletismo de Marinha Grande (CAMG) é uma instituição de referência no atletismo português, fundada em <strong>29 de setembro de 1995</strong>.
       </p>
 
-      <div class="about-section">
-        <h4>📖 A Nossa História</h4>
+      <div class="about-block">
+        <h3>📖 A Nossa História</h3>
         <p>
           Antes de 1995, o atletismo da Marinha Grande era apenas uma secção do Atlético Clube Marinhense. Reconhecendo o potencial e a importância da modalidade, um grupo de apaixonados pelo atletismo viu a oportunidade de criar um clube dedicado exclusivamente a esta disciplina, com o apoio da Câmara Municipal. Esta decisão revelou-se estratégica, permitindo que a modalidade tivesse objetivos mais ambiciosos e uma gestão mais viável.
         </p>
       </div>
 
-      <div class="about-section">
-        <h4>🏃 Realidade Atual</h4>
+      <div class="about-block">
+        <h3>🏃 Realidade Atual</h3>
         <p>
           Presentemente, o CAMG conta com <strong>mais de 100 atletas filiados</strong> e aproximadamente <strong>300 sócios</strong> que contribuem com uma quota anual. A nossa sede localiza-se no <strong>Estádio Municipal de Marinha Grande</strong>, onde desenvolvemos um trabalho contínuo de qualidade e excelência. No último ano, registámos <strong>126 atletas ativos</strong> em várias especialidades.
         </p>
       </div>
 
-      <div class="about-section">
-        <h4>🌟 Liderança e Compromisso</h4>
+      <div class="about-block">
+        <h3>🌟 Liderança e Compromisso</h3>
         <p>
           Sob a liderança da nossa Presidente, <strong>Ana Paula André</strong>, o CAMG tem desenvolvido um trabalho notável e reconhecido a nível nacional e internacional. Formamos atletas de qualidade que se destacam em competições de topo. O nosso compromisso é oferecer as melhores condições de treino, desenvolvimento desportivo e orientação técnica especializada.
         </p>
@@ -54,35 +60,35 @@
     </div>
     
     <div class="about-stats">
-      <div class="stat">
-        <h4>30+</h4>
-        <p>Anos de História</p>
+      <div class="stat-card">
+        <span class="stat-number">30+</span>
+        <span class="stat-label">Anos de História</span>
       </div>
-      <div class="stat">
-        <h4>126</h4>
-        <p>Atletas Ativos</p>
+      <div class="stat-card">
+        <span class="stat-number">126</span>
+        <span class="stat-label">Atletas Ativos</span>
       </div>
-      <div class="stat">
-        <h4>300+</h4>
-        <p>Sócios</p>
+      <div class="stat-card">
+        <span class="stat-number">300+</span>
+        <span class="stat-label">Sócios Inscritos</span>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- MISSÃO & VISÃO -->
   <section class="content-section">
-    <h2>Missão & Visão</h2>
-    <div class="mission-vision">
-      <div class="mission-card">
-        <div class="card-icon">🎯</div>
-        <h3>Missão</h3>
+    <div class="mission-vision-container">
+      <div class="mv-card">
+        <div class="mv-icon">🎯</div>
+        <h2>Missão</h2>
         <p>
           Promover o desenvolvimento integral de atletas através de treino de qualidade, orientação técnica especializada e oportunidades de competição a nível nacional e internacional. Somos comprometidos em fomentar uma comunidade de desportistas que valorizam a excelência, a ética desportiva e o espírito de equipa.
         </p>
       </div>
-      <div class="mission-card">
-        <div class="card-icon">🚀</div>
-        <h3>Visão</h3>
+      
+      <div class="mv-card">
+        <div class="mv-icon">🚀</div>
+        <h2>Visão</h2>
         <p>
           Ser reconhecido como um dos principais clubes de atletismo em Portugal, capaz de formar atletas de elite e contribuir para o desenvolvimento contínuo do atletismo nacional. Aspiramos a ser um centro de referência de treino e inovação desportiva.
         </p>
@@ -92,200 +98,198 @@
 
   <!-- VALORES -->
   <section class="content-section">
-    <h2>Nossos Valores</h2>
+    <h2 class="section-headline">Nossos Valores</h2>
     <div class="values-grid">
       <div class="value-card">
-        <div class="value-icon">🏆</div>
+        <span class="v-icon">🏆</span>
         <h3>Excelência</h3>
-        <p>Perseguir sempre o melhor desempenho em cada treino e competição</p>
+        <p>Perseguir sempre o melhor desempenho em cada treino e competição.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">💪</div>
+        <span class="v-icon">💪</span>
         <h3>Disciplina</h3>
-        <p>Dedicação constante e rigor no treino para alcançar objetivos</p>
+        <p>Dedicação constante e rigor no treino para alcançar objetivos.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">❤️</div>
+        <span class="v-icon">❤️</span>
         <h3>Paixão</h3>
-        <p>Amor genuíno pelo atletismo e pelo desporto em geral</p>
+        <p>Amor genuíno pelo atletismo e pelo desporto em geral.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">🤝</div>
+        <span class="v-icon">🤝</span>
         <h3>Solidariedade</h3>
-        <p>Apoio mútuo entre atletas, treinadores e staff do clube</p>
+        <p>Apoio mútuo entre atletas, treinadores e staff do clube.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">✨</div>
+        <span class="v-icon">✨</span>
         <h3>Integridade</h3>
-        <p>Ética e honestidade em todas as ações e decisões</p>
+        <p>Ética e honestidade em todas as ações e decisões.</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">🌍</div>
+        <span class="v-icon">🌍</span>
         <h3>Inclusão</h3>
-        <p>Acolher atletas de todas as origens, idades e níveis de experiência</p>
+        <p>Acolher atletas de todas as origens, idades e níveis de experiência.</p>
       </div>
     </div>
   </section>
 
   <!-- INFRAESTRUTURAS -->
-  <section class="content-section bg-light">
-    <h2>Infraestruturas e Recursos</h2>
-    <p class="section-subtitle">Instalações de qualidade para o desenvolvimento completo dos nossos atletas</p>
+  <section class="content-section infra-section">
+    <h2 class="section-headline">Infraestruturas e Recursos</h2>
+    <p class="section-sub">Instalações de alta performance para o desenvolvimento completo dos nossos atletas</p>
+    
     <div class="infrastructure-grid">
-      <div class="infra-item">
-        <div class="infra-icon">🏟️</div>
-        <div class="infra-content">
-          <h4>Estádio Municipal</h4>
-          <p>Pista de 400m com todos os equipamentos para treino de velocidade, técnica e provas de fundo</p>
+      <div class="infra-card">
+        <div class="infra-header">
+          <span class="infra-emoji">Stadium 🏟️</span>
+          <h3>Estádio Municipal</h3>
         </div>
+        <p>Pista oficial de 400 metros equipada com todo o material regulamentar para treino de velocidade, saltos, lançamentos e provas de fundo.</p>
       </div>
-      <div class="infra-item">
-        <div class="infra-icon">🏋️</div>
-        <div class="infra-content">
-          <h4>Sala de Musculação</h4>
-          <p>Equipamento moderno para treino de força, preparação física e desenvolvimento muscular</p>
+
+      <div class="infra-card">
+        <div class="infra-header">
+          <span class="infra-emoji">Gym 🏋️</span>
+          <h3>Sala de Musculação</h3>
         </div>
+        <p>Equipamentos modernos de força e condicionamento focado na preparação física, prevenção de lesões e desenvolvimento muscular específico.</p>
       </div>
-      <div class="infra-item">
-        <div class="infra-icon">📊</div>
-        <div class="infra-content">
-          <h4>Análise de Desempenho</h4>
-          <p>Monitorização científica do progresso dos atletas com ferramentas de controlo modernas</p>
+
+      <div class="infra-card">
+        <div class="infra-header">
+          <span class="infra-emoji">Data 📊</span>
+          <h3>Análise de Performance</h3>
         </div>
+        <p>Monitorização técnico-científica avançada do progresso biométrico e biomecânico dos atletas através de ferramentas de controlo modernas.</p>
       </div>
-      <!-- <div class="infra-item">
-        <div class="infra-icon">🏥</div>
-        <div class="infra-content">
-          <h4>Serviços de Saúde</h4>
-          <p>Equipa multidisciplinar de profissionais para recuperação, reabilitação e prevenção de lesões</p>
-        </div>
-      </div> -->
     </div>
   </section>
 
   <!-- EQUIPA DE TREINADORES -->
   <section class="content-section">
-    <h2>Equipa de Treinadores</h2>
-    <p class="section-subtitle">Profissionais especializados e dedicados ao desenvolvimento dos nossos atletas em todas as modalidades</p>
+    <h2 class="section-headline">Equipa de Treinadores</h2>
+    <p class="section-sub">Profissionais especializados e certificados dedicados à formação desportiva</p>
     
-    <div class="coaches-intro">
-      <div class="coach-stat">
-        <div class="stat-number">6+</div>
-        <p>Especialistas</p>
+    <div class="coaches-metrics">
+      <div class="metric-box">
+        <span class="metric-num">9</span>
+        <span class="metric-txt">Treinadores Especialistas</span>
       </div>
-      <div class="coach-stat">
-        <div class="stat-number">150+</div>
-        <p>Anos Experiência</p>
+      <div class="metric-box">
+        <span class="metric-num">EFP</span>
+        <span class="metric-txt">Cédulas de Treino Oficiais</span>
       </div>
-      <div class="coach-stat">
-        <div class="stat-number">∞</div>
-        <p>Dedicação</p>
+      <div class="metric-box">
+        <span class="metric-num">A-1</span>
+        <span class="metric-txt">Formação de Alto Nível</span>
       </div>
     </div>
 
-    <ul class="member-list">
-      <li class="member-item">
-        <div class="member-name">Beatriz Azevedo</div>
-        <div class="member-position">Sub-10 / Sub-12</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">Ana Ferreira</div>
-        <div class="member-position">Sub-14</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">João Pereira</div>
-        <div class="member-position">Sub-16</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">Miguel Lucas</div>
-        <div class="member-position">Saltos / Velocidade</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">Fernando Alves</div>
-        <div class="member-position">Lançamentos</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">Cristiana Oliveira</div>
-        <div class="member-position">Lançamentos</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">Virgílio Bastos</div>
-        <div class="member-position">Marcha</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">António Graça</div>
-        <div class="member-position">Meio-fundo</div>
-      </li>
-      <li class="member-item">
-        <div class="member-name">George Silva</div>
-        <div class="member-position">Salto com Vara</div>
-      </li>
-    </ul>
+    <div class="coaches-wrapper">
+      <ul class="coaches-list">
+        <li class="coach-item">
+          <span class="coach-name">Beatriz Azevedo</span>
+          <span class="coach-role">Sub-10 / Sub-12</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">Ana Ferreira</span>
+          <span class="coach-role">Sub-14</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">João Pereira</span>
+          <span class="coach-role">Sub-16</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">Miguel Lucas</span>
+          <span class="coach-role">Saltos / Velocidade</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">Fernando Alves</span>
+          <span class="coach-role">Lançamentos</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">Cristiana Oliveira</span>
+          <span class="coach-role">Lançamentos</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">Virgílio Bastos</span>
+          <span class="coach-role">Marcha</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">António Graça</span>
+          <span class="coach-role">Meio-fundo</span>
+        </li>
+        <li class="coach-item">
+          <span class="coach-name">George Silva</span>
+          <span class="coach-role">Salto com Vara</span>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <!-- POR QUE ESCOLHER CAMG -->
   <section class="content-section">
-    <h2>Por Que Escolher o CAMG?</h2>
-    <div class="reasons-list">
-      <div class="reason-item">
-        <span class="reason-number">01</span>
-        <div class="reason-content">
-          <h4>Treinadores Especializados</h4>
-          <p>Equipa técnica com experiência internacional e certificações de excelência em cada especialidade</p>
+    <h2 class="section-headline">Por Que Escolher o CAMG?</h2>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <span class="reason-index">01</span>
+        <div class="reason-info">
+          <h3>Treinadores Especializados</h3>
+          <p>Equipa técnica credenciada com profunda experiência prática e pedagógica em cada especialidade.</p>
         </div>
       </div>
-      <div class="reason-item">
-        <span class="reason-number">02</span>
-        <div class="reason-content">
-          <h4>Programas Personalizados</h4>
-          <p>Planos de treino ajustados aos objetivos, idade e necessidades de cada atleta</p>
+      <div class="reason-card">
+        <span class="reason-index">02</span>
+        <div class="reason-info">
+          <h3>Programas Personalizados</h3>
+          <p>Metodologias de treino estruturadas de acordo com a faixa etária, aptidão física e objetivos de evolução.</p>
         </div>
       </div>
-      <div class="reason-item">
-        <span class="reason-number">03</span>
-        <div class="reason-content">
-          <h4>Competições Regulares</h4>
-          <p>Oportunidades frequentes de competição em eventos regionais, nacionais e internacionais</p>
+      <div class="reason-card">
+        <span class="reason-index">03</span>
+        <div class="reason-info">
+          <h3>Competições Regulares</h3>
+          <p>Acesso e filiação direta em meetings regionais, campeonatos nacionais e competições do circuito oficial.</p>
         </div>
       </div>
-      <div class="reason-item">
-        <span class="reason-number">04</span>
-        <div class="reason-content">
-          <h4>Comunidade Forte</h4>
-          <p>Ambiente acolhedor, motivador e inclusivo para o desenvolvimento pessoal e desportivo</p>
+      <div class="reason-card">
+        <span class="reason-index">04</span>
+        <div class="reason-info">
+          <h3>Comunidade Forte</h3>
+          <p>Ambiente saudável, integrador e motivador que incentiva o foco desportivo e a cidadania.</p>
         </div>
       </div>
-      <div class="reason-item">
-        <span class="reason-number">05</span>
-        <div class="reason-content">
-          <h4>Resultados Comprovados</h4>
-          <p>Histórico comprovado de atletas de elite, campeões e médicos em diversas modalidades</p>
+      <div class="reason-card">
+        <span class="reason-index">05</span>
+        <div class="reason-info">
+          <h3>Resultados Comprovados</h3>
+          <p>Histórico consistente de atletas integrados em seleções regionais e pódios nacionais.</p>
         </div>
       </div>
-      <div class="reason-item">
-        <span class="reason-number">06</span>
-        <div class="reason-content">
-          <h4>Inovação Contínua</h4>
-          <p>Adoção de metodologias modernas, tecnologias de treino e ferramentas científicas avançadas</p>
+      <div class="reason-card">
+        <span class="reason-index">06</span>
+        <div class="reason-info">
+          <h3>Inovação Contínua</h3>
+          <p>Planeamento assente em metodologias de treino modernas e acompanhamento técnico rigoroso.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <!-- <section class="cta-section">
-    <div class="cta-content">
-      <h2>Junta-te ao CAMG</h2>
-      <p>Começa a tua jornada no atletismo com a nossa equipa de especialistas</p>
-      <div class="cta-buttons">
-        <a href="../inscricao/atleta.html" class="btn-primary">Inscrever-se como Atleta</a>
-        <a href="../inscricao/socio.html" class="btn-secondary">Tornar-se Sócio</a>
-        <a href="../contactos.html" class="btn-tertiary">Contacte-nos</a>
+  <!-- CALL TO ACTION (CTA) -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2>Faz Parte do Nosso Clube</h2>
+      <p>Desenvolve o teu potencial atlético ao lado de profissionais focados na tua evolução.</p>
+      <div class="cta-actions">
+        <a href="../inscricao/atleta.html" class="btn-main">Inscrever como Atleta</a>
+        <a href="../inscricao/socio.html" class="btn-sub">Tornar-se Sócio</a>
+        <a href="../contactos.html" class="btn-link">Falar Connosco</a>
       </div>
     </div>
-  </section> -->
+  </section>
 
-</div>
+</main>
 
 </body>
 </html>
