@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
       <a href="${url('/')}" class="nav-logo">
         <img src="${url('/assets/images/logo.png')}" alt="Logo CAMG">
         <div class="nav-logo-text">
-          <strong>CAMG</strong>
-          <small>Atletismo</small>
+          <strong></strong>
+          <small></small>
         </div>
       </a>
 
