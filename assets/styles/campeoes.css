@@ -1,0 +1,268 @@
+@import url('layout.css');
+
+:root {
+  --primary-dark: #111111;
+  --primary-gray: #1e1e1e;
+  --gold-accent: #f0e800;
+  --bg-slate: #f8fafc;
+  --bg-light: #ffffff;
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --radius: 16px;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+/* CONFIGURAÇÃO BASE */
+body {
+  background-color: var(--bg-slate);
+  color: var(--text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+/* HERO HEADER (MANTÉM A LINHA PREMIUM) */
+.champions-header {
+  background: radial-gradient(circle at center, var(--primary-gray) 0%, var(--primary-dark) 100%);
+  color: #ffffff;
+  padding: 100px 24px;
+  text-align: center;
+  position: relative;
+  border-bottom: 4px solid var(--gold-accent);
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header-badge {
+  display: inline-block;
+  background-color: rgba(240, 232, 0, 0.15);
+  color: var(--gold-accent);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(240, 232, 0, 0.3);
+}
+
+.champions-header h1 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 16px 0;
+  background: linear-gradient(180deg, #ffffff 60%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.champions-header p {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  margin: 0 0 24px 0;
+  line-height: 1.6;
+}
+
+.header-line {
+  width: 80px;
+  height: 4px;
+  background-color: var(--gold-accent);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* GRID DE CARTÕES */
+.champions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+/* COMPONENTE DO CARTÃO */
+.champion-card {
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.champion-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ÁREA DA FOTOGRAFIA */
+.champion-photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  background-color: var(--primary-dark);
+}
+
+.champion-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: var(--transition-smooth);
+}
+
+/* Zoom suave na imagem ao passar o rato */
+.champion-card:hover .champion-photo {
+  transform: scale(1.04);
+  filter: brightness(1.05);
+}
+
+/* Crachá com o ano por cima da foto */
+.champion-year-badge {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background-color: var(--primary-dark);
+  color: var(--gold-accent);
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  border-radius: 6px;
+  border: 1px solid rgba(240, 232, 0, 0.4);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* CONTEÚDO TEXTUAL */
+.champion-info {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.champion-discipline {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.champion-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.champion-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* RESPONSIVIDADE (MOBILE OPTIMIZED) */
+@media (max-width: 768px) {
+  .champions-header {
+    padding: 80px 16px;
+  }
+
+  .champions-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .champions-header p {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 48px 16px;
+  }
+
+  .champions-grid {
+    grid-template-columns: 1fr; /* Um cartão por linha em telemóveis */
+    gap: 24px;
+  }
+
+  .champion-photo-wrapper {
+    height: 300px; /* Reduz ligeiramente a altura da imagem em ecrãs pequenos */
+  }
+}
+
+/* LIGHTBOX (MODAL) BACKGROUND */
+.lightbox {
+  display: none; /* Oculto por padrão */
+  position: fixed;
+  z-index: 9999; /* Garante que fica por cima de tudo */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 17, 17, 0.95); /* Fundo preto opaco */
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Quando o lightbox estiver ativo */
+.lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* A IMAGEM AMPLADA */
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain; /* Mantém a proporção original (vertical ou horizontal) */
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+
+/* BOTÃO DE FECHAR (X) */
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.lightbox-close:hover {
+  color: var(--gold-accent); /* Muda para o amarelo do clube ao passar o rato */
+}
+
+/* Alterar o cursor nas imagens dos campeões para indicar que são clicáveis */
+.champion-photo {
+  cursor: zoom-in;
+}
