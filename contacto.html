@@ -95,15 +95,15 @@
                         <p>Preencha os dados abaixo e a nossa equipa responderá o mais breve possível.</p>
                     </div>
 
-                    <form action="https://formspree.io/f/xvgbagja" method="POST" class="premium-form">
+                    <form action="https://formspree.io/f/mgoqnevj" method="POST" class="premium-form">
                         <div class="form-row inputs-2">
                             <div class="input-component">
-                                <input type="text" id="fullname" required placeholder=" ">
+                                <input type="text" id="fullname" name="CAMG.name" required placeholder=" ">
                                 <label for="fullname">Nome Completo</label>
                                 <div class="input-focus-line"></div>
                             </div>
                             <div class="input-component">
-                                <input type="email" id="useremail" required placeholder=" ">
+                                <input type="email" id="useremail" name="CAMG.email" required placeholder=" ">
                                 <label for="useremail">O seu E-mail</label>
                                 <div class="input-focus-line"></div>
                             </div>
@@ -111,12 +111,12 @@
 
                         <div class="form-row inputs-2">
                             <div class="input-component">
-                                <input type="tel" id="userphone" placeholder=" ">
+                                <input type="tel" id="userphone" name="CAMG.phone" placeholder=" ">
                                 <label for="userphone">Contacto Telefónico (Opcional)</label>
                                 <div class="input-focus-line"></div>
                             </div>
                             <div class="input-component select-component">
-                                <select id="subject-select" required>
+                                <select id="subject-select" name="CAMG" required>
                                     <option value="" disabled selected hidden></option>
                                     <option value="geral">Informações Gerais</option>
                                     <option value="inscricao">Inscrições no Clube</option>
@@ -132,7 +132,7 @@
                         </div>
 
                         <div class="input-component textarea-component">
-                            <textarea id="form-msg" rows="6" required placeholder=" "></textarea>
+                            <textarea id="form-msg" name="CAMG.message" rows="6" required placeholder=" "></textarea>
                             <label for="form-msg">Como podemos ajudar? Escreva aqui a sua mensagem...</label>
                             <div class="input-focus-line"></div>
                         </div>
