@@ -596,3 +596,36 @@ body {
     width: 100%;
   }
 }
+
+.form-status {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: none; /* Oculto por padrão */
+  text-align: center;
+}
+
+/* Ativado via JS quando há sucesso */
+.form-status.success {
+  display: block;
+  background-color: rgba(240, 232, 0, 0.1);
+  color: #111111;
+  border: 1px solid #f0e800;
+}
+
+/* Ativado via JS quando há erro */
+.form-status.error {
+  display: block;
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* Estado visual do botão enquanto envia */
+#form-btn:disabled {
+  background-color: #64748b;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

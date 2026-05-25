@@ -14,190 +14,198 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Script -->
         <script src="assets/scripts/loading.js"></script>
+        <script src="assets/scripts/contacto.js"></script>
         <script src="assets/scripts/layout.js" defer></script>
     <!-- Title & Favicon -->
         <title>Contacto | CAMG</title>
         <link rel="icon" type="image/png" href="assets/images/favicon.png">
 </head>
+
 <body>
 
-<main class="main-contact-wrapper">
-    
+  <main class="main-contact-wrapper">
+
     <section class="contact-hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-container">
-            <span class="badge">Contacto Oficial</span>
-            <h1>Entre na <br><span class="text-highlight">Nossa Pista</span></h1>
-            <p>Quer juntar-se à equipa, esclarecer dúvidas sobre os treinos ou obter informações sobre o 12º Meeting F. Alves? Fale connosco.</p>
-        </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-container">
+        <span class="badge">Contacto Oficial</span>
+        <h1>Entre na <br><span class="text-highlight">Nossa Pista</span></h1>
+        <p>Quer juntar-se à equipa, esclarecer dúvidas sobre os treinos ou obter informações sobre o 12º Meeting F.
+          Alves? Fale connosco.</p>
+      </div>
     </section>
 
     <section class="contact-content-section">
-        <div class="main-container">
-            <div class="contact-main-grid">
-                
-                <div class="info-sidebar">
-                    
-                    <div class="info-group-card">
-                        <div class="sidebar-header">
-                            <h3>Canais Diretos</h3>
-                            <div class="decor-line"></div>
-                        </div>
-                        
-                        <div class="interactive-info-item">
-                            <div class="icon-shape">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div class="item-text">
-                                <label>Telefone</label>
-                                <a href="tel:+351928119160" class="contact-link">+351 928 119 160</a>
-                            </div>
-                        </div>
+      <div class="main-container">
+        <div class="contact-main-grid">
 
-                        <div class="interactive-info-item">
-                            <div class="icon-shape">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div class="item-text">
-                                <label>E-mail Institucional</label>
-                                <a href="mailto:catletismomg@gmail.com" class="contact-link">catletismomg@gmail.com</a>
-                            </div>
-                        </div>
+          <div class="info-sidebar">
 
-                        <div class="interactive-info-item">
-                            <div class="icon-shape">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div class="item-text">
-                                <label>Sede / Treinos</label>
-                                <p>Estádio Municipal da Marinha Grande</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="info-group-card">
+              <div class="sidebar-header">
+                <h3>Canais Diretos</h3>
+                <div class="decor-line"></div>
+              </div>
 
-                    <div class="schedule-card">
-                        <div class="sidebar-header">
-                            <h3><i class="fa-regular fa-clock icon-left"></i> Horários</h3>
-                            <div class="decor-line"></div>
-                        </div>
-                        <ul class="schedule-list">
-                            <li><span>Segunda a Sexta</span> <strong class="hours">09h00 - 20h00</strong></li>
-                            <li><span>Sábados</span> <strong class="hours">09h00 - 14h00</strong></li>
-                            <li class="closed"><span>Domingos e Feriados</span> <strong>Fechado</strong></li>
-                        </ul>
-                    </div>
-
+              <div class="interactive-info-item">
+                <div class="icon-shape">
+                  <i class="fa-solid fa-phone"></i>
                 </div>
-
-                <div class="form-wrapper">
-                    <div class="form-header">
-                        <h2>Envie uma Mensagem</h2>
-                        <p>Preencha os dados abaixo e a nossa equipa responderá o mais breve possível.</p>
-                    </div>
-
-                    <form action="https://formspree.io/f/mgoqnevj" method="POST" class="premium-form">
-                        <div class="form-row inputs-2">
-                            <div class="input-component">
-                                <input type="text" id="fullname" name="CAMG.name" required placeholder=" ">
-                                <label for="fullname">Nome Completo</label>
-                                <div class="input-focus-line"></div>
-                            </div>
-                            <div class="input-component">
-                                <input type="email" id="useremail" name="CAMG.email" required placeholder=" ">
-                                <label for="useremail">O seu E-mail</label>
-                                <div class="input-focus-line"></div>
-                            </div>
-                        </div>
-
-                        <div class="form-row inputs-2">
-                            <div class="input-component">
-                                <input type="tel" id="userphone" name="CAMG.phone" placeholder=" ">
-                                <label for="userphone">Contacto Telefónico (Opcional)</label>
-                                <div class="input-focus-line"></div>
-                            </div>
-                            <div class="input-component select-component">
-                                <select id="subject-select" name="subject" required>
-                                    <option value="" disabled selected hidden></option>
-                                    <option value="geral">Informações Gerais</option>
-                                    <option value="inscricao">Inscrições no Clube</option>
-                                    <option value="treinos">Horários de Treinos</option>
-                                    <option value="competicoes">Calendário de Competições</option>
-                                    <option value="meeting">12º Meeting F. Alves</option>
-                                    <option value="outro">Outro Assunto</option>
-                                </select>
-                                <label for="subject-select">Selecione o Assunto</label>
-                                <i class="fa-solid fa-chevron-down select-arrow"></i>
-                                <div class="input-focus-line"></div>
-                            </div>
-                        </div>
-
-                        <div class="input-component textarea-component">
-                            <textarea id="form-msg" name="CAMG.message" rows="6" required placeholder=" "></textarea>
-                            <label for="form-msg">Como podemos ajudar? Escreva aqui a sua mensagem...</label>
-                            <div class="input-focus-line"></div>
-                        </div>
-
-                        <button type="submit" class="action-submit-btn">
-                            <span class="btn-text">Enviar Mensagem</span>
-                            <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span>
-                        </button>
-                    </form>
+                <div class="item-text">
+                  <label>Telefone</label>
+                  <a href="tel:+351928119160" class="contact-link">+351 928 119 160</a>
                 </div>
+              </div>
 
+              <div class="interactive-info-item">
+                <div class="icon-shape">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="item-text">
+                  <label>E-mail Institucional</label>
+                  <a href="mailto:catletismomg@gmail.com" class="contact-link">catletismomg@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="interactive-info-item">
+                <div class="icon-shape">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="item-text">
+                  <label>Sede / Treinos</label>
+                  <p>Estádio Municipal da Marinha Grande</p>
+                </div>
+              </div>
             </div>
+
+            <div class="schedule-card">
+              <div class="sidebar-header">
+                <h3><i class="fa-regular fa-clock icon-left"></i> Horários</h3>
+                <div class="decor-line"></div>
+              </div>
+              <ul class="schedule-list">
+                <li><span>Segunda a Sexta</span> <strong class="hours">09h00 - 20h00</strong></li>
+                <li><span>Sábados</span> <strong class="hours">09h00 - 14h00</strong></li>
+                <li class="closed"><span>Domingos e Feriados</span> <strong>Fechado</strong></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Contentor para as mensagens de feedback -->
+          <div id="form-status" class="form-status"></div>
+
+          <div class="form-wrapper">
+            <div class="form-header">
+              <h2>Envie uma Mensagem</h2>
+              <p>Preencha os dados abaixo e a nossa equipa responderá o mais breve possível.</p>
+            </div>
+
+            <form action="https://formspree.io/f/mgoqnevj" method="POST" class="premium-form">
+              <div class="form-row inputs-2">
+                <div class="input-component">
+                  <input type="text" id="fullname" name="CAMG.name" required placeholder=" ">
+                  <label for="fullname">Nome Completo</label>
+                  <div class="input-focus-line"></div>
+                </div>
+                <div class="input-component">
+                  <input type="email" id="useremail" name="CAMG.email" required placeholder=" ">
+                  <label for="useremail">O seu E-mail</label>
+                  <div class="input-focus-line"></div>
+                </div>
+              </div>
+
+              <div class="form-row inputs-2">
+                <div class="input-component">
+                  <input type="tel" id="userphone" name="CAMG.phone" placeholder=" ">
+                  <label for="userphone">Contacto Telefónico (Opcional)</label>
+                  <div class="input-focus-line"></div>
+                </div>
+                <div class="input-component select-component">
+                  <select id="subject-select" name="subject" required>
+                    <option value="" disabled selected hidden></option>
+                    <option value="geral">Informações Gerais</option>
+                    <option value="inscricao">Inscrições no Clube</option>
+                    <option value="treinos">Horários de Treinos</option>
+                    <option value="competicoes">Calendário de Competições</option>
+                    <option value="meeting">12º Meeting F. Alves</option>
+                    <option value="outro">Outro Assunto</option>
+                  </select>
+                  <label for="subject-select">Selecione o Assunto</label>
+                  <i class="fa-solid fa-chevron-down select-arrow"></i>
+                  <div class="input-focus-line"></div>
+                </div>
+              </div>
+
+              <div class="input-component textarea-component">
+                <textarea id="form-msg" name="CAMG.message" rows="6" required placeholder=" "></textarea>
+                <label for="form-msg">Como podemos ajudar? Escreva aqui a sua mensagem...</label>
+                <div class="input-focus-line"></div>
+              </div>
+
+              <button type="submit" class="action-submit-btn">
+                <span class="btn-text">Enviar Mensagem</span>
+                <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span>
+              </button>
+            </form>
+          </div>
+
         </div>
+      </div>
     </section>
 
     <section class="map-social-footer-section">
-        <div class="main-container">
-            <div class="footer-grid">
-                
-                <div class="map-container-box">
-                    <div class="map-placeholder">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3068.133868126186!2d-8.9337812!3d39.7366437!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd220ea3c803a0fb%3A0x4f5a32a4e6914f24!2sEst%C3%A1dio%20Municipal%20da%20Marinha%20Grande!5e0!3m2!1sen!2spt!4v1779714554145!5m2!1sen!2spt" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
+      <div class="main-container">
+        <div class="footer-grid">
 
-                <div class="social-connect-box">
-                    <div class="social-header">
-                        <span>Comunidade</span>
-                        <h3>Siga o Atletismo</h3>
-                        <p>Acompanhe os resultados dos nossos atletas e eventos em tempo real nas plataformas oficiais.</p>
-                    </div>
-                    
-                    <div class="modern-social-links">
-                        <a href="instagram" target="_blank" rel="noopener" class="social-card-link instagram">
-                            <div class="s-icon"><i class="fa-brands fa-instagram"></i></div>
-                            <div class="s-info">
-                                <h4>Instagram</h4>
-                                <span>@camg_atletismo</span>
-                            </div>
-                        </a>
-                        <a href="facebook" target="_blank" rel="noopener" class="social-card-link facebook">
-                            <div class="s-icon"><i class="fa-brands fa-facebook-f"></i></div>
-                            <div class="s-info">
-                                <h4>Facebook</h4>
-                                <span>Clube Atletismo de Marinha Grande</span>
-                            </div>
-                        </a>
-                        <a href="youtube" target="_blank" rel="noopener" class="social-card-link youtube">
-                            <div class="s-icon"><i class="fa-brands fa-youtube"></i></div>
-                            <div class="s-info">
-                                <h4>YouTube</h4>
-                                <span>@catletismomg</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
+          <div class="map-container-box">
+            <div class="map-placeholder">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3068.133868126186!2d-8.9337812!3d39.7366437!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd220ea3c803a0fb%3A0x4f5a32a4e6914f24!2sEst%C3%A1dio%20Municipal%20da%20Marinha%20Grande!5e0!3m2!1sen!2spt!4v1779714554145!5m2!1sen!2spt"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
+          </div>
+
+          <div class="social-connect-box">
+            <div class="social-header">
+              <span>Comunidade</span>
+              <h3>Siga o Atletismo</h3>
+              <p>Acompanhe os resultados dos nossos atletas e eventos em tempo real nas plataformas oficiais.</p>
+            </div>
+
+            <div class="modern-social-links">
+              <a href="instagram" target="_blank" rel="noopener" class="social-card-link instagram">
+                <div class="s-icon"><i class="fa-brands fa-instagram"></i></div>
+                <div class="s-info">
+                  <h4>Instagram</h4>
+                  <span>@camg_atletismo</span>
+                </div>
+              </a>
+              <a href="facebook" target="_blank" rel="noopener" class="social-card-link facebook">
+                <div class="s-icon"><i class="fa-brands fa-facebook-f"></i></div>
+                <div class="s-info">
+                  <h4>Facebook</h4>
+                  <span>Clube Atletismo de Marinha Grande</span>
+                </div>
+              </a>
+              <a href="youtube" target="_blank" rel="noopener" class="social-card-link youtube">
+                <div class="s-icon"><i class="fa-brands fa-youtube"></i></div>
+                <div class="s-info">
+                  <h4>YouTube</h4>
+                  <span>@catletismomg</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
         </div>
+      </div>
     </section>
 
-</main>
+  </main>
 
 </body>
+
 </html>
