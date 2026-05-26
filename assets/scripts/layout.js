@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="dropdown-menu">
             <a href="#" id="btn-calendario">Calendário</a>
             <a href="${url('/meeting/fernando-alves')}" target="_blank">Meeting Fernando Alves</a>
-            <a href="${url('/meeting/jovem')}" target="_blank">Meeting Jovem</a>
           </div>
         </li>
         <li><a href="${url('/noticias')}">Notícias</a></li>
