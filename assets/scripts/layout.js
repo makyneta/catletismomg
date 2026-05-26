@@ -129,6 +129,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // ── CALENDÁRIO ADAL ────────────────────────────────────────
+  const btnCalendario = document.getElementById('btn-calendario');
+  if (btnCalendario) {
+    btnCalendario.addEventListener('click', function (e) {
+      e.preventDefault();
+      const WORKER_URL = 'https://adal-calendario.makynetastudios.workers.dev/'; // ← substitui isto
+      fetch(WORKER_URL)
+        .then(res => res.json())
+        .then(data => window.open(data.url, '_blank'))
+        .catch(() => window.open('https://www.adal.pt/calendario.php', '_blank'));
+    });
+  }
+
   // ── LINK ATIVO ─────────────────────────────────────────────
   // Marca o link da página atual como ativo no menu
   const currentPath = location.pathname;
