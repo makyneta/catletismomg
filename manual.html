@@ -617,7 +617,7 @@
     </button>
 
     <div class="sidebar-header">
-      <img src="assets/images/logo.png" alt="Logo CAMG" onerror="this.src='https://makyneta.github.io/catletismomg/assets/images/logo.png'">
+      <img src="assets/images/logo.png" alt="Logo CAMG" onerror="this.src='https://catletismomg.pt/assets/images/logo.png'">
       <h2>CAMG<br><span>Website</span></h2>
     </div>
     
@@ -996,25 +996,28 @@
     <!-- ── SECÇÃO 7 ───────────────────────────────────────────── -->
     <section id="redirecionamentos">
       <h2 class="section-title"><span class="number">7</span> Redirecionamentos e Slugs Inteligentes</h2>
-      <p>O website dispõe de um sistema inovador e inteligente de <strong>Links Curtos</strong> gerido pelo ficheiro <code>404.html</code>. Sempre que o utilizador tenta aceder a um caminho que não existe fisicamente no servidor (por exemplo, <code>website.com/instagram</code>), a página de erro 404 interceta a navegação e faz o redirecionamento automático para a rede social ou documento programado.</p>
+      <p>O website dispõe de um sistema inovador e inteligente de <strong>Links Curtos</strong> gerido pelo ficheiro <code>404.html</code>. Sempre que o utilizador tenta aceder a um caminho que não existe fisicamente no servidor (por exemplo, <code>catletismomg.pt/instagram</code>), a página de erro 404 interceta a navegação e faz o redirecionamento automático para a rede social ou documento programado.</p>
       <p>📍 Caminho do Ficheiro de Controlo: <a href="https://github.com/makyneta/catletismomg/blob/main/404.html" class="inline-code" target="_blank">404.html</a></p>
 
       <h3>Como Alterar ou Adicionar Links Curtos</h3>
-      <p>Abra o ficheiro <code>404.html</code> e localize a constante <code>redirects</code> a partir da linha 264. O objeto é uma listagem de <code>'slug': 'link real do destino'</code>.</p>
+      <p>Abra o ficheiro <code>404.html</code> e localize a constante <code>redirectsMap</code> no topo do ficheiro, dentro da tag <code>&lt;head&gt;</code> (por volta da linha 12). O objeto é uma listagem de <code>'slug': 'link real do destino'</code>.</p>
 
       <div class="code-container">
         <div class="code-header">
           <span>Estrutura de Redirecionamentos no 404.html</span>
           <button onclick="copyCode('code-redirects')">Copiar</button>
         </div>
-        <pre><code id="code-redirects">const redirects = {
+        <pre><code id="code-redirects">const redirectsMap = {
   '/instagram': 'https://www.instagram.com/camg_atletismo',
   '/facebook': 'https://www.facebook.com/catletismomg',
   '/youtube': 'https://www.youtube.com/@catletismomg',
   '/inscricoes': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
   '/inscrever': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
-  '/regulamento': 'https://makyneta.github.io/catletismomg/assets/pdf/regulamento.pdf',
+  '/regulamento': 'https://catletismomg.pt/assets/pdf/regulamento.pdf',
   '/calendario': 'https://www.adal.pt/ficheirosmenu/69c6c57294009.pdf',
+  '/volta-aos-7-vidrala': 'https://www.facebook.com/profile.php?id=61579718960280',
+  '/editar-regulamento': 'https://canva.link/l380nzavpmj5ew4',
+  '/editar-panfleto': 'https://canva.link/lu3q6v5vwvpcvc7',
   
   // Adicione a sua nova regra aqui:
   '/campanha-especial': 'https://link-de-destino-aqui.com/pagina',
@@ -1023,7 +1026,7 @@
 
       <div class="alert alert-success">
         <h5>🚀 Vantagem dos Slugs Curtos</h5>
-        <p>Isto permite-lhe criar links extremamente fáceis de partilhar em cartazes ou panfletos impressos do clube (como <code>camg.pt/inscrever</code> ou <code>camg.pt/regulamento</code>), sem ter de expor URLs longos e complexos.</p>
+        <p>Isto permite-lhe criar links extremamente fáceis de partilhar em cartazes ou panfletos impressos do clube (como <code>catletismomg.pt/inscrever</code> ou <code>catletismomg.pt/regulamento</code>), sem ter de expor URLs longos e complexos.</p>
       </div>
     </section>
 
@@ -1043,7 +1046,7 @@
 
       <h3>2. Gestão do Formulário de Envio (Formspree)</h3>
       <p>O formulário envia mensagens diretamente para o e-mail do clube sem necessidade de servidores de base de dados. Utiliza o serviço gratuito <strong>Formspree</strong>.</p>
-      <p>A linha 104 contém o destino do envio: <code>action="https://formspree.io/f/mgoqnevj"</code>.</p>
+      <p>A linha 104 contém o destino do envio: <code>action="https://formspree.io/f/xxxxxxxx"</code>.</p>
 
       <div class="alert alert-warning">
         <h5>⚠️ Como Mudar a Caixa de E-mail de Receção?</h5>
@@ -1051,7 +1054,7 @@
         <ol style="margin-left: 20px; font-size: 0.9rem;">
           <li>Aceda a <a href="https://formspree.io" target="_blank" style="color: var(--accent); font-weight: bold;">Formspree.io</a> e crie uma conta com o novo e-mail.</li>
           <li>Crie um novo formulário (Form) na plataforma e copie a chave ID única fornecida.</li>
-          <li>Substitua a chave no ficheiro HTML (Altere o final <code>mgoqnevj</code> pela sua nova chave).</li>
+          <li>Substitua a chave no ficheiro HTML (Altere o final <code>xxxxxxxx</code> pela sua nova chave).</li>
         </ol>
       </div>
     </section>
@@ -1092,48 +1095,8 @@
 
     <!-- ── SECÇÃO 10 ──────────────────────────────────────────── -->
     <section id="github">
-      <h2 class="section-title"><span class="number">10</span> Colaboração & Atualizações no GitHub</h2>
-      <p>O website do Clube de Atletismo de Marinha Grande (CAMG) está alojado e versionado no <strong>GitHub</strong>. Isto permite que vários membros do clube colaborem no desenvolvimento do site de forma centralizada.</p>
-
-      <div class="alert alert-info">
-        <h5>👥 Divisão de Funções neste Manual</h5>
-        <p>Esta secção está dividida de forma a clarificar as responsabilidades:
-          <br>• O <strong>Ponto 1</strong> é exclusivo para <strong>Si</strong> (Administrador do site), detalhando como dar permissões a terceiros.
-          <br>• O <strong>Ponto 2</strong> serve de manual prático para a <strong>pessoa que irá editar</strong> o website, explicando como efetuar as gravações diretamente no browser.
-        </p>
-      </div>
-
-      <h3>1. [Exclusivo para o Administrador] Como Convidar Editores (Colaboradores)</h3>
-      <p>Como administrador e proprietário do projeto, é <strong>Si</strong> quem controla quem pode ou não editar o site. Para dar acesso de escrita a um novo editor, siga estes passos simples:</p>
-      
-      <div class="steps-container">
-        <div class="step-item">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <h4>Aceder às Definições do Repositório</h4>
-            <p>Faça login na sua conta do GitHub, aceda à página do repositório <a href="https://github.com/makyneta/catletismomg" target="_blank" style="text-decoration: underline; font-weight: bold; color: var(--accent);">github.com/makyneta/catletismomg</a>, e clique no menu <strong>"Settings"</strong> (Definições) no topo direito da página do projeto.</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <h4>Navegar para a secção "Collaborators"</h4>
-            <p>No menu que surge do lado esquerdo, clique em <strong>"Collaborators"</strong> (Colaboradores) por baixo do menu <em>"Access"</em>. Poderá ser necessário reintroduzir a sua senha do GitHub por motivos de segurança.</p>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <h4>Enviar o Convite de Acesso</h4>
-            <p>Clique no botão verde <strong>"Add people"</strong> (Adicionar pessoas). Na janela de pesquisa, introduza o <strong>nome de utilizador do GitHub</strong> ou o e-mail da pessoa que irá fazer as edições. Selecione o utilizador correto e clique em <strong>"Add to this repository"</strong>. A pessoa receberá um convite por e-mail e passará a ter acesso total para editar assim que o aceitar.</p>
-          </div>
-        </div>
-      </div>
-
-      <h3>2. [Manual para o Editor] Como Efetuar Edições e Commits no Browser</h3>
-      <p>Esta secção serve como manual de instruções para a **pessoa que foi convidada a editar o site**. Explica como essa pessoa pode efetuar modificações e colocá-las online de forma rápida através do navegador, sem precisar de instalar programas locais:</p>
+      <h2 class="section-title"><span class="number">10</span> Colaboração & Edições no GitHub</h2>
+      <p>O website do Clube de Atletismo de Marinha Grande (CAMG) está alojado e versionado no <strong>GitHub</strong>. Esta secção serve como manual de instruções prático para o <strong>Editor</strong> do website (a pessoa encarregue de efetuar modificações nos ficheiros e colocá-los online de forma rápida e segura diretamente a partir do navegador web, sem precisar de instalar programas locais):</p>
 
       <div class="steps-container">
         <div class="step-item">
