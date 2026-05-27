@@ -633,6 +633,7 @@
         <li><a href="#contactos">8. Contactos & Formspree</a></li>
         <li><a href="#meeting">9. Meeting Fernando Alves</a></li>
         <li><a href="#github">10. Colaboração no GitHub</a></li>
+        <li><a href="#canva">11. Edição de Documentos (Canva)</a></li>
       </ul>
     </nav>
     
@@ -1012,7 +1013,7 @@
   '/youtube': 'https://www.youtube.com/@catletismomg',
   '/inscricoes': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
   '/inscrever': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
-  '/regulamento': 'https://makyneta.github.io/catletismomg/assets/pdf/Regulamento_%C3%89poca_2025-26_Forma%C3%A7%C3%A3o_V2.pdf',
+  '/regulamento': 'https://makyneta.github.io/catletismomg/assets/pdf/regulamento.pdf',
   '/calendario': 'https://www.adal.pt/ficheirosmenu/69c6c57294009.pdf',
   
   // Adicione a sua nova regra aqui:
@@ -1173,9 +1174,89 @@
         </div>
       </div>
 
+      <div class="alert alert-warning" style="border-left-width: 6px; background-color: rgba(245, 158, 11, 0.08);">
+        <h5 style="color: #D97706; font-size: 1rem; font-weight: 700;">🔒 Regras de Ouro para o Editor Atualizar de Forma Segura (Sem "Partir" o Site)</h5>
+        <p>Como as gravações feitas diretamente no GitHub entram em funcionamento online de imediato, é fundamental que o <strong>Editor</strong> siga estas diretrizes de segurança simples para evitar erros ou links partidos:</p>
+        <ul style="margin-left: 20px; font-size: 0.88rem; margin-top: 10px; display: flex; flex-direction: column; gap: 8px; color: var(--text);">
+          <li><strong>1. Fazer uma Cópia de Segurança Temporária (Backup)</strong>: Antes de começar a editar qualquer ficheiro, selecione todo o texto do código (Ctrl+A), copie-o (Ctrl+C) e cole-o num bloco de notas no seu computador. Se cometer algum erro ou apagar código importante sem querer, basta colar o texto original de volta e salvar!</li>
+          <li><strong>2. Modificar Apenas o Texto (Cuidado com as Tags HTML)</strong>: Altere apenas as palavras que aparecem fora ou entre os símbolos <code>&lt;</code> e <code>&gt;</code>. Por exemplo, em <code>&lt;div class="member-name"&gt;Ana André&lt;/div&gt;</code>, altere apenas <em>Ana André</em>. Nunca apague ou altere os códigos como <code>class="..."</code>, as barras <code>/</code> ou os nomes das tags (como <code>div</code>, <code>p</code>, <code>span</code>, <code>li</code>), pois isso destruirá o design do site.</li>
+          <li><strong>3. Coincidência Exata de Nomes de Imagem</strong>: O servidor web é extremamente sensível a maiúsculas e minúsculas. Se guardar uma imagem chamada <code>foto.JPG</code> mas no código HTML escrever <code>foto.jpg</code> (com minúsculas), a imagem não irá aparecer no site. O nome digitado no código e o nome real do ficheiro de imagem têm de ser 100% idênticos.</li>
+          <li><strong>4. Use sempre o Separador "Preview" antes de Gravar</strong>: O editor do GitHub tem um separador chamado <strong>"Preview"</strong> ao lado da caixa de edição. Clique lá sempre antes de clicar em "Commit" para ver as alterações. O que está a vermelho foi removido e o que está a verde foi adicionado. Confirme se não removeu linhas estruturais acidentalmente.</li>
+          <li><strong>5. Um Ficheiro e uma Alteração de Cada Vez</strong>: Vá fazendo atualizações pequenas e incrementais. Evite alterar vários ficheiros ou muitas secções complexas em simultâneo. Dessa forma, caso ocorra algum problema com a visualização do site, saberá de imediato qual foi a alteração que o originou.</li>
+        </ul>
+      </div>
+
       <div class="alert alert-success">
         <h5>🚀 Publicação Automática Online</h5>
         <p>Assim que o editor clica em <strong>Commit changes</strong>, o GitHub inicia um processo automático de compilação. As alterações feitas pelo editor estarão ativas e online no site do CAMG num espaço de 1 a 2 minutos!</p>
+      </div>
+    </section>
+
+    <!-- ── SECÇÃO 11 ──────────────────────────────────────────── -->
+    <section id="canva">
+      <h2 class="section-title"><span class="number">11</span> Edição de Documentos & Panfletos (Canva)</h2>
+      <p>Para facilitar a edição e a personalização de panfletos promocionais e regulamentos de formação sem necessitar de programas de design complexos, o site utiliza templates do <strong>Canva</strong>. A edição e publicação destes documentos segue um processo muito intuitivo dividida em 4 passos simples:</p>
+
+      <div class="alert alert-info">
+        <h5>🔗 Links Rápidos para Acesso Direto aos Templates</h5>
+        <p>Os templates oficiais de edição estão configurados para redirecionar automaticamente se adicionar os seguintes caminhos após o endereço principal (URL) do site:
+          <br>• Para Editar o Regulamento: <strong><code>/editar-regulamento</code></strong>
+          <br>• Para Editar o Panfleto: <strong><code>/editar-panfleto</code></strong>
+        </p>
+        <p style="margin-top: 8px; font-size: 0.85rem; color: var(--text-light);"><em>Nota: Estes links curtos estão definidos em <a href="https://github.com/makyneta/catletismomg/blob/main/404.html" target="_blank" style="text-decoration: underline;">404.html</a> e redirecionam os editores de forma segura para o Canva.</em></p>
+      </div>
+
+      <h3>Instruções de Edição e Atualização de Documentos</h3>
+      
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Aceder ao Template Canva</h4>
+            <p>No navegador de internet, digite o URL do site do CAMG seguido do caminho curto pretendido (ex: <code>catletismomg.pt/editar-regulamento</code> ou <code>catletismomg.pt/editar-panfleto</code>). O site irá redirecionar o utilizador de imediato para a página do template oficial no <strong>Canva</strong>.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Efetuar as Alterações no Canva (Sem Login Obrigatório)</h4>
+            <p><strong>Não é necessário iniciar sessão ou possuir uma conta de login específica do clube</strong> para editar o template. Os links estão partilhados como templates públicos abertos, pelo que o editor pode efetuar as alterações ao design (datas da época desportiva, valores das quotas, fotografias ou horários) de forma livre e imediata.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Descarregar em PDF para Impressão</h4>
+            <p>Assim que o design estiver finalizado:</p>
+            <ol style="margin-left: 20px; font-size: 0.9rem; margin-top: 8px; display: flex; flex-direction: column; gap: 4px; color: var(--text);">
+              <li>Clique no botão <strong>"Partilhar"</strong> (Share) no canto superior direito do Canva.</li>
+              <li>Selecione <strong>"Transferir"</strong> (Download).</li>
+              <li>Mude o tipo de ficheiro para <strong>"PDF para Impressão"</strong> (PDF Print) para garantir a máxima qualidade de leitura no site.</li>
+              <li>Clique em transferir para guardar o novo ficheiro PDF no seu computador.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Substituir o Documento no GitHub (Com Nomenclatura Fixa)</h4>
+            <p>Para que o novo PDF editado passe a estar disponível no site, o editor deve substituir o ficheiro antigo na pasta de documentos correspondente no GitHub (a pasta de destino oficial do regulamento é <code>assets/pdf/</code>):</p>
+            <ol style="margin-left: 20px; font-size: 0.9rem; margin-top: 8px; display: flex; flex-direction: column; gap: 6px; color: var(--text);">
+              <li>Faça o upload do novo PDF descarregado para a pasta <code>assets/pdf/</code> no GitHub.</li>
+              <li><strong>Regra de Nomenclatura Fixa Obrigatória</strong>: Renomeie o novo ficheiro no GitHub para que o seu nome seja <strong>sempre exatamente e apenas: <code>regulamento.pdf</code></strong> (tudo em letras minúsculas, sem acentos, sem espaços e sem números de versão).</li>
+              <li>Ao manter sempre o nome fixo <code>regulamento.pdf</code>, todos os botões do site, QR Codes impressos e links de redes sociais que apontam para o regulamento atualizar-se-ão automaticamente em tempo real, sem precisar de alterar uma única linha de código!</li>
+              <li>Efetue o <strong>Commit changes</strong> para guardar.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning">
+        <h5>⚠️ Cuidado com a Nomenclatura do Ficheiro</h5>
+        <p>O nome do ficheiro do regulamento no repositório tem de ser <strong>sempre exatamente e apenas: <code>regulamento.pdf</code></strong>. Se o editor guardar o documento com qualquer outro nome (por exemplo, <code>regulamento_v3.pdf</code> ou <code>Regulamento_Época_Nova.pdf</code>), todos os botões e QR codes do site deixarão de funcionar de imediato, apresentando um erro 404.</p>
       </div>
     </section>
 
