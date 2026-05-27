@@ -469,7 +469,50 @@
     }
 
     /* ── RESPONSIVIDADE ────────────────────────────────────── */
-    @media (max-width: 992px) {
+    
+    /* Botão Toggle Hamburger (apenas mobile) */
+    .sidebar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      width: 34px;
+      height: 34px;
+      justify-content: center;
+      align-items: center;
+      z-index: 1100;
+      border-radius: 6px;
+      padding: 4px;
+      transition: background-color 0.2s;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: #FFFFFF;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Transformação do Hamburger para "X" */
+    .sidebar-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .sidebar-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .sidebar-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 992px) and (min-width: 769px) {
       aside {
         width: 60px;
       }
@@ -486,14 +529,80 @@
       body {
         flex-direction: column;
       }
+
+      /* Barra de Topo Fixa no Telemóvel */
       aside {
-        position: relative;
-        width: 100%;
-        height: auto;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        width: 100% !important;
+        flex-direction: row !important;
+        justify-content: space-between;
+        padding: 0 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1050;
       }
+
+      .sidebar-header {
+        padding: 0;
+        border-bottom: none;
+      }
+
+      .sidebar-header h2 {
+        font-size: 0.95rem;
+      }
+
+      .sidebar-toggle {
+        display: flex;
+      }
+
+      /* Painel de Navegação Lateral Deslizante (Drawer) */
+      .sidebar-nav {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 280px;
+        bottom: 0;
+        background-color: var(--primary);
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1040;
+        padding: 24px 16px;
+        display: block !important;
+      }
+
+      aside.active .sidebar-nav {
+        left: 0;
+      }
+
+      /* Fundo escurecido atrás do menu expandido */
+      .sidebar-overlay {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        display: none;
+        z-index: 1030;
+      }
+
+      aside.active + .sidebar-overlay {
+        display: block;
+      }
+
+      .sidebar-footer {
+        display: none !important;
+      }
+
       main {
-        margin-left: 0;
-        padding: 24px;
+        margin-left: 0 !important;
+        margin-top: 60px;
+        padding: 32px 20px;
       }
     }
   </style>
@@ -502,6 +611,11 @@
 
   <!-- ── NAVEGAÇÃO LATERAL (SIDEBAR) ────────────────────────── -->
   <aside>
+    <!-- Botão Hamburger (visível apenas em telemóveis) -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Abrir menu de navegação">
+      <span></span><span></span><span></span>
+    </button>
+
     <div class="sidebar-header">
       <img src="assets/images/logo.png" alt="Logo CAMG" onerror="this.src='https://makyneta.github.io/catletismomg/assets/images/logo.png'">
       <h2>CAMG<br><span>Website</span></h2>
@@ -527,6 +641,9 @@
     </div>
   </aside>
 
+  <!-- Overlay de fundo escurecido para telemóveis -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
   <!-- ── CONTEÚDO PRINCIPAL ─────────────────────────────────── -->
   <main>
     <header class="doc-header">
@@ -547,7 +664,7 @@
       
       <div class="alert alert-info">
         <h5>💡 Como abrir este manual no Microsoft Word?</h5>
-        <p>Este ficheiro HTML foi programado especificamente para ser compatível com processadores de texto. Basta abrir o <strong>Microsoft Word</strong>, clicar em <strong>"Abrir Ficheiro"</strong>, escolher este manual (<code>MANUAL.html</code>) e guardá-lo imediatamente como <strong>Documento do Word (.docx)</strong>.</p>
+        <p>Este ficheiro HTML foi programado especificamente para ser compatível com processadores de texto. Basta abrir o <strong>Microsoft Word</strong>, clicar em <strong>"Abrir Ficheiro"</strong>, escolher este manual (<code>manual.html</code>) e guardá-lo imediatamente como <strong>Documento do Word (.docx)</strong>.</p>
       </div>
 
       <h3>Organização de Pastas do Projeto</h3>
@@ -997,6 +1114,40 @@
           }
         });
       });
+
+      // ── HAMBURGER MENU (MOBILE SIDEBAR DRAWERS) ────────────
+      const sidebar = document.querySelector('aside');
+      const toggleBtn = document.getElementById('sidebarToggle');
+      const overlay = document.getElementById('sidebarOverlay');
+      
+      if (toggleBtn && sidebar) {
+        const toggleMenu = (e) => {
+          if (e) e.stopPropagation();
+          sidebar.classList.toggle('active');
+          toggleBtn.classList.toggle('active');
+        };
+
+        const closeMenu = () => {
+          sidebar.classList.remove('active');
+          toggleBtn.classList.remove('active');
+        };
+
+        toggleBtn.addEventListener('click', toggleMenu);
+        if (overlay) overlay.addEventListener('click', closeMenu);
+
+        // Fecha ao clicar fora do menu
+        document.addEventListener('click', (e) => {
+          if (!sidebar.contains(e.target) && sidebar.classList.contains('active')) {
+            closeMenu();
+          }
+        });
+
+        // Fecha ao clicar em qualquer link de menu
+        const menuLinks = sidebar.querySelectorAll('.sidebar-nav a');
+        menuLinks.forEach(link => {
+          link.addEventListener('click', closeMenu);
+        });
+      }
     });
 
     // ── FUNÇÃO DE CÓPIA DE CLIPE ────────────────────────────
