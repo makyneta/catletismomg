@@ -4,6 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 — Página Não Encontrada | CAMG</title>
+<script>
+  // Normaliza o pathname (remove barras finais e lower-case)
+  const normalizePath = p => p.replace(/\/+$/, '').toLowerCase();
+
+  // Mapeamento de Slugs e links de destino correspondentes
+  const redirectsMap = {
+    '/instagram': 'https://www.instagram.com/camg_atletismo',
+    '/facebook': 'https://www.facebook.com/catletismomg',
+    '/youtube': 'https://www.youtube.com/@catletismomg',
+    '/inscricoes': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
+    '/inscrever': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
+    '/regulamento': 'https://makyneta.github.io/catletismomg/assets/pdf/regulamento.pdf',
+    '/calendario': 'https://www.adal.pt/ficheirosmenu/69c6c57294009.pdf',
+    '/volta-aos-7-vidrala': 'https://www.facebook.com/profile.php?id=61579718960280',
+    '/editar-regulamento': 'https://canva.link/l380nzavpmj5ew4',
+    '/editar-panfleto': 'https://canva.link/lu3q6v5vwvpcvc7',
+  };
+
+  const rawPath = normalizePath(window.location.pathname);
+  const path = rawPath === '' ? '/' : rawPath;
+
+  let redirectUrl = null;
+  for (const key of Object.keys(redirectsMap)) {
+    const k = key.replace(/^\/+|\/+$/g, '').toLowerCase();
+    const testKey = k === '' ? '/' : '/' + k;
+    if (path === testKey || (k !== '' && path.endsWith('/' + k))) {
+      redirectUrl = redirectsMap[key];
+      break;
+    }
+  }
+
+  // Se for uma rota de redirecionamento, faz o redirect IMEDIATAMENTE (evita o flash visual da página 404)
+  if (redirectUrl) {
+    window.location.replace(redirectUrl);
+  }
+</script>
 <style>
   :root {
     --green: #1a7a2e;
@@ -255,62 +291,22 @@
   const urlBox = document.getElementById('badUrl');
   urlBox.textContent = window.location.href;
 
-  // Normaliza o pathname (remove barras finais e lower-case)
-  const normalize = p => p.replace(/\/+$/, '').toLowerCase();
-
-  // Regras de redirecionamento por slug -> substituir pelo perfil real
-  // Nota: se o site estiver hospedado em GitHub Pages como /REPO/instagram,
-  // matching "endsWith" para detectar o slug mesmo com o prefixo do repositório.
-  const redirects = {
-    '/instagram': 'https://www.instagram.com/camg_atletismo',
-    '/facebook': 'https://www.facebook.com/catletismomg',
-    '/youtube': 'https://www.youtube.com/@catletismomg',
-    '/inscricoes': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
-    '/inscrever': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
-    '/regulamento': 'https://makyneta.github.io/catletismomg/assets/pdf/regulamento.pdf',
-    '/calendario': 'https://www.adal.pt/ficheirosmenu/69c6c57294009.pdf',
-    '/volta-aos-7-vidrala': 'https://www.facebook.com/profile.php?id=61579718960280',
-    '/editar-regulamento': 'https://canva.link/l380nzavpmj5ew4',
-    '/editar-panfleto': 'https://canva.link/lu3q6v5vwvpcvc7',
-  };
-
-  const rawPath = normalize(window.location.pathname);
-  const path = rawPath === '' ? '/' : rawPath; // root fica como '/'
-
-  // Procura uma regra que case com o final do pathname (compatível com /repo/instagram)
-  let redirectUrl = null;
-  for (const key of Object.keys(redirects)) {
-    // remove leading AND trailing slashes from the rule, then lowercase
-    const k = key.replace(/^\/+|\/+$/g, '').toLowerCase();
-    const testKey = k === '' ? '/' : '/' + k;
-    if (path === testKey || (k !== '' && path.endsWith('/' + k))) {
-      redirectUrl = redirects[key];
-      break;
+  // Countdown e redirect automático para index.html (só é executado para erros 404 reais)
+  let t = 10;
+  const timerEl = document.getElementById('timer');
+  const interval = setInterval(() => {
+    t--;
+    timerEl.textContent = t;
+    if (t <= 0) {
+      clearInterval(interval);
+      window.location.href = 'index.html';
     }
-  }
+  }, 1000);
 
-  // Se houver uma regra para o slug atual, redireciona imediatamente
-  if (redirectUrl) {
-    // usa replace para não manter a 404 no histórico
-    window.location.replace(redirectUrl);
-  } else {
-    // Countdown e redirect automático para index.html
-    let t = 10;
-    const timerEl = document.getElementById('timer');
-    const interval = setInterval(() => {
-      t--;
-      timerEl.textContent = t;
-      if (t <= 0) {
-        clearInterval(interval);
-        window.location.href = 'index.html';
-      }
-    }, 1000);
-
-    // Se o utilizador interagir, cancela o redirect
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('click', () => clearInterval(interval));
-    });
-  }
+  // Se o utilizador interagir (clicar em botões), cancela o redirecionamento
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('click', () => clearInterval(interval));
+  });
 </script>
 
 </body>
