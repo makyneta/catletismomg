@@ -1092,82 +1092,90 @@
     <!-- ── SECÇÃO 10 ──────────────────────────────────────────── -->
     <section id="github">
       <h2 class="section-title"><span class="number">10</span> Colaboração & Atualizações no GitHub</h2>
-      <p>O website do Clube de Atletismo de Marinha Grande (CAMG) está alojado e versionado no <strong>GitHub</strong>. Isto permite que vários membros do clube colaborem no desenvolvimento do site e que as alterações entrem em funcionamento online de forma totalmente automática (via GitHub Pages) assim que as modificações são gravadas.</p>
+      <p>O website do Clube de Atletismo de Marinha Grande (CAMG) está alojado e versionado no <strong>GitHub</strong>. Isto permite que vários membros do clube colaborem no desenvolvimento do site de forma centralizada.</p>
 
-      <h3>1. Como Adicionar Novos Colaboradores ao Repositório</h3>
-      <p>Se pretender conceder acesso a uma nova pessoa para poder alterar o website diretamente, siga estes passos simples:</p>
+      <div class="alert alert-info">
+        <h5>👥 Divisão de Funções neste Manual</h5>
+        <p>Esta secção está dividida de forma a clarificar as responsabilidades:
+          <br>• O <strong>Ponto 1</strong> é exclusivo para <strong>Si</strong> (Administrador do site), detalhando como dar permissões a terceiros.
+          <br>• O <strong>Ponto 2</strong> serve de manual prático para a <strong>pessoa que irá editar</strong> o website, explicando como efetuar as gravações diretamente no browser.
+        </p>
+      </div>
+
+      <h3>1. [Exclusivo para o Administrador] Como Convidar Editores (Colaboradores)</h3>
+      <p>Como administrador e proprietário do projeto, é <strong>Si</strong> quem controla quem pode ou não editar o site. Para dar acesso de escrita a um novo editor, siga estes passos simples:</p>
       
       <div class="steps-container">
         <div class="step-item">
           <div class="step-number">1</div>
           <div class="step-content">
             <h4>Aceder às Definições do Repositório</h4>
-            <p>O administrador do repositório deve fazer login no GitHub, aceder ao link oficial do projeto <a href="https://github.com/makyneta/catletismomg" target="_blank" style="text-decoration: underline; font-weight: bold; color: var(--accent);">github.com/makyneta/catletismomg</a>, e clicar na aba <strong>"Settings"</strong> (Definições) no menu de topo direito do projeto.</p>
+            <p>Faça login na sua conta do GitHub, aceda à página do repositório <a href="https://github.com/makyneta/catletismomg" target="_blank" style="text-decoration: underline; font-weight: bold; color: var(--accent);">github.com/makyneta/catletismomg</a>, e clique no menu <strong>"Settings"</strong> (Definições) no topo direito da página do projeto.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h4>Ir para a secção de Acessos</h4>
-            <p>No menu lateral esquerdo da página de definições, localize a secção <em>"Access"</em> e clique em <strong>"Collaborators"</strong> (Colaboradores). O GitHub poderá solicitar que confirme a sua palavra-passe ou autenticação por motivos de segurança.</p>
+            <h4>Navegar para a secção "Collaborators"</h4>
+            <p>No menu que surge do lado esquerdo, clique em <strong>"Collaborators"</strong> (Colaboradores) por baixo do menu <em>"Access"</em>. Poderá ser necessário reintroduzir a sua senha do GitHub por motivos de segurança.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h4>Convidar o Novo Membro</h4>
-            <p>Clique no botão verde <strong>"Add people"</strong> (Adicionar pessoas). Na caixa de pesquisa que aparece, digite o <strong>nome de utilizador do GitHub</strong>, e-mail ou nome completo do utilizador que deseja convidar e selecione-o. Clique em <strong>"Add to this repository"</strong>. A pessoa receberá um convite por e-mail ou notificação no GitHub e passará a ter acesso total de escrita no projeto assim que aceitar o convite.</p>
+            <h4>Enviar o Convite de Acesso</h4>
+            <p>Clique no botão verde <strong>"Add people"</strong> (Adicionar pessoas). Na janela de pesquisa, introduza o <strong>nome de utilizador do GitHub</strong> ou o e-mail da pessoa que irá fazer as edições. Selecione o utilizador correto e clique em <strong>"Add to this repository"</strong>. A pessoa receberá um convite por e-mail e passará a ter acesso total para editar assim que o aceitar.</p>
           </div>
         </div>
       </div>
 
-      <h3>2. Como Atualizar Ficheiros via Commit no Navegador</h3>
-      <p>Para atualizações de texto, correções simples ou adição de nomes (como corpos sociais, campeões ou links), os colaboradores podem alterar os ficheiros diretamente através do site do GitHub, sem necessitar de instalar programas complexos no computador:</p>
+      <h3>2. [Manual para o Editor] Como Efetuar Edições e Commits no Browser</h3>
+      <p>Esta secção serve como manual de instruções para a **pessoa que foi convidada a editar o site**. Explica como essa pessoa pode efetuar modificações e colocá-las online de forma rápida através do navegador, sem precisar de instalar programas locais:</p>
 
       <div class="steps-container">
         <div class="step-item">
           <div class="step-number">1</div>
           <div class="step-content">
-            <h4>Encontrar o Ficheiro a Editar</h4>
-            <p>No repositório do GitHub, clique nas pastas e navegue até encontrar o ficheiro que pretende atualizar (por exemplo, clique em <code>corpos-sociais.html</code> ou <code>contacto.html</code> na raiz do projeto).</p>
+            <h4>Localizar o Ficheiro no Repositório</h4>
+            <p>O editor deve navegar no repositório do GitHub até encontrar a página que pretende atualizar (ex: para alterar cargos ou dirigentes do clube, deve abrir o ficheiro <code>corpos-sociais.html</code> ou, para atualizar contactos, o ficheiro <code>contacto.html</code>).</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-number">2</div>
           <div class="step-content">
-            <h4>Entrar no Modo de Edição</h4>
-            <p>No canto superior direito da caixa de visualização do ficheiro, clique no **ícone do Lápis** (ou clique no botão de reticências <code>...</code> e escolha a opção <strong>"Edit"</strong>).</p>
+            <h4>Iniciar a Edição Web</h4>
+            <p>Na barra de ferramentas superior direita do ficheiro visualizado, clique no **ícone do Lápis** (ou clique nas reticências <code>...</code> e selecione <strong>"Edit"</strong>) para abrir o editor de código em tempo real no browser.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-number">3</div>
           <div class="step-content">
-            <h4>Efetuar as Modificações</h4>
-            <p>Faça as alterações diretamente no editor de texto web do GitHub. Certifique-se de que altera apenas o texto visível no HTML (por exemplo, os nomes e cargos) e evita alterar as tags estruturais (como <code>&lt;div&gt;</code>) a menos que seja intencional.</p>
+            <h4>Escrever as Atualizações</h4>
+            <p>Modifique o texto pretendido dentro do código HTML. Deve ter o cuidado de atualizar apenas o texto descritivo visível (como nomes ou números) e evitar apagar acidentalmente tags como <code>&lt;div&gt;</code> ou <code>&lt;span&gt;</code>.</p>
           </div>
         </div>
 
         <div class="step-item">
           <div class="step-number">4</div>
           <div class="step-content">
-            <h4>Efetuar o Commit (Gravar)</h4>
-            <p>Clique no botão verde <strong>"Commit changes..."</strong> (Gravar alterações) localizado no canto superior direito da página. Na janela pop-up:</p>
+            <h4>Confirmar e Efetuar o Commit (Gravar)</h4>
+            <p>Clique no botão verde <strong>"Commit changes..."</strong> (Gravar alterações) no canto superior direito. Na janela pop-up:</p>
             <ul style="margin-left: 20px; font-size: 0.9rem; margin-top: 8px;">
-              <li>Introduza uma mensagem descritiva curta das alterações (ex: <em>"Atualização da Direção - Triénio 2026-2029"</em>).</li>
-              <li>Certifique-se de que a opção <strong>"Commit directly to the main branch"</strong> está selecionada.</li>
-              <li>Clique em <strong>"Commit changes"</strong> (Gravar alterações).</li>
+              <li>Escreva uma frase curta que resuma o que mudou (ex: <em>"Atualização dos contactos telefónicos"</em>).</li>
+              <li>Garanta que a opção <strong>"Commit directly to the main branch"</strong> está selecionada.</li>
+              <li>Clique no botão verde final <strong>"Commit changes"</strong> para confirmar a gravação.</li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="alert alert-success">
-        <h5>🚀 Atualização em Tempo Real</h5>
-        <p>Assim que clica em <strong>Commit changes</strong>, o GitHub inicia um processo automático de compilação e publicação. As novas alterações estarão online e visíveis a todo o mundo no website do CAMG em apenas 1 a 2 minutos!</p>
+        <h5>🚀 Publicação Automática Online</h5>
+        <p>Assim que o editor clica em <strong>Commit changes</strong>, o GitHub inicia um processo automático de compilação. As alterações feitas pelo editor estarão ativas e online no site do CAMG num espaço de 1 a 2 minutos!</p>
       </div>
     </section>
 
