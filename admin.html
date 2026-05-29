@@ -648,13 +648,21 @@
     </div>
 
     <script>
-        const CREDENCIAL_MESTRA = "camg1995";
+        // Sistema de Múltiplas Credenciais Autorizadas para a Direção
+        const CHAVES_AUTORIZADAS = [
+            "camg1995", 
+            "camg", 
+            "Camg1995"
+        ];
+
+        let timeoutLimpezaClipboard = null;
 
         function autenticarUtilizador() {
             const inputChave = document.getElementById('masterKey').value;
             const erroContainer = document.getElementById('authError');
 
-            if (inputChave === CREDENCIAL_MESTRA) {
+            // Validação estrutural dentro do Array de chaves válidas
+            if (CHAVES_AUTORIZADAS.includes(inputChave)) {
                 document.getElementById('authScreen').style.display = 'none';
                 document.getElementById('dashboardScreen').style.display = 'block';
                 document.body.style.alignItems = 'flex-start';
@@ -677,6 +685,11 @@
                 input.type = "password";
                 row.querySelector('.btn-action-pro').innerText = "Ver";
             });
+
+            // Forçar a invalidação de qualquer agendamento de limpeza pendente
+            if (timeoutLimpezaClipboard) {
+                clearTimeout(timeoutLimpezaClipboard);
+            }
         }
 
         function controlarVisibilidade(botao) {
@@ -685,10 +698,13 @@
 
             if (campoTexto.type === "password") {
                 campoTexto.type = "text";
+                // Modificação Pro: Ajuste dinâmico de tracking para o texto completo não quebrar nem truncar
+                campoTexto.style.letterSpacing = "0.05em";
                 containerLinha.classList.add('revealed');
                 botao.innerText = "Ocultar";
             } else {
                 campoTexto.type = "password";
+                campoTexto.style.letterSpacing = "0.35em";
                 containerLinha.classList.remove('revealed');
                 botao.innerText = "Ver";
             }
@@ -701,11 +717,25 @@
                 botao.style.borderColor = "var(--status-green)";
                 botao.style.color = "var(--status-green)";
                 
+                // Reset visual do botão após feedback de sucesso
                 setTimeout(() => {
                     botao.innerText = labelOriginal;
                     botao.style.borderColor = "var(--border-subtle)";
                     botao.style.color = "var(--text-main)";
                 }, 1500);
+
+                // Interrupção de timers anteriores se o utilizador clicar consecutivamente
+                if (timeoutLimpezaClipboard) clearTimeout(timeoutLimpezaClipboard);
+
+                // Protocolo de Segurança: Destruição do cache de cópia após 1m50s (110000ms)
+                timeoutLimpezaClipboard = setTimeout(() => {
+                    navigator.clipboard.writeText(" ").then(() => {
+                        console.log("[Segurança] Área de transferência limpa automaticamente após 1m50s.");
+                    }).catch(err => console.warn("Erro ao limpar cache temporário:", err));
+                }, 110000);
+
+            }).catch(err => {
+                console.error("Falha no subsistema de cópia nativa: ", err);
             });
         }
     </script>
