@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <li><a href="${url('/noticias')}">Notícias</a></li>
         <li><a href="${url('/galeria')}">Galeria</a></li>
         <li><a href="${url('/contacto')}">Contacto</a></li>
+        <li><a href="${url('/newsletter')}">Newsletter</a></li>
       </ul>
     </nav>
   `;
