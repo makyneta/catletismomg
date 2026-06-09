@@ -821,7 +821,7 @@
       </div>
 
       <h3>Passo 2: Adicionar a Notícia na Listagem Geral</h3>
-      <p>📍 Caminho do Ficheiro: <a href="https://github.com/makyneta/catletismomg/blob/main/noticias/index.html" class="inline-code" target="_blank">noticias/index.html</a></p>
+      <p>📍 Caminho do Ficheiro: <a href="https://github.com/makyneta/catletismomg/blob/main/noticias.html" class="inline-code" target="_blank">noticias.html</a></p>
       <p>Para que a nova notícia apareça na página geral, tem de adicionar um cartão HTML à grelha de notícias. Abra o index da pasta de notícias, localize a grelha <code>&lt;div class="news-grid"&gt;</code> e cole o seguinte cartão no topo (para que fique listada primeiro):</p>
 
       <div class="code-container">
@@ -831,20 +831,16 @@
         </div>
         <pre><code id="code-news-card">&lt;div class="news-card"&gt;
   &lt;div class="img"&gt;
-    &lt;img src="../assets/images/news/nome-da-sua-foto.jpg" alt="Título da Notícia"&gt;
+    &lt;img src="assets/images/news/nome-da-sua-foto.jpg" alt="Título da Notícia"&gt;
   &lt;/div&gt;
   &lt;div class="body"&gt;
     &lt;h4&gt;Título da Notícia que Aparece no Cartão&lt;/h4&gt;
     &lt;p&gt;Uma breve descrição introdutória de 1 ou 2 frases para atrair o leitor.&lt;/p&gt;
-    &lt;a href="2025.26/nome-do-ficheiro-sem-o-ponto-html" class="card-link"&gt;Ler notícia&lt;/a&gt;
+    &lt;a href="noticias/2025.26/nome-do-ficheiro-sem-o-ponto-html" class="card-link"&gt;Ler notícia&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
       </div>
 
-      <div class="alert alert-warning">
-        <h5>⚠️ Detalhe Importante: O link sem ".html"</h5>
-        <p>No link do cartão (<code>href="2025.26/nome-do-ficheiro"</code>), <strong>não coloque a extensão ".html" no final</strong>. O sistema de roteamento do servidor e do site remove automaticamente as extensões para criar caminhos limpos e profissionais.</p>
-      </div>
     </section>
 
     <!-- ── SECÇÃO 4 ───────────────────────────────────────────── -->

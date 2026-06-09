@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="arrow">&#8599;</span>
             </button>
             <ul class="submenu">
-              <li><a href="${url('/sobre')}">Sobre o Clube</a></li>
-              <li><a href="${url('/corpos-sociais')}">Corpos Sociais</a></li>
-              <li><a href="${url('/campeoes')}">Campeões Nacionais</a></li>
-              <li><a href="${url('/estatisticas')}">Estatísticas</a></li>
+              <li><a href="${url('/sobre.html')}">Sobre o Clube</a></li>
+              <li><a href="${url('/corpos-sociais.html')}">Corpos Sociais</a></li>
+              <li><a href="${url('/campeoes-nacionais.html')}">Campeões Nacionais</a></li>
+              <li><a href="${url('/estatisticas.html')}">Estatísticas</a></li>
             </ul>
           </li>
           <li class="has-sub">
@@ -53,25 +53,25 @@ document.addEventListener('DOMContentLoaded', function () {
             </button>
             <ul class="submenu">
               <li><a href="#" id="btn-calendario">Calendário</a></li>
-              <li><a href="${url('/meeting-fernando-alves')}" target="_blank">Meeting Fernando Alves</a></li>
+              <li><a href="${url('/meeting-fernando-alves.html')}" target="_blank">Meeting Fernando Alves</a></li>
               <li><a href="${url('/volta-aos-7-vidrala')}" target="_blank">Volta aos 7 — Vidrala</a></li>
               <li><a href="${url('/milha-de-cristal')}" target="_blank">Milha de Cristal</a></li>
             </ul>
           </li>
           <li>
-            <a href="${url('/noticias')}" class="simple-link">
+            <a href="${url('/noticias.html')}" class="simple-link">
               <span class="link-num">04</span>
               <span class="link-label">Notícias</span>
             </a>
           </li>
           <li>
-            <a href="${url('/galeria')}" class="simple-link">
+            <a href="${url('/galeria.html')}" class="simple-link">
               <span class="link-num">05</span>
               <span class="link-label">Galeria</span>
             </a>
           </li>
           <li>
-            <a href="${url('/contacto')}" class="simple-link">
+            <a href="${url('/contacto.html')}" class="simple-link">
               <span class="link-num">06</span>
               <span class="link-label">Contacto</span>
             </a>
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </li>
           <li>
-            <a href="${url('/admin')}" class="simple-link">
+            <a href="${url('/admin.html')}" class="simple-link">
               <span class="link-num">08</span>
               <span class="link-label">Admin</span>
             </a>
