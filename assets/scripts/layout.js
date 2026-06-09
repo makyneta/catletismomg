@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </button>
             <ul class="submenu">
               <li><a href="#" id="btn-calendario">Calendário</a></li>
-              <li><a href="${url('/meeting/fernando-alves')}" target="_blank">Meeting Fernando Alves</a></li>
+              <li><a href="${url('/meeting-fernando-alves')}" target="_blank">Meeting Fernando Alves</a></li>
               <li><a href="${url('/volta-aos-7-vidrala')}" target="_blank">Volta aos 7 — Vidrala</a></li>
               <li><a href="${url('/milha-de-cristal')}" target="_blank">Milha de Cristal</a></li>
             </ul>
