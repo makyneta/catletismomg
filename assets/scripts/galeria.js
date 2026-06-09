@@ -32,7 +32,12 @@ const museumData = [
     label: '2025/26',
     year: '2026',
     items: [
-      { type: 'photo', src: 'assets/images/gallery/2025.26/olimpico-jovem-nacional.jpg', title: 'Olímpico Jovem Nacional', },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/bark-no-campeonato-do-mundo-de-sub-20.jpg',
+        title: 'Bark no Campeonato do Mundo de Sub-20', },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/joao-e-tomas-no-nacional-de-sub-16.jpg',
+        title: 'João e Tomás no Nacional de Sub-16', },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/olimpico-jovem-nacional.jpg',
+        title: 'Olímpico Jovem Nacional', },
       ...Array.from({ length: 10 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/tacapassovite_${String(i + 1).padStart(2, '0')}.jpg`,
