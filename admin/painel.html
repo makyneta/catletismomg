@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Painel de Gestão Diretiva | CAMG</title>
     <link rel="icon" type="image/png" href="../assets/images/favicon.png">
-    <style>
-        /* Script de segurança rápido inline para evitar "flash" de conteúdo antes do bloqueio */
+    <script>
+        // Script de segurança rápido inline para evitar "flash" de conteúdo antes do bloqueio
         if (sessionStorage.getItem('camg_autenticado') !== 'true') {
             window.location.href = 'login.html';
         }
-
+    </script>
+    <style>
         :root {
             --bg-app: #0c0c0e;
             --bg-card: #141417;
