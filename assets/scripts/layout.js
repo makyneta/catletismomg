@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="arrow">&#8599;</span>
             </button>
             <ul class="submenu">
-              <li><a href="${url('/sobre.html')}">Sobre o Clube</a></li>
-              <li><a href="${url('/corpos-sociais.html')}">Corpos Sociais</a></li>
-              <li><a href="${url('/campeoes-nacionais.html')}">Campeões Nacionais</a></li>
-              <li><a href="${url('/estatisticas.html')}">Estatísticas</a></li>
+              <li><a href="${url('/clube/sobre.html')}">Sobre o Clube</a></li>
+              <li><a href="${url('/clube/corpos-sociais.html')}">Corpos Sociais</a></li>
+              <li><a href="${url('/clube/campeoes-nacionais.html')}">Campeões Nacionais</a></li>
+              <li><a href="${url('/clube/estatisticas.html')}">Estatísticas</a></li>
             </ul>
           </li>
           <li class="has-sub">
@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="arrow">&#8599;</span>
             </button>
             <ul class="submenu">
-              <li><a href="${url('/regulamento')}" target="_blank">Regulamento</a></li>
-              <li><a href="${url('/inscrever')}" target="_blank">Inscrever</a></li>
+              <li><a href="${url('/inscricao/regulamento.html')}" target="_blank">Regulamento</a></li>
+              <li><a href="${url('/inscricao/inscrever.html')}" target="_blank">Inscrever</a></li>
             </ul>
           </li>
           <li class="has-sub">
@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
             </button>
             <ul class="submenu">
               <li><a href="#" id="btn-calendario">Calendário</a></li>
-              <li><a href="${url('/meeting-fernando-alves.html')}" target="_blank">Meeting Fernando Alves</a></li>
-              <li><a href="${url('/volta-aos-7-vidrala')}" target="_blank">Volta aos 7 — Vidrala</a></li>
-              <li><a href="${url('/milha-de-cristal')}" target="_blank">Milha de Cristal</a></li>
+              <li><a href="${url('/provas/meeting-fernando-alves.html')}" target="_blank">Meeting Fernando Alves</a></li>
+              <li><a href="${url('/provas/volta-aos-7-vidrala.html')}" target="_blank">Volta aos 7 — Vidrala</a></li>
+              <li><a href="${url('/provas/milha-de-cristal.html')}" target="_blank">Milha de Cristal</a></li>
             </ul>
           </li>
           <li>
@@ -77,13 +77,13 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </li>
           <li>
-            <a href="${url('/newsletter')}" class="simple-link">
+            <a href="${url('/clube/newsletter.html')}" class="simple-link">
               <span class="link-num">07</span>
               <span class="link-label">Newsletter</span>
             </a>
           </li>
           <li>
-            <a href="${url('/admin.html')}" class="simple-link">
+            <a href="${url('/admin/login.html')}" class="simple-link">
               <span class="link-num">08</span>
               <span class="link-label">Admin</span>
             </a>
