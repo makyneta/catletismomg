@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="arrow">&#8599;</span>
             </button>
             <ul class="submenu">
-              <li><a href="${url('/clube/sobre.html')}">Sobre o Clube</a></li>
-              <li><a href="${url('/clube/corpos-sociais.html')}">Corpos Sociais</a></li>
-              <li><a href="${url('/clube/campeoes-nacionais.html')}">Campeões Nacionais</a></li>
-              <li><a href="${url('/clube/estatisticas.html')}">Estatísticas</a></li>
+              <li><a href="${url('/clube/sobre')}">Sobre o Clube</a></li>
+              <li><a href="${url('/clube/corpos-sociais')}">Corpos Sociais</a></li>
+              <li><a href="${url('/clube/campeoes-nacionais')}">Campeões Nacionais</a></li>
+              <li><a href="${url('/clube/estatisticas')}">Estatísticas</a></li>
             </ul>
           </li>
           <li class="has-sub">
@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="arrow">&#8599;</span>
             </button>
             <ul class="submenu">
-              <li><a href="${url('/inscricao/regulamento.html')}" target="_blank">Regulamento</a></li>
-              <li><a href="${url('/inscricao/inscrever.html')}" target="_blank">Inscrever</a></li>
+              <li><a href="${url('/inscricao/regulamento')}" target="_blank">Regulamento</a></li>
+              <li><a href="${url('/inscricao/inscrever')}" target="_blank">Inscrever</a></li>
             </ul>
           </li>
           <li class="has-sub">
@@ -53,37 +53,37 @@ document.addEventListener('DOMContentLoaded', function () {
             </button>
             <ul class="submenu">
               <li><a href="#" id="btn-calendario">Calendário</a></li>
-              <li><a href="${url('/provas/meeting-fernando-alves.html')}" target="_blank">Meeting Fernando Alves</a></li>
-              <li><a href="${url('/provas/volta-aos-7-vidrala.html')}" target="_blank">Volta aos 7 — Vidrala</a></li>
-              <li><a href="${url('/provas/milha-de-cristal.html')}" target="_blank">Milha de Cristal</a></li>
+              <li><a href="${url('/provas/meeting-fernando-alves')}" target="_blank">Meeting Fernando Alves</a></li>
+              <li><a href="${url('/provas/volta-aos-7-vidrala')}" target="_blank">Volta aos 7 — Vidrala</a></li>
+              <li><a href="${url('/provas/milha-de-cristal')}" target="_blank">Milha de Cristal</a></li>
             </ul>
           </li>
           <li>
-            <a href="${url('/noticias.html')}" class="simple-link">
+            <a href="${url('/noticias')}" class="simple-link">
               <span class="link-num">04</span>
               <span class="link-label">Notícias</span>
             </a>
           </li>
           <li>
-            <a href="${url('/galeria.html')}" class="simple-link">
+            <a href="${url('/galeria')}" class="simple-link">
               <span class="link-num">05</span>
               <span class="link-label">Galeria</span>
             </a>
           </li>
           <li>
-            <a href="${url('/contacto.html')}" class="simple-link">
+            <a href="${url('/contacto')}" class="simple-link">
               <span class="link-num">06</span>
               <span class="link-label">Contacto</span>
             </a>
           </li>
           <li>
-            <a href="${url('/clube/newsletter.html')}" class="simple-link">
+            <a href="${url('/newsletter')}" class="simple-link">
               <span class="link-num">07</span>
               <span class="link-label">Newsletter</span>
             </a>
           </li>
           <li>
-            <a href="${url('/admin/login.html')}" class="simple-link">
+            <a href="${url('/admin/login')}" class="simple-link">
               <span class="link-num">08</span>
               <span class="link-label">Admin</span>
             </a>
