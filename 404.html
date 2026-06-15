@@ -281,7 +281,7 @@
   </p>
 
   <div class="btns">
-    <a href="index.html" class="btn-home">🏠 Página Inicial</a>
+    <a href="/" class="btn-home">🏠 Página Inicial</a>
     <a href="#" class="btn-back" onclick="history.back(); return false;">← Voltar Atrás</a>
   </div>
 
@@ -300,7 +300,7 @@
   const urlBox = document.getElementById('badUrl');
   urlBox.textContent = window.location.href;
 
-  // Countdown e redirect automático para index.html (só é executado para erros 404 reais)
+  // Countdown e redirect automático para /index.html (só é executado para erros 404 reais)
   let t = 10;
   const timerEl = document.getElementById('timer');
   const interval = setInterval(() => {
@@ -308,7 +308,7 @@
     timerEl.textContent = t;
     if (t <= 0) {
       clearInterval(interval);
-      window.location.href = 'index.html';
+      window.location.href = '/';
     }
   }, 1000);
 
