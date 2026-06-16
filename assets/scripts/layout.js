@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
           </li>
         </ul>
         <div class="menu-footer">
-          <p>Clube Atletismo de Marinha Grande</p>
-          <p>© 2026 CAMG</p>
+          <p>© 2026 Clube Atletismo de Marinha Grande</p>
+          <p>© Makyneta Unipessoal, Lda.</p>
         </div>
       </div>
     </div>
