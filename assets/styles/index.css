@@ -978,6 +978,258 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
+   VOLTA AOS 7 VIDRALA — Seasonal Banner
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  --volta-green: #2d9c4e;
+  --volta-green-light: #4ade80;
+  --volta-green-dark: #166534;
+}
+
+.volta-banner {
+  position: relative;
+  background: #0a0a0a;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.volta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.volta-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.25) saturate(0.9);
+}
+
+.volta-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.2) 100%),
+    linear-gradient(180deg, transparent 0%, rgba(22,101,52,0.15) 100%);
+}
+
+.volta-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse at 25% 50%, rgba(45,156,78,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 50%, rgba(45,156,78,0.06) 0%, transparent 50%),
+    repeating-linear-gradient(
+      90deg,
+      transparent, transparent 80px,
+      rgba(255, 255, 255, 0.015) 80px,
+      rgba(255, 255, 255, 0.015) 81px
+    );
+}
+
+.volta-banner .container {
+  position: relative;
+  z-index: 3;
+  padding: 100px 24px;
+}
+
+.volta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.volta-content {
+  max-width: 560px;
+  flex-shrink: 0;
+}
+
+.volta-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--volta-green-light);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+
+.volta-content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--light);
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.volta-content h2 span {
+  color: var(--volta-green-light);
+}
+
+.volta-content p {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+.volta-btn {
+  display: inline-block;
+  background: var(--volta-green);
+  color: var(--light);
+  padding: 15px 44px;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.25s ease;
+}
+
+.volta-btn:hover {
+  background: var(--volta-green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 156, 78, 0.3);
+}
+
+/* ── Logos ──────────────────────────────────────────── */
+.volta-logos {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.volta-logos-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.volta-logos-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.volta-logos-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.volta-logo {
+  width: 100px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.volta-logo:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(74, 222, 128, 0.2);
+}
+
+.volta-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0.95);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .volta-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .volta-content {
+    max-width: 100%;
+  }
+
+  .volta-content p {
+    max-width: 100%;
+  }
+
+  .volta-logos {
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .volta-logos-group {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .volta-banner {
+    min-height: auto;
+  }
+
+  .volta-banner .container {
+    padding: 70px 20px;
+  }
+
+  .volta-overlay {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.3) 100%);
+  }
+
+  .volta-btn {
+    display: block;
+    text-align: center;
+  }
+
+  .volta-logos {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .volta-logos-row {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .volta-logo {
+    width: 80px;
+    height: 64px;
+    padding: 8px;
+  }
+
+  .volta-logos-row {
+    gap: 12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════════════════ */
 

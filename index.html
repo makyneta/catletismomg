@@ -17,7 +17,7 @@
         <script src="assets/scripts/slideshow.js" defer></script>
     <!-- Title & Favicon -->
         <title>Clube Atletismo de Marinha Grande</title>
-        <link rel="icon" type="image/png" href="assets/images/favicon.png">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 <section class="hero" id="inicio">
@@ -80,6 +80,58 @@
   </div>
  
 </section>
+
+<!-- ===== VOLTA AOS 7 VIDRALA ===== -->
+<section class="volta-banner" id="voltaBanner" style="display:none">
+  <div class="volta-bg">
+    <img src="assets/images/volta-aos-7/background.jpg" alt="">
+  </div>
+  <div class="volta-overlay"></div>
+  <div class="volta-pattern"></div>
+  <div class="container">
+    <div class="volta-inner">
+      <div class="volta-content">
+        <span class="volta-badge">Prova de Estrada</span>
+        <h2>Volta aos <span>7 Vidrala</span></h2>
+        <p>Uma organização do Clube de Atletismo de Marinha Grande e da Vidrala. Percorre as paisagens únicas da região vidreira numa prova de estrada com tradição e espírito competitivo.</p>
+        <a href="provas/volta-aos-7-vidrala" class="volta-btn">Saber Mais</a>
+      </div>
+      <div class="volta-logos">
+        <div class="volta-logos-group">
+          <span class="volta-logos-label">Organização</span>
+          <div class="volta-logos-row">
+            <div class="volta-logo">
+              <img src="assets/images/volta-aos-7/organizacao/clube-atletismo-de-marinha-grande.png" alt="CAMG">
+            </div>
+            <div class="volta-logo">
+              <img src="assets/images/volta-aos-7/organizacao/vidrala.png" alt="Vidrala">
+            </div>
+          </div>
+        </div>
+        <div class="volta-logos-group">
+          <span class="volta-logos-label">Apoios</span>
+          <div class="volta-logos-row">
+            <div class="volta-logo">
+              <img src="assets/images/volta-aos-7/apoios/municipio-marinha-grande.png" alt="Município da Marinha Grande">
+            </div>
+            <div class="volta-logo">
+              <img src="assets/images/volta-aos-7/apoios/freguesia-marinha-grande.png" alt="Freguesia da Marinha Grande">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const m = new Date().getMonth();
+    if (m >= 4 && m <= 9) {
+      document.getElementById('voltaBanner').style.display = '';
+    }
+  })();
+</script>
 
 <!-- ===== SOBRE NÓS ===== -->
 <section class="home-about" id="sobre">
