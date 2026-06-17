@@ -190,6 +190,27 @@ body {
 }
 
 /* Responsividade */
+.entrevista-card {
+  position: relative;
+  border: 1px solid rgba(212,160,23,0.2);
+  box-shadow: 0 10px 30px rgba(212,160,23,0.06);
+}
+.entrevista-card::before {
+  content: 'ENTREVISTA TVMG';
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 5;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fff;
+  background: rgba(212,160,23,0.9);
+  padding: 5px 14px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
 @media (max-width: 960px) {
   .news-featured {
     grid-template-columns: 1fr;

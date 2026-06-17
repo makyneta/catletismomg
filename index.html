@@ -45,6 +45,7 @@
         <link rel="stylesheet" href="assets/styles/loading.css">
         <link rel="stylesheet" href="assets/styles/layout.css">
         <link rel="stylesheet" href="assets/styles/index.css">
+        <link rel="stylesheet" href="assets/styles/popup.css">
     <!-- Script -->
         <script src="assets/scripts/loading.js"></script>
         <script src="assets/scripts/layout.js" defer></script>
@@ -375,6 +376,51 @@
     </div>
   </div>
 </section>
+
+<!-- ===== POPUP ENTREVISTA TVMG ===== -->
+<div class="popup-overlay" id="popupOverlay" style="display:none">
+  <div class="popup-backdrop" id="popupBackdrop"></div>
+  <div class="popup-card" role="dialog" aria-modal="true" aria-label="Entrevista Ana Paula André">
+    <button class="popup-close" id="popupClose" aria-label="Fechar">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="popup-media">
+      <img src="assets/images/news/entrevista-ana-paula-andre-via-tvmg-preview.jpg" alt="Ana Paula André entrevistada pela TVMG">
+    </div>
+    <div class="popup-content">
+      <span class="popup-tag">TVMG</span>
+      <h3>Ana Paula André: Uma conversa que vai além do atletismo</h3>
+      <p>Ex-campeã de lançamento do peso, mulher de causas, amiga de sempre — a presidente do CAMG sentou-se à conversa com a TVMG e abriu o jogo.</p>
+      <a href="entrevista-ana-paula-andre-tvmg" class="popup-btn">
+        <span>Ler e ver Entrevista</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function() {
+  var key = 'camg_popup_tvmg';
+  if (sessionStorage.getItem(key)) return;
+  var overlay = document.getElementById('popupOverlay');
+  var closeBtn = document.getElementById('popupClose');
+  var backdrop = document.getElementById('popupBackdrop');
+  function open() { overlay.classList.add('open'); overlay.style.display = 'flex'; }
+  function close() {
+    overlay.classList.remove('open');
+    setTimeout(function() { overlay.style.display = 'none'; }, 400);
+    try { sessionStorage.setItem(key, '1'); } catch(e) {}
+  }
+  setTimeout(open, 1200);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+  });
+})();
+</script>
 
 </body>
 </html>
