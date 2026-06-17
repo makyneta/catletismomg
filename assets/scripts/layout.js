@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="fa-brands fa-youtube"></i>
           </a>
         </div>
-        <p class="footer-copy"><a href="https://makyneta.github.io" target="_blank" rel="noopener">© Makyneta Unipessoal, Lda.</a></p>
+        <p class="footer-copy"><a href="https://makyneta.github.io" target="_blank" rel="noopener">Copyright © Makyneta Unipessoal, Lda. Todos os direitos reservados.</a></p>
       </div>
     </footer>
   `;
