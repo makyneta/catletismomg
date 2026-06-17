@@ -203,20 +203,39 @@ body {
 
 @media (max-width: 768px) {
   .article-hero {
-    height: 70vh;
-    min-height: 420px;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+  .article-hero img {
+    position: relative;
+    height: auto;
+    display: block;
+    padding-top: 52px;
+    background: #0a0a0a;
+  }
+  .article-hero-gradient {
+    display: none;
+  }
+  .article-hero-bar {
+    display: none;
   }
   .article-hero-content {
-    padding: 40px 24px 60px;
+    padding: 32px 20px 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.03), #0a0a0a 40px);
   }
   .article-hero h1 {
     font-size: 2.6rem;
-  }
-  .article-hero-bar {
-    left: 16px;
+    margin: 0 0 16px;
   }
   .hero-subtitle {
     font-size: 0.95rem;
+    margin: 0 0 40px;
+  }
+  .article-hero-tag {
+    margin-bottom: 16px;
   }
   .article-body {
     padding: 0 20px 60px;
