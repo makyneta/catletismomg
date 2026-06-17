@@ -33,28 +33,21 @@
 <body>
 
 <!-- ══════════════════════════════════ HERO -->
-<section class="museum-hero">
-  <div class="museum-hero-bg"></div>
-  <div class="museum-hero-content">
-    <div class="museum-hero-label">Arquivo Visual</div>
-    <h1>Galeria <span>CAMG</span></h1>
-    <p>Momentos marcantes do Clube de Atletismo de Marinha Grande</p>
-    <div class="museum-hero-stats">
-      <div class="mh-stat" id="statFotos"><span>—</span><small>Fotografias</small></div>
-      <div class="mh-divider"></div>
-      <div class="mh-stat" id="statVideos"><span>—</span><small>Vídeos</small></div>
-      <div class="mh-divider"></div>
-      <div class="mh-stat" id="statColecoes"><span>—</span><small>Coleções</small></div>
-    </div>
-  </div>
-  <div class="museum-hero-scroll">
-    <span>Explorar</span>
-    <div class="scroll-arrow"></div>
+<section class="galeria-hero">
+  <div class="galeria-hero-label">Arquivo Visual</div>
+  <h1>Galeria <span>CAMG</span></h1>
+  <p>Momentos marcantes do Clube de Atletismo de Marinha Grande</p>
+  <div class="galeria-hero-stats">
+    <div class="mh-stat" id="statFotos"><span>—</span><small>Fotografias</small></div>
+    <div class="mh-divider"></div>
+    <div class="mh-stat" id="statVideos"><span>—</span><small>Vídeos</small></div>
+    <div class="mh-divider"></div>
+    <div class="mh-stat" id="statColecoes"><span>—</span><small>Coleções</small></div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════ FILTROS -->
-<div class="museum-filters" id="museumFilters">
+<div class="galeria-filters" id="museumFilters">
   <div class="filters-inner">
     <button class="filter-btn active" data-filter="all">Tudo</button>
     <!-- gerado dinamicamente pelo JS com base nas colecoes -->
@@ -62,7 +55,7 @@
 </div>
 
 <!-- ══════════════════════════════════ GALERIA -->
-<main class="museum-main">
+<main class="galeria-main">
 
   <!-- As coleções são geradas pelo JS a partir do array museumData em galeria.js -->
   <div id="museumGallery"></div>
