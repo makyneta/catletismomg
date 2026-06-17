@@ -158,7 +158,8 @@ body > *:not(nav):not(.fullscreen-menu) {
   transition: all 0.2s ease;
 }
 
-.dropdown li a:hover {
+.dropdown li a:hover,
+.dropdown li a.active {
   color: var(--secondary);
   background: rgba(240,232,0,0.06);
   padding-left: 20px;

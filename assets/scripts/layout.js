@@ -210,9 +210,10 @@ document.addEventListener('DOMContentLoaded', function () {
   setupCalendario('btn-calendario');
   setupCalendario('btn-calendario-desktop');
 
-  const currentPath = location.pathname;
+  const currentPath = location.pathname.replace(/\.html$/, '');
   document.querySelectorAll('.nav-links a, .fullscreen-menu a').forEach(link => {
-    if (link.href && link.pathname === currentPath) link.classList.add('active');
+    const linkPath = link.pathname.replace(/\.html$/, '');
+    if (link.href && linkPath === currentPath) link.classList.add('active');
   });
 
 });
