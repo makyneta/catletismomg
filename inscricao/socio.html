@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Torne-se sócio do Clube de Atletismo de Marinha Grande. Preencha o formulário de inscrição e faça parte da nossa família desportiva.">
+    <meta name="author" content="Makyneta Unipessoal, Lda.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://catletismomg.pt/inscricao/socio.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Inscrição de Sócio | CAMG">
+    <meta property="og:description" content="Torne-se sócio do Clube de Atletismo de Marinha Grande.">
+    <meta property="og:url" content="https://catletismomg.pt/inscricao/socio.html">
+    <meta property="og:image" content="https://catletismomg.pt/assets/images/logo.png">
+    <meta property="og:site_name" content="CAMG — Clube de Atletismo de Marinha Grande">
+    <meta property="og:locale" content="pt_PT">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Inscrição de Sócio | CAMG">
+    <meta name="twitter:description" content="Torne-se sócio do Clube de Atletismo de Marinha Grande.">
+    <meta name="twitter:image" content="https://catletismomg.pt/assets/images/logo.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Inscrição de Sócio",
+      "description": "Formulário de inscrição para novos sócios do Clube de Atletismo de Marinha Grande.",
+      "url": "https://catletismomg.pt/inscricao/socio.html",
+      "isPartOf": {
+        "@type": "SportsOrganization",
+        "name": "Clube de Atletismo de Marinha Grande",
+        "url": "https://catletismomg.pt"
+      }
+    }
+    </script>
+    <!-- Styles -->
+        <link rel="stylesheet" href="../assets/styles/loading.css">
+        <link rel="stylesheet" href="../assets/styles/layout.css">
+        <link rel="stylesheet" href="../assets/styles/socio.css">
+    <!-- Script -->
+        <script src="../assets/scripts/loading.js"></script>
+        <script src="../assets/scripts/layout.js" defer></script>
+    <!-- Title & Favicon -->
+        <title>Inscrição de Sócio | CAMG</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+
+<!-- HERO -->
+<section class="socio-hero">
+  <div class="socio-hero-label">Torne-se Sócio</div>
+  <h1>Inscrição <span>CAMG</span></h1>
+  <p>Faça parte do Clube de Atletismo de Marinha Grande e ajude-nos a promover o desporto na nossa comunidade</p>
+</section>
+
+<!-- MAIN -->
+<main class="socio-main">
+
+  <!-- BENEFÍCIOS -->
+  <div class="socio-benefits">
+    <div class="benefit-card">
+      <div class="benefit-icon">🏃</div>
+      <h3>Atletismo de Qualidade</h3>
+      <p>Apoie a formação de atletas e o desenvolvimento do desporto na Marinha Grande.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🤝</div>
+      <h3>Família CAMG</h3>
+      <p>Faça parte de uma comunidade unida pela paixão ao atletismo e pelos valores do desporto.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🎫</div>
+      <h3>Benefícios Exclusivos</h3>
+      <p>Acesso prioritário a eventos, descontos em provas e muito mais para os nossos sócios.</p>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <div class="form-wrapper">
+    <div class="form-header">
+      <h2>Formulário de Inscrição</h2>
+      <p>Preencha os seus dados e entraremos em contacto consigo para finalizar o processo.</p>
+    </div>
+
+    <div id="form-status" class="form-status"></div>
+
+    <form action="https://formspree.io/f/mlgkzjny" method="POST" class="premium-form">
+      <input type="hidden" name="_subject" value="Nova Inscrição de Sócio CAMG">
+      <input type="hidden" name="_redirect" value="https://catletismomg.pt/inscricao/socio.html?sucesso=1">
+
+      <div class="form-row inputs-2">
+        <div class="input-component">
+          <input type="text" id="nome" name="CAMG.Socio.Nome" required placeholder=" ">
+          <label for="nome">Nome Completo</label>
+        </div>
+        <div class="input-component">
+          <input type="email" id="email" name="CAMG.Socio.Email" required placeholder=" ">
+          <label for="email">E-mail</label>
+        </div>
+      </div>
+
+      <div class="form-row inputs-2">
+        <div class="input-component">
+          <input type="tel" id="telefone" name="CAMG.Socio.Telefone" required placeholder=" ">
+          <label for="telefone">Telemóvel</label>
+        </div>
+        <div class="input-component">
+          <input type="date" id="nascimento" name="CAMG.Socio.Nascimento" required placeholder=" ">
+          <label for="nascimento">Data de Nascimento</label>
+        </div>
+      </div>
+
+      <div class="input-component">
+        <input type="text" id="morada" name="CAMG.Socio.Morada" required placeholder=" ">
+        <label for="morada">Morada</label>
+      </div>
+
+      <div class="form-row inputs-2">
+        <div class="input-component">
+          <input type="text" id="localidade" name="CAMG.Socio.Localidade" required placeholder=" ">
+          <label for="localidade">Localidade</label>
+        </div>
+        <div class="input-component">
+          <input type="text" id="codigo-postal" name="CAMG.Socio.CodigoPostal" placeholder=" ">
+          <label for="codigo-postal">Código Postal</label>
+        </div>
+      </div>
+
+      <div class="input-component select-component">
+        <select id="tipo-socio" name="CAMG.Socio.Tipo" required>
+          <option value="" disabled selected></option>
+          <option value="atleta">Atleta (praticante federado)</option>
+          <option value="apoiante">Sócio Apoiante (não praticante)</option>
+          <option value="encarregado">Encarregado de Educação</option>
+          <option value="benemerito">Sócio Benemérito</option>
+        </select>
+        <span class="select-arrow">▼</span>
+        <label for="tipo-socio">Tipo de Sócio</label>
+      </div>
+
+      <div class="input-component">
+        <textarea id="mensagem" name="CAMG.Socio.Mensagem" rows="4" placeholder=" "></textarea>
+        <label for="mensagem">Porque deseja ser sócio? (opcional)</label>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="form-btn">
+          Enviar Inscrição
+          <span class="arrow">→</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+</main>
+
+<script>
+(function() {
+  var form = document.querySelector('.premium-form');
+  var status = document.getElementById('form-status');
+  var btn = document.getElementById('form-btn');
+
+  if (!form) return;
+
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('sucesso') === '1') {
+    status.className = 'form-status success';
+    status.textContent = 'Inscrição enviada com sucesso! Entraremos em contacto consigo em breve.';
+    form.reset();
+  }
+
+  form.addEventListener('submit', function(e) {
+    btn.disabled = true;
+    btn.textContent = 'A enviar…';
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><a href="${url('/clube/corpos-sociais')}">Corpos Sociais</a></li>
             <li><a href="${url('/clube/campeoes-nacionais')}">Campeões Nacionais</a></li>
             <li><a href="${url('/clube/estatisticas')}">Estatísticas</a></li>
+            <li><a href="${url('/newsletter')}">Newsletter</a></li>
           </ul>
         </li>
         <li>
@@ -51,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </li>
         <li><a href="${url('/noticias')}">Notícias</a></li>
         <li><a href="${url('/galeria')}">Galeria</a></li>
+        <li><a href="${url('/inscricao/socio')}">Sócio</a></li>
         <li><a href="${url('/contacto')}">Contacto</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
@@ -111,21 +113,15 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </li>
           <li>
-            <a href="${url('/contacto')}" class="simple-link">
+            <a href="${url('/inscricao/socio')}" class="simple-link">
               <span class="link-num">06</span>
-              <span class="link-label">Contacto</span>
+              <span class="link-label">Sócio</span>
             </a>
           </li>
           <li>
-            <a href="${url('/newsletter')}" class="simple-link">
+            <a href="${url('/contacto')}" class="simple-link">
               <span class="link-num">07</span>
-              <span class="link-label">Newsletter</span>
-            </a>
-          </li>
-          <li>
-            <a href="${url('/admin/login')}" class="simple-link">
-              <span class="link-num">08</span>
-              <span class="link-label">Admin</span>
+              <span class="link-label">Contacto</span>
             </a>
           </li>
         </ul>
