@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </li>
         <li><a href="${url('/noticias')}">Notícias</a></li>
         <li><a href="${url('/galeria')}">Galeria</a></li>
-        <li><a href="${url('/inscricao/socio')}">Sócio</a></li>
+        <li><a href="${url('/')}">Sócio</a></li>
         <li><a href="${url('/contacto')}">Contacto</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </li>
           <li>
-            <a href="${url('/inscricao/socio')}" class="simple-link">
+            <a href="${url('/')}" class="simple-link">
               <span class="link-num">06</span>
               <span class="link-label">Sócio</span>
             </a>

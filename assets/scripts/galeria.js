@@ -1,31 +1,7 @@
 // ═══════════════════════════════════════════════════════════════
-//  GALERIA CAMG — Dados e lógica
-//  Adiciona fotos e vídeos aqui. O JS trata de tudo o resto.
+//  GALERIA CAMG
 // ═══════════════════════════════════════════════════════════════
 
-/**
- * museumData — Array de COLEÇÕES
- * Cada coleção tem:
- *   id        — slug único (sem espaços)
- *   label     — nome da coleção mostrado na galeria e nos filtros
- *   year      — ano (mostrado no header da coleção)
- *   items     — array de itens (fotos ou vídeos)
- *
- * Cada ITEM pode ser:
- *   type: 'photo'
- *     src   — caminho da imagem
- *     title — título
- *     desc  — descrição (opcional)
- *     size  — 'large' | 'medium' | '' (opcional, para layout)
- *
- *   type: 'video'
- *     src   — caminho do ficheiro de vídeo  (mp4, etc.)
- *     title, desc iguais ao photo
- *
- *   type: 'youtube'
- *     id    — ID do vídeo YouTube (ex: 'dQw4w9WgXcQ')
- *     title, desc iguais ao photo
- */
 const museumData = [
   {
     id: '202526',
@@ -33,58 +9,51 @@ const museumData = [
     year: '2026',
     items: [
       { type: 'photo', src: 'assets/images/gallery/2025.26/bark-no-campeonato-do-mundo-de-sub-20.jpg',
-        title: 'Bark no Campeonato do Mundo de Sub-20', },
+        title: 'Bark no Campeonato do Mundo de Sub-20' },
       { type: 'photo', src: 'assets/images/gallery/2025.26/joao-e-tomas-no-nacional-de-sub-16.jpg',
-        title: 'João e Tomás no Nacional de Sub-16', },
+        title: 'João e Tomás no Nacional de Sub-16' },
       { type: 'photo', src: 'assets/images/gallery/2025.26/olimpico-jovem-nacional.jpg',
-        title: 'Olímpico Jovem Nacional', },
+        title: 'Olímpico Jovem Nacional' },
       ...Array.from({ length: 10 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/tacapassovite_${String(i + 1).padStart(2, '0')}.jpg`,
-        title: 'Taça Passovite - Almeirim',
-      })),
-      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01335.JPG', title: 'Equipa Jovem', },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/galeria_2-1024x683.jpg', title: '200 Metros', },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01524.JPG', title: 'Meeting Fernando Alves', },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/702677456.jpg', title: 'Tiago Sucena', },
+        title: 'Taça Passovite - Almeirim' })),
+      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01335.JPG', title: 'Equipa Jovem' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/galeria_2-1024x683.jpg', title: '200 Metros' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01524.JPG', title: 'Meeting Fernando Alves' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/702677456.jpg', title: 'Tiago Sucena' },
       ...Array.from({ length: 11 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/equipas-sub-16-conquistam-3-lugar-distrital_${String(i + 1).padStart(2, '0')}.jpg`,
-        title: 'Equipas Sub-16 Conquistam 3º Lugar Distrital',
-      })),
+        title: 'Equipas Sub-16 Conquistam 3º Lugar Distrital' })),
     ],
   },
-
   {
     id: '12meetingfa',
     label: '12º Meeting Fernando Alves',
     year: '2026',
     items: [
-      { type: 'youtube', id: '3uGbSJC2WzU', title: 'Resumo do Meeting',},
+      { type: 'youtube', id: '3uGbSJC2WzU', title: 'Resumo do Meeting' },
       ...Array.from({ length: 11 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/12mfa_${String(i + 1).padStart(2, '0')}.jpg`,
-        title: '12º Meeting Fernando Alves',
-      })),
+        title: '12º Meeting Fernando Alves' })),
     ]
   },
-
   {
     id: '9meetingjovem',
     label: '9º Meeting Jovem',
     year: '2026',
     items: [
-      { type: 'youtube', id: 'R2Oj7gshaNA', title: 'Resumo do Meeting',},
+      { type: 'youtube', id: 'R2Oj7gshaNA', title: 'Resumo do Meeting' },
       ...Array.from({ length: 12 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/9mj_${String(i + 1).padStart(2, '0')}.jpg`,
-        title: '9º Meeting Jovem',
-      })),
-      { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_01.jpg', title: '9º Meeting Jovem',},
-      { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_02.jpg', title: '9º Meeting Jovem', size: 'large',},
+        title: '9º Meeting Jovem' })),
+      { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_01.jpg', title: '9º Meeting Jovem' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_02.jpg', title: '9º Meeting Jovem', size: 'large' },
     ]
   },
-
   {
     id: '36milhacristal',
     label: '36ª Milha Cristal',
@@ -93,33 +62,33 @@ const museumData = [
       ...Array.from({ length: 55 }, (_, i) => ({
         type: 'photo',
         src: `assets/images/gallery/2025.26/36mc_${String(i + 1).padStart(2, '0')}.jpg`,
-        title: '36ª Milha Cristal',
-      })),
+        title: '36ª Milha Cristal' })),
     ]
   },
-
-  // ── Adiciona mais coleções aqui ──────────────────────────────
-  // {
-  //   id: 'campeonato-regional',
-  //   label: 'Campeonato Regional',
-  //   year: '2024',
-  //   items: [
-  //     { type: 'photo', src: 'assets/images/gallery/foto.jpg', title: 'Sprint', desc: '...' },
-  //     { type: 'video', src: 'assets/videos/corrida.mp4',      title: 'Corrida', desc: '...' },
-  //     { type: 'youtube', id: 'YOUTUBE_ID',                    title: 'Vídeo', desc: '...' },
-  //   ]
-  // },
 ];
 
+// ═══════════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════════
+let flatItems = [];
+let lbIndex = 0;
+let isOpen = false;
+let lbZoom = 1;
+let lbPanX = 0, lbPanY = 0;
+let isDragging = false;
+let dragStartX = 0, dragStartY = 0;
+let dragStartPanX = 0, dragStartPanY = 0;
+let lbMediaImg = null;
 
 // ═══════════════════════════════════════════════════════════════
-//  RENDER
+//  INIT
 // ═══════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   buildFilters();
   buildGallery('all');
   updateHeroStats();
   initLightbox();
+  initScrollReveal();
 });
 
 function updateHeroStats() {
@@ -130,16 +99,43 @@ function updateHeroStats() {
       else videos++;
     });
   });
-  document.getElementById('statFotos').querySelector('span').textContent    = fotos;
-  document.getElementById('statVideos').querySelector('span').textContent   = videos;
+  document.getElementById('statFotos').querySelector('span').textContent = fotos;
+  document.getElementById('statVideos').querySelector('span').textContent = videos;
   document.getElementById('statColecoes').querySelector('span').textContent = museumData.length;
 }
 
+// ═══════════════════════════════════════════════════════════════
+//  SCROLL REVEAL
+// ═══════════════════════════════════════════════════════════════
+function initScrollReveal() {
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.col-section').forEach(s => {
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(24px)';
+      s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      obs.observe(s);
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  FILTERS
+// ═══════════════════════════════════════════════════════════════
 function buildFilters() {
   const inner = document.querySelector('.filters-inner');
   museumData.forEach(col => {
     const btn = document.createElement('button');
-    btn.className   = 'filter-btn';
+    btn.className = 'filter-btn';
     btn.dataset.filter = col.id;
     btn.textContent = col.label;
     inner.appendChild(btn);
@@ -151,18 +147,20 @@ function buildFilters() {
     inner.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     buildGallery(btn.dataset.filter);
+    initScrollReveal();
   });
 }
 
+// ═══════════════════════════════════════════════════════════════
+//  BUILD GALLERY
+// ═══════════════════════════════════════════════════════════════
 function buildGallery(filter) {
   const wrap = document.getElementById('museumGallery');
   wrap.innerHTML = '';
 
   const cols = filter === 'all' ? museumData : museumData.filter(c => c.id === filter);
-
-  // Índice global para o lightbox
   let globalIdx = 0;
-  const flatItems = [];
+  flatItems = [];
 
   cols.forEach(col => {
     const section = document.createElement('section');
@@ -187,38 +185,30 @@ function buildGallery(filter) {
       flatItems.push({ item, colLabel: col.label });
 
       const card = document.createElement('div');
-      card.className = `museum-card ${item.size || ''} ${item.type === 'youtube' || item.type === 'video' ? 'is-video' : ''}`;
+      card.className = `museum-card ${item.size || ''} ${item.type === 'youtube' ? 'is-video' : ''}`;
       card.setAttribute('tabindex', '0');
       card.setAttribute('role', 'button');
       card.setAttribute('aria-label', `Abrir: ${item.title}`);
 
-      // Thumbnail
       let thumbHTML = '';
       if (item.type === 'photo') {
         thumbHTML = `<img src="${item.src}" alt="${item.title}" loading="lazy">`;
-      } else if (item.type === 'video') {
-        thumbHTML = `<video src="${item.src}" muted preload="metadata"></video>`;
-      } else if (item.type === 'youtube') {
+      } else {
         thumbHTML = `
           <img src="https://img.youtube.com/vi/${item.id}/hqdefault.jpg" alt="${item.title}" loading="lazy">
-          <div class="yt-badge"><svg viewBox="0 0 68 48" width="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/><path d="M45 24 27 14v20" fill="#fff"/></svg></div>
-        `;
+          <div class="yt-badge"><svg viewBox="0 0 68 48" width="48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/><path d="M45 24 27 14v20" fill="#fff"/></svg></div>`;
       }
 
       card.innerHTML = `
         <div class="card-media">${thumbHTML}</div>
         <div class="card-overlay">
-          <div class="card-overlay-inner">
-            <span class="card-type-tag">${item.type === 'photo' ? '📷 Fotografia' : item.type === 'youtube' ? '▶ YouTube' : '🎬 Vídeo'}</span>
-            <h3>${item.title}</h3>
-            ${item.desc ? `<p>${item.desc}</p>` : ''}
-            <span class="card-cta">Abrir →</span>
-          </div>
+          <span class="card-type-tag">${item.type === 'photo' ? '📷 Fotografia' : '▶ YouTube'}</span>
+          <h3>${item.title}</h3>
         </div>
       `;
 
-      card.addEventListener('click',   () => openLightbox(idx, flatItems));
-      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(idx, flatItems); });
+      card.addEventListener('click', () => openLightbox(idx));
+      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(idx); });
 
       grid.appendChild(card);
     });
@@ -226,75 +216,128 @@ function buildGallery(filter) {
     wrap.appendChild(section);
   });
 
-  // Guarda para o lightbox
   window._galleryFlat = flatItems;
 }
-
 
 // ═══════════════════════════════════════════════════════════════
 //  LIGHTBOX
 // ═══════════════════════════════════════════════════════════════
-let lbCurrent = 0;
-
 function initLightbox() {
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   document.getElementById('lbBackdrop').addEventListener('click', closeLightbox);
-  document.getElementById('lbPrev').addEventListener('click', () => moveLightbox(-1));
-  document.getElementById('lbNext').addEventListener('click', () => moveLightbox(1));
+
+  document.getElementById('lbPrev').addEventListener('click', () => navigate(-1));
+  document.getElementById('lbNext').addEventListener('click', () => navigate(1));
 
   document.addEventListener('keydown', e => {
     if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape')     closeLightbox();
-    if (e.key === 'ArrowRight') moveLightbox(1);
-    if (e.key === 'ArrowLeft')  moveLightbox(-1);
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
   });
 
-  // Swipe mobile
-  let tx = 0;
+  // Mouse wheel navigation
+  document.getElementById('lightbox').addEventListener('wheel', e => {
+    if (!isOpen) return;
+    if (lbZoom > 1) return;
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      navigate(e.deltaX > 0 ? 1 : -1);
+    }
+  }, { passive: false });
+
+  // Touch swipe
+  let tx = 0, ty = 0;
   const lb = document.getElementById('lightbox');
-  lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-  lb.addEventListener('touchend',   e => {
+  lb.addEventListener('touchstart', e => {
+    tx = e.touches[0].clientX;
+    ty = e.touches[0].clientY;
+  }, { passive: true });
+  lb.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 50) moveLightbox(dx < 0 ? 1 : -1);
-  });
+    const dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      navigate(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+
+  // Mouse drag to navigate
+  const stage = document.querySelector('.lb-stage');
+  stage.addEventListener('mousedown', onDragStart);
+  window.addEventListener('mousemove', onDragMove);
+  window.addEventListener('mouseup', onDragEnd);
+
+  // Pinch zoom
+  let lastDist = 0;
+  lb.addEventListener('touchmove', e => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.hypot(dx, dy);
+      if (lastDist) setZoom(lbZoom * (dist / lastDist));
+      lastDist = dist;
+    }
+  }, { passive: false });
+  lb.addEventListener('touchend', () => { lastDist = 0; }, { passive: true });
 }
 
-function openLightbox(idx, flatItems) {
-  lbCurrent = idx;
-  renderLightbox(flatItems || window._galleryFlat);
+function openLightbox(idx) {
+  lbIndex = idx;
+  isOpen = true;
+  lbZoom = 1;
+  lbPanX = 0;
+  lbPanY = 0;
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.body.style.touchAction = 'none';
+  renderLightbox();
 }
 
 function closeLightbox() {
+  isOpen = false;
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
-  // Para vídeos/iframes ao fechar
+  document.body.style.touchAction = '';
   document.getElementById('lbMedia').innerHTML = '';
+  lbZoom = 1;
+  lbPanX = 0;
+  lbPanY = 0;
+  lbMediaImg = null;
 }
 
-function moveLightbox(dir) {
-  const flat = window._galleryFlat;
-  lbCurrent = (lbCurrent + dir + flat.length) % flat.length;
-  renderLightbox(flat);
+function navigate(dir) {
+  lbIndex = (lbIndex + dir + flatItems.length) % flatItems.length;
+  lbZoom = 1;
+  lbPanX = 0;
+  lbPanY = 0;
+  renderLightbox();
 }
 
-function renderLightbox(flat) {
-  const { item, colLabel } = flat[lbCurrent];
+function renderLightbox() {
+  const { item } = flatItems[lbIndex];
   const media = document.getElementById('lbMedia');
   media.innerHTML = '';
 
+  const spinner = document.createElement('div');
+  spinner.className = 'lb-spinner';
+  media.appendChild(spinner);
+
   if (item.type === 'photo') {
     const img = document.createElement('img');
-    img.src = item.src; img.alt = item.title;
+    img.className = 'lb-loading';
+    img.alt = item.title;
+    img.addEventListener('load', () => {
+      img.classList.remove('lb-loading');
+      img.classList.add('lb-loaded');
+      spinner.style.display = 'none';
+    });
+    img.addEventListener('error', () => { spinner.style.display = 'none'; });
+    img.src = item.src;
+    lbMediaImg = img;
     media.appendChild(img);
-
-  } else if (item.type === 'video') {
-    const v = document.createElement('video');
-    v.src = item.src; v.controls = true; v.autoplay = true;
-    media.appendChild(v);
-
-  } else if (item.type === 'youtube') {
+  } else {
+    spinner.style.display = 'none';
     const fr = document.createElement('iframe');
     fr.src = `https://www.youtube.com/embed/${item.id}?autoplay=1&rel=0`;
     fr.allow = 'autoplay; fullscreen';
@@ -302,33 +345,66 @@ function renderLightbox(flat) {
     media.appendChild(fr);
   }
 
-  document.getElementById('lbTitle').textContent   = item.title;
-  document.getElementById('lbDesc').textContent    = item.desc || '';
-  document.getElementById('lbTag').textContent     = colLabel;
-  document.getElementById('lbCounter').textContent = `${lbCurrent + 1} / ${flat.length}`;
+  document.getElementById('lbTitle').textContent = item.title;
+  document.getElementById('lbCounter').textContent = `${lbIndex + 1} / ${flatItems.length}`;
+}
 
-  // Strip de miniaturas
-  const strip = document.getElementById('lbStrip');
-  strip.innerHTML = '';
-  flat.forEach(({ item: it }, i) => {
-    const th = document.createElement('div');
-    th.className = 'lb-thumb' + (i === lbCurrent ? ' active' : '');
+// ═══════════════════════════════════════════════════════════════
+//  ZOOM & PAN
+// ═══════════════════════════════════════════════════════════════
+function setZoom(zoom) {
+  lbZoom = Math.max(1, Math.min(5, zoom));
+  applyTransform();
+}
 
-    let tSrc = it.type === 'photo'   ? it.src
-             : it.type === 'youtube' ? `https://img.youtube.com/vi/${it.id}/default.jpg`
-             : '';
-    if (tSrc) {
-      const img = document.createElement('img'); img.src = tSrc; img.alt = it.title;
-      th.appendChild(img);
-    } else {
-      th.textContent = '🎬';
-    }
+function applyTransform() {
+  if (!lbMediaImg) return;
+  if (lbZoom > 1) {
+    lbMediaImg.style.transform = `translate(${lbPanX}px, ${lbPanY}px) scale(${lbZoom})`;
+    lbMediaImg.style.cursor = 'grab';
+  } else {
+    lbMediaImg.style.transform = '';
+    lbMediaImg.style.cursor = '';
+  }
+}
 
-    th.addEventListener('click', () => { lbCurrent = i; renderLightbox(flat); });
-    strip.appendChild(th);
-  });
+document.querySelector('.lb-stage').addEventListener('wheel', e => {
+  if (!isOpen || !lbMediaImg) return;
+  if (e.ctrlKey || e.metaKey) {
+    e.preventDefault();
+    setZoom(lbZoom * (e.deltaY > 0 ? 0.9 : 1.1));
+  }
+}, { passive: false });
 
-  // Scroll para a miniatura ativa
-  const activeThumb = strip.querySelector('.lb-thumb.active');
-  if (activeThumb) activeThumb.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+function onDragStart(e) {
+  if (!isOpen) return;
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  dragStartPanX = lbPanX;
+  dragStartPanY = lbPanY;
+  if (lbMediaImg) lbMediaImg.style.cursor = 'grabbing';
+}
+
+function onDragMove(e) {
+  if (!isDragging || !isOpen) return;
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+
+  if (lbZoom > 1) {
+    lbPanX = dragStartPanX + dx;
+    lbPanY = dragStartPanY + dy;
+    applyTransform();
+  }
+}
+
+function onDragEnd(e) {
+  if (!isDragging || !isOpen) return;
+  isDragging = false;
+  if (lbMediaImg) lbMediaImg.style.cursor = '';
+
+  if (lbZoom <= 1) {
+    const dx = e.clientX - dragStartX;
+    if (Math.abs(dx) > 80) navigate(dx < 0 ? 1 : -1);
+  }
 }

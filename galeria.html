@@ -18,6 +18,20 @@
     <meta name="twitter:title" content="Galeria | CAMG">
     <meta name="twitter:description" content="Galeria de fotos e vídeos do Clube de Atletismo de Marinha Grande.">
     <meta name="twitter:image" content="https://catletismomg.pt/assets/images/logo.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Galeria CAMG",
+      "description": "Galeria de fotos e vídeos do Clube de Atletismo de Marinha Grande.",
+      "url": "https://catletismomg.pt/galeria.html",
+      "isPartOf": {
+        "@type": "SportsOrganization",
+        "name": "Clube de Atletismo de Marinha Grande",
+        "url": "https://catletismomg.pt"
+      }
+    }
+    </script>
     <!-- Styles -->
         <link rel="stylesheet" href="assets/styles/loading.css">
         <link rel="stylesheet" href="assets/styles/layout.css">
@@ -32,7 +46,7 @@
 </head>
 <body>
 
-<!-- ══════════════════════════════════ HERO -->
+<!-- ═══════════════ HERO -->
 <section class="galeria-hero">
   <div class="galeria-hero-label">Arquivo Visual</div>
   <h1>Galeria <span>CAMG</span></h1>
@@ -46,42 +60,35 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════ FILTROS -->
+<!-- ═══════════════ FILTROS -->
 <div class="galeria-filters" id="museumFilters">
   <div class="filters-inner">
     <button class="filter-btn active" data-filter="all">Tudo</button>
-    <!-- gerado dinamicamente pelo JS com base nas colecoes -->
   </div>
 </div>
 
-<!-- ══════════════════════════════════ GALERIA -->
+<!-- ═══════════════ GALERIA -->
 <main class="galeria-main">
-
-  <!-- As coleções são geradas pelo JS a partir do array museumData em galeria.js -->
   <div id="museumGallery"></div>
-
 </main>
 
-<!-- ══════════════════════════════════ LIGHTBOX -->
+<!-- ═══════════════ LIGHTBOX -->
 <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de media">
-  <div class="lb-backdrop" id="lbBackdrop"></div>
 
   <button class="lb-close" id="lbClose" aria-label="Fechar">✕</button>
-  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
-  <button class="lb-nav lb-next" id="lbNext" aria-label="Próximo">&#8250;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Seguinte">›</button>
+
+  <div class="lb-backdrop" id="lbBackdrop"></div>
 
   <div class="lb-stage">
     <div class="lb-media" id="lbMedia"></div>
     <div class="lb-info">
-      <div class="lb-counter" id="lbCounter"></div>
       <h2 class="lb-title" id="lbTitle"></h2>
-      <p class="lb-desc"  id="lbDesc"></p>
-      <div class="lb-tag"  id="lbTag"></div>
+      <span class="lb-counter" id="lbCounter"></span>
     </div>
   </div>
 
-  <!-- Strip de miniaturas -->
-  <div class="lb-strip" id="lbStrip"></div>
 </div>
 
 </body>
