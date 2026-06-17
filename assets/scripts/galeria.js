@@ -185,7 +185,7 @@ function buildGallery(filter) {
       flatItems.push({ item, colLabel: col.label });
 
       const card = document.createElement('div');
-      card.className = `museum-card ${item.size || ''} ${item.type === 'youtube' ? 'is-video' : ''}`;
+      card.className = `museum-card${item.type === 'youtube' ? ' is-video' : ''}`;
       card.setAttribute('tabindex', '0');
       card.setAttribute('role', 'button');
       card.setAttribute('aria-label', `Abrir: ${item.title}`);
