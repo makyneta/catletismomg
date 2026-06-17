@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </li>
           <li>
-            <a href="${url('/')}" class="simple-link">
+            <a href="${url('/inscricao')}" class="simple-link">
               <span class="link-num">06</span>
               <span class="link-label">Sócio</span>
             </a>
