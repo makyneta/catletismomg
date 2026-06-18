@@ -21,11 +21,11 @@
 /* ── HERO WRAPPER ───────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 90vh;
+  height: calc(100dvh - var(--nav-h, 76px));
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-family: 'Barlow', sans-serif;
 }
 
 /* ── SLIDESHOW ──────────────────────────────────────────── */
@@ -68,39 +68,13 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.10) 0%,
-      rgba(0, 0, 0, 0.30) 40%,
-      rgba(0, 0, 0, 0.72) 100%
-    ),
-    /* linha diagonal subtil */
-    repeating-linear-gradient(
-      -55deg,
-      transparent,
-      transparent 80px,
-      rgba(255, 255, 255, 0.015) 80px,
-      rgba(255, 255, 255, 0.015) 81px
-    );
-}
-
-/* ── BARRA DE PROGRESSO ─────────────────────────────────── */
-.hero-progress-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 20;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.hero-progress-fill {
-  height: 100%;
-  background: var(--secondary);
-  width: 0%;
-  transition: width 0.1s linear;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.10) 30%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
 }
 
 /* ── CONTEÚDO PRINCIPAL ─────────────────────────────────── */
@@ -113,65 +87,43 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 24px 140px; /* bottom: espaço para as stats */
-}
-
-/* Logótipo circular */
-.hero-badge {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 3px solid var(--secondary);
-  background: rgba(0, 0, 0, 0.55);
-  overflow: hidden;
-  margin: 0 auto 22px;
-  box-shadow:
-    0 0 0 6px rgba(240, 232, 0, 0.08),
-    0 0 40px rgba(240, 232, 0, 0.25);
-}
-
-.hero-badge img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 10px;
+  padding: 80px 24px 110px;
 }
 
 /* Linha eyebrow */
 .hero-eyebrow {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--secondary);
-  opacity: 0.9;
-  margin-bottom: 14px;
+  color: rgba(240, 232, 0, 0.5);
+  margin-bottom: 12px;
 }
 
 /* Título principal */
 .hero h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(48px, 8vw, 88px);
+  font-family: 'Sofia Sans Extra Condensed', sans-serif;
+  font-size: clamp(3rem, 7vw, 5rem);
   color: var(--light);
-  line-height: 0.95;
-  letter-spacing: 3px;
+  line-height: 1;
+  letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 0;
+  font-weight: 900;
 }
 
 .hero h1 span {
   color: var(--secondary);
-  display: block;
 }
 
 /* Subtítulo */
 .hero-sub {
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 0.75rem;
+  font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
-  margin: 18px 0 36px;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 14px 0 32px;
 }
 
 /* Botões */
@@ -185,12 +137,12 @@
 .btn-primary {
   background: var(--secondary);
   color: var(--primary);
-  padding: 14px 38px;
+  padding: 14px 36px;
   border: none;
-  border-radius: 50px;
-  font-family: 'Barlow', sans-serif;
-  font-size: 12px;
-  font-weight: 800;
+  border-radius: 4px;
+  font-family: 'Sofia Sans Extra Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
   cursor: pointer;
   text-decoration: none;
   transition: all 0.25s ease;
@@ -201,17 +153,16 @@
 .btn-primary:hover {
   background: #e6d700;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(240, 232, 0, 0.28);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--light);
-  padding: 13px 38px;
-  border: 1.5px solid rgba(255, 255, 255, 0.55);
-  border-radius: 50px;
-  font-family: 'Barlow', sans-serif;
-  font-size: 12px;
+  padding: 13px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-family: 'Sofia Sans Extra Condensed', sans-serif;
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
@@ -225,34 +176,6 @@
   color: var(--secondary);
 }
 
-/* ── DOTS DE NAVEGAÇÃO ──────────────────────────────────── */
-.hero-dots {
-  position: absolute;
-  bottom: 88px; /* acima das stats */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.hero-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  border: none;
-  padding: 0;
-  transition: all 0.35s ease;
-}
-
-.hero-dot.active {
-  background: var(--secondary);
-  width: 22px;
-  border-radius: 4px;
-}
-
 /* ── STATS — BASE DA HERO ───────────────────────────────── */
 .hero-stats {
   position: absolute;
@@ -260,37 +183,38 @@
   left: 0;
   right: 0;
   z-index: 10;
-  background: rgba(240, 232, 0, 0.97);
+  background: rgba(12, 12, 12, 0.92);
+  backdrop-filter: blur(12px);
   display: flex;
   justify-content: center;
-  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255,255,255,0.04);
 }
 
 .hero-stat {
-  padding: 20px 60px;
+  padding: 24px 60px;
   text-align: center;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.hero-stat:last-child {
-  border-right: none;
+.hero-stat + .hero-stat {
+  border-left: 1px solid rgba(255,255,255,0.06);
 }
 
 .hero-stat strong {
   display: block;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 36px;
-  color: var(--primary);
+  font-family: 'Sofia Sans Extra Condensed', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #f0e800;
   line-height: 1;
 }
 
 .hero-stat span {
   display: block;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #333;
+  color: rgba(255,255,255,0.2);
   margin-top: 4px;
 }
 
@@ -848,8 +772,7 @@
 .event-icon img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 16px;
+  object-fit: cover;
 }
 
 .event-emoji {
@@ -1332,25 +1255,28 @@
 /* ── RESPONSIVE ─────────────────────────────────────────── */
 @media (max-width: 900px) {
   .hero-stat {
-    padding: 18px 32px;
+    padding: 20px 36px;
+  }
+
+  .hero-stat strong {
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 600px) {
   .hero-content {
-    padding: 60px 20px 160px;
+    padding: 60px 20px 110px;
   }
 
-  .hero-badge {
-    width: 86px;
-    height: 86px;
+  .hero h1 {
+    font-size: 2.2rem;
   }
 
   .hero-btns {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    max-width: 280px;
+    max-width: 260px;
     margin: 0 auto;
   }
 
@@ -1364,22 +1290,17 @@
   }
 
   .hero-stat {
-    padding: 14px 28px;
+    padding: 16px 24px;
     flex: 1 1 100px;
-    border-right: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-left: none;
   }
 
-  .hero-stat:first-child {
-    border-top: none;
+  .hero-stat + .hero-stat {
+    border-top: 1px solid rgba(255,255,255,0.04);
   }
 
   .hero-stat strong {
-    font-size: 28px;
-  }
-
-  .hero-dots {
-    bottom: 140px;
+    font-size: 1.4rem;
   }
 
   /* section:not(.hero) {

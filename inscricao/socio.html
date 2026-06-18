@@ -45,117 +45,167 @@
 </head>
 <body>
 
-<!-- HERO -->
 <section class="socio-hero">
-  <div class="socio-hero-label">Torne-se Sócio</div>
-  <h1>Inscrição <span>CAMG</span></h1>
-  <p>Faça parte do Clube de Atletismo de Marinha Grande e ajude-nos a promover o desporto na nossa comunidade</p>
+  <h1>Faça-se <span>Sócio</span></h1>
+  <p>Ao tornar-se sócio, ajuda a manter vivo o atletismo na nossa comunidade.</p>
 </section>
 
-<!-- MAIN -->
 <main class="socio-main">
 
-  <!-- BENEFÍCIOS -->
-  <div class="socio-benefits">
-    <div class="benefit-card">
-      <div class="benefit-icon">🏃</div>
-      <h3>Atletismo de Qualidade</h3>
-      <p>Apoie a formação de atletas e o desenvolvimento do desporto na Marinha Grande.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">🤝</div>
-      <h3>Família CAMG</h3>
-      <p>Faça parte de uma comunidade unida pela paixão ao atletismo e pelos valores do desporto.</p>
-    </div>
-    <div class="benefit-card">
-      <div class="benefit-icon">🎫</div>
-      <h3>Benefícios Exclusivos</h3>
-      <p>Acesso prioritário a eventos, descontos em provas e muito mais para os nossos sócios.</p>
-    </div>
-  </div>
+  <div class="socio-grid">
 
-  <!-- FORMULÁRIO -->
-  <div class="form-wrapper">
-    <div class="form-header">
-      <h2>Formulário de Inscrição</h2>
-      <p>Preencha os seus dados e entraremos em contacto consigo para finalizar o processo.</p>
-    </div>
-
-    <div id="form-status" class="form-status"></div>
-
-    <form action="https://formspree.io/f/mlgkzjny" method="POST" class="premium-form">
-      <input type="hidden" name="_subject" value="Nova Inscrição de Sócio CAMG">
-      <input type="hidden" name="_redirect" value="https://catletismomg.pt/inscricao/socio.html?sucesso=1">
-
-      <div class="form-row inputs-2">
-        <div class="input-component">
-          <input type="text" id="nome" name="CAMG.Socio.Nome" required placeholder=" ">
-          <label for="nome">Nome Completo</label>
-        </div>
-        <div class="input-component">
-          <input type="email" id="email" name="CAMG.Socio.Email" required placeholder=" ">
-          <label for="email">E-mail</label>
-        </div>
-      </div>
-
-      <div class="form-row inputs-2">
-        <div class="input-component">
-          <input type="tel" id="telefone" name="CAMG.Socio.Telefone" required placeholder=" ">
-          <label for="telefone">Telemóvel</label>
-        </div>
-        <div class="input-component">
-          <input type="date" id="nascimento" name="CAMG.Socio.Nascimento" required placeholder=" ">
-          <label for="nascimento">Data de Nascimento</label>
-        </div>
-      </div>
-
-      <div class="input-component">
-        <input type="text" id="morada" name="CAMG.Socio.Morada" required placeholder=" ">
-        <label for="morada">Morada</label>
-      </div>
-
-      <div class="form-row inputs-2">
-        <div class="input-component">
-          <input type="text" id="localidade" name="CAMG.Socio.Localidade" required placeholder=" ">
-          <label for="localidade">Localidade</label>
-        </div>
-        <div class="input-component">
-          <input type="text" id="codigo-postal" name="CAMG.Socio.CodigoPostal" placeholder=" ">
-          <label for="codigo-postal">Código Postal</label>
-        </div>
-      </div>
-
-      <div class="input-component select-component">
-        <select id="tipo-socio" name="CAMG.Socio.Tipo" required>
-          <option value="" disabled selected></option>
-          <option value="atleta">Atleta (praticante federado)</option>
-          <option value="apoiante">Sócio Apoiante (não praticante)</option>
-          <option value="encarregado">Encarregado de Educação</option>
-          <option value="benemerito">Sócio Benemérito</option>
-        </select>
-        <span class="select-arrow">▼</span>
-        <label for="tipo-socio">Tipo de Sócio</label>
-      </div>
-
-      <div class="input-component">
-        <textarea id="mensagem" name="CAMG.Socio.Mensagem" rows="4" placeholder=" "></textarea>
-        <label for="mensagem">Porque deseja ser sócio? (opcional)</label>
-      </div>
-
-      <div class="submit-wrap">
-        <button type="submit" class="btn-submit" id="form-btn">
-          Enviar Inscrição
-          <span class="arrow">→</span>
+    <div class="socio-sidebar">
+      <div class="levels-stack">
+        <button class="level-card" data-value="socio-atleta" onclick="selectLevel(this)">
+          <div class="level-badge">Categoria 01</div>
+          <h3>Sócio Atleta</h3>
+          <p class="level-desc">Para praticantes federados que queiram representar o CAMG em competições oficiais.</p>
+          <div class="level-footer">
+            <span class="level-price">— €</span>
+            <span class="level-tag">a definir</span>
+          </div>
+        </button>
+        <button class="level-card" data-value="socio-apoiante" onclick="selectLevel(this)">
+          <div class="level-badge">Categoria 02</div>
+          <h3>Sócio Apoiante</h3>
+          <p class="level-desc">Para quem quer apoiar o clube sem ser praticante — torne-se parte da família CAMG.</p>
+          <div class="level-footer">
+            <span class="level-price">— €</span>
+            <span class="level-tag">a definir</span>
+          </div>
         </button>
       </div>
-    </form>
+    </div>
+
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h2>Formulário de Inscrição</h2>
+        <p>Preencha os seus dados para formalizar a admissão como sócio.</p>
+      </div>
+
+      <div id="form-status" class="form-status"></div>
+
+      <form action="https://formspree.io/f/mlgkzjny" method="POST" class="premium-form" id="socio-form">
+        <input type="hidden" name="_subject" value="Nova Inscrição de Sócio CAMG">
+        <input type="hidden" name="_redirect" value="https://catletismomg.pt/inscricao/socio.html?sucesso=1">
+        <input type="hidden" name="CAMG.Socio.Categoria" id="categoria-input">
+
+        <div class="form-row">
+          <div class="input-component">
+            <input type="text" id="nome" name="CAMG.Socio.Nome" required placeholder=" ">
+            <label for="nome">Nome</label>
+          </div>
+          <div class="input-component">
+            <input type="text" id="cc" name="CAMG.Socio.CC" required placeholder=" ">
+            <label for="cc">Nº Identificação Civil</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-component">
+            <input type="text" id="nif" name="CAMG.Socio.NIF" required placeholder=" ">
+            <label for="nif">Nº Identificação Fiscal</label>
+          </div>
+          <div class="input-component">
+            <input type="date" id="nascimento" name="CAMG.Socio.Nascimento" required placeholder=" ">
+            <label for="nascimento">Data de Nascimento</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-component">
+            <input type="email" id="email" name="CAMG.Socio.Email" required placeholder=" ">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-component">
+            <input type="text" id="morada" name="CAMG.Socio.Morada" required placeholder=" ">
+            <label for="morada">Morada</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-component">
+            <input type="text" id="codigo-postal" name="CAMG.Socio.CodigoPostal" required placeholder=" ">
+            <label for="codigo-postal">Código Postal</label>
+          </div>
+          <div class="input-component">
+            <input type="text" id="freguesia" name="CAMG.Socio.Freguesia" required placeholder=" ">
+            <label for="freguesia">Freguesia</label>
+          </div>
+          <div class="input-component">
+            <input type="text" id="concelho" name="CAMG.Socio.Concelho" required placeholder=" ">
+            <label for="concelho">Concelho</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-component">
+            <input type="text" id="distrito" name="CAMG.Socio.Distrito" required placeholder=" ">
+            <label for="distrito">Distrito</label>
+          </div>
+          <div class="input-component">
+            <input type="text" id="pais" name="CAMG.Socio.Pais" value="Portugal" required placeholder=" ">
+            <label for="pais">País</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-component select-component">
+            <select id="categoria" name="CAMG.Socio.CategoriaSelect" required>
+              <option value="" disabled selected></option>
+              <option value="socio-atleta">Sócio Atleta</option>
+              <option value="socio-apoiante">Sócio Apoiante</option>
+            </select>
+            <span class="select-arrow">▼</span>
+            <label for="categoria">Categoria de Sócio</label>
+          </div>
+          <div class="input-component"></div>
+        </div>
+
+        <div class="checkbox-component">
+          <label class="checkbox-label">
+            <input type="checkbox" name="CAMG.Socio.Consentimento" required>
+            <span class="checkmark"></span>
+            Autorizo o tratamento dos meus dados pessoais para os fins associativos do CAMG, nos termos da Política de Privacidade.
+          </label>
+        </div>
+
+        <div class="captcha-component">
+          <div class="captcha-question" id="captcha-question"></div>
+          <div class="input-component">
+            <input type="text" id="captcha" name="CAMG.Socio.Captcha" required placeholder=" " autocomplete="off">
+            <label for="captcha">Resposta</label>
+          </div>
+          <input type="hidden" id="captcha-answer" name="CAMG.Socio.CaptchaAnswer">
+        </div>
+
+        <button type="submit" class="btn-submit" id="form-btn">
+          Submeter Inscrição
+          <span class="arrow">→</span>
+        </button>
+      </form>
+    </div>
+
   </div>
 
 </main>
 
 <script>
+function selectLevel(el) {
+  document.querySelectorAll('.level-card').forEach(function(c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('categoria-input').value = el.getAttribute('data-value');
+  var sel = document.getElementById('categoria');
+  for (var i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === el.getAttribute('data-value')) {
+      sel.selectedIndex = i;
+      break;
+    }
+  }
+}
+
 (function() {
-  var form = document.querySelector('.premium-form');
+  var form = document.getElementById('socio-form');
   var status = document.getElementById('form-status');
   var btn = document.getElementById('form-btn');
 
@@ -166,11 +216,61 @@
     status.className = 'form-status success';
     status.textContent = 'Inscrição enviada com sucesso! Entraremos em contacto consigo em breve.';
     form.reset();
+    document.querySelectorAll('.level-card').forEach(function(c) { c.classList.remove('selected'); });
+  } else if (urlParams.get('sucesso') === '0') {
+    status.className = 'form-status error';
+    status.textContent = 'Ocorreu um erro ao enviar a sua inscrição. Por favor, tente novamente.';
   }
 
+  var captchaAnswer = document.getElementById('captcha-answer');
+  var captchaQuestion = document.getElementById('captcha-question');
+
+  function generateCaptcha() {
+    var ops = ['+', '\u2212'];
+    var op = ops[Math.floor(Math.random() * ops.length)];
+    var a, b, answer;
+    if (op === '+') {
+      a = Math.floor(Math.random() * 20) + 1;
+      b = Math.floor(Math.random() * 20) + 1;
+      answer = a + b;
+    } else {
+      a = Math.floor(Math.random() * 15) + 5;
+      b = Math.floor(Math.random() * a) + 1;
+      answer = a - b;
+    }
+    captchaQuestion.textContent = a + ' ' + op + ' ' + b + ' = ?';
+    captchaAnswer.value = answer;
+  }
+  generateCaptcha();
+
   form.addEventListener('submit', function(e) {
+    var userAnswer = document.getElementById('captcha').value.trim();
+    if (parseInt(userAnswer) !== parseInt(captchaAnswer.value)) {
+      e.preventDefault();
+      document.getElementById('captcha').focus();
+      captchaQuestion.style.borderColor = '#ef4444';
+      captchaQuestion.style.color = '#ef4444';
+      setTimeout(function() {
+        captchaQuestion.style.borderColor = '';
+        captchaQuestion.style.color = '';
+      }, 2000);
+      return;
+    }
     btn.disabled = true;
     btn.textContent = 'A enviar…';
+  });
+
+  var categoriaSelect = document.getElementById('categoria');
+  categoriaSelect.addEventListener('change', function() {
+    var val = this.value;
+    document.querySelectorAll('.level-card').forEach(function(c) {
+      if (c.getAttribute('data-value') === val) {
+        c.classList.add('selected');
+        document.getElementById('categoria-input').value = val;
+      } else {
+        c.classList.remove('selected');
+      }
+    });
   });
 })();
 </script>

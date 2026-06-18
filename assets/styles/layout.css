@@ -497,3 +497,59 @@ footer {
   nav { padding: 0 16px; }
   .nav-logo-text strong { font-size: 0.85rem; }
 }
+
+/* ═══════════════════ SHARED PAGE HERO */
+.page-hero {
+  background: #0c0c0c;
+  padding: 80px 24px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f0e800 0px,
+    #f0e800 20px,
+    transparent 20px,
+    transparent 30px
+  );
+}
+
+.page-hero h1 {
+  font-family: 'Sofia Sans Extra Condensed', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 8px;
+  line-height: 1;
+}
+
+.page-hero h1 span {
+  color: #f0e800;
+}
+
+.page-hero p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.2);
+  max-width: 360px;
+  line-height: 1.5;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .page-hero { padding: 60px 20px 32px; }
+  .page-hero h1 { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+  .page-hero { padding: 50px 16px 28px; }
+  .page-hero h1 { font-size: 1.5rem; }
+}

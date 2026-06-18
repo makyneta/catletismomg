@@ -29,47 +29,6 @@ body {
   padding: 0 24px;
 }
 
-/* PREMIUM PAGE HEADER */
-.page-header {
-  background: radial-gradient(circle at center, var(--primary-gray) 0%, var(--primary-dark) 100%);
-  color: #ffffff;
-  padding: 100px 24px;
-  text-align: center;
-  position: relative;
-  border-bottom: 4px solid var(--gold-accent);
-}
-
-.header-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.page-header h1 {
-  font-size: 3.2rem;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0 0 16px 0;
-  background: linear-gradient(180deg, #ffffff 60%, #e2e8f0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.page-header p {
-  font-size: 1.2rem;
-  color: #94a3b8;
-  margin: 0 0 24px 0;
-  font-weight: 400;
-}
-
-.header-line {
-  width: 80px;
-  height: 4px;
-  background-color: var(--gold-accent);
-  margin: 0 auto;
-  border-radius: 2px;
-}
-
 /* ABOUT HERO SECTION */
 .about-hero {
   display: grid;
@@ -530,8 +489,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .page-header { padding: 80px 16px; }
-  .page-header h1 { font-size: 2.2rem; }
   .mission-vision-container { grid-template-columns: 1fr; }
   .coaches-metrics { grid-template-columns: 1fr; gap: 12px; }
   .cta-actions { flex-direction: column; width: 100%; }
