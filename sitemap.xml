@@ -65,4 +65,19 @@
     <priority>0.4</priority>
     <changefreq>monthly</changefreq>
   </url>
+  <url>
+    <loc>https://catletismomg.pt/politica-de-privacidade.html</loc>
+    <priority>0.3</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://catletismomg.pt/termos-e-condicoes.html</loc>
+    <priority>0.3</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://catletismomg.pt/politica-de-cookies.html</loc>
+    <priority>0.3</priority>
+    <changefreq>yearly</changefreq>
+  </url>
 </urlset>

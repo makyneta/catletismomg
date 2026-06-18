@@ -141,6 +141,13 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="fa-brands fa-youtube"></i>
           </a>
         </div>
+        <div class="footer-legal">
+          <a href="${url('/politica-de-privacidade')}">Política de Privacidade</a>
+          <a href="${url('/termos-e-condicoes')}">Termos e Condições</a>
+          <a href="${url('/politica-de-cookies')}">Política de Cookies</a>
+          <a href="${url('/mapa-do-site')}">Mapa do Site</a>
+          <a href="https://www.livroreclamacoes.pt/inicio/reclamacao" target="_blank" rel="noopener">Livro de Reclamações</a>
+        </div>
         <p class="footer-copy"><a href="https://makyneta.github.io" target="_blank" rel="noopener">Copyright © Makyneta Unipessoal, Lda. Todos os direitos reservados.</a></p>
       </div>
     </footer>
@@ -151,6 +158,51 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   if (!document.querySelector('footer')) {
     document.body.insertAdjacentHTML('beforeend', footerHTML);
+  }
+
+  /* ── COOKIE CONSENT BANNER ─────────────────────────── */
+  function initCookieBanner() {
+    if (localStorage.getItem('camg_cookies_consent') || document.getElementById('cookieConsent')) return;
+
+    var banner = document.createElement('div');
+    banner.id = 'cookieConsent';
+    banner.innerHTML =
+      '<div class="cookie-content">' +
+        '<p>Este site utiliza cookies para melhorar a sua experiência. Ao continuar a navegar, aceita a nossa <a href="' + url('/politica-de-cookies') + '">Política de Cookies</a> e <a href="' + url('/politica-de-privacidade') + '">Política de Privacidade</a>.</p>' +
+        '<div class="cookie-btns">' +
+          '<button class="cookie-btn cookie-btn-accept">Aceitar</button>' +
+          '<button class="cookie-btn cookie-btn-reject">Rejeitar</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(banner);
+
+    banner.querySelector('.cookie-btn-accept').addEventListener('click', function () {
+      localStorage.setItem('camg_cookies_consent', 'accepted');
+      banner.classList.add('cookie-hide');
+      setTimeout(function () { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 400);
+    });
+
+    banner.querySelector('.cookie-btn-reject').addEventListener('click', function () {
+      localStorage.setItem('camg_cookies_consent', 'rejected');
+      banner.classList.add('cookie-hide');
+      setTimeout(function () { if (banner.parentNode) banner.parentNode.removeChild(banner); }, 400);
+    });
+
+    requestAnimationFrame(function () { banner.classList.add('cookie-show'); });
+  }
+
+  function onLoaderDone() {
+    initCookieBanner();
+  }
+
+  if (document.querySelector('#camg-loader') || document.querySelector('#camg-loader.hide')) {
+    document.addEventListener('loader-dismissed', onLoaderDone);
+    /* fallback: se o loader já não existir por algum motivo */
+    setTimeout(function () {
+      if (!document.querySelector('#camg-loader')) onLoaderDone();
+    }, 3000);
+  } else {
+    onLoaderDone();
   }
 
   const menuToggle     = document.getElementById('menuToggle');

@@ -53,6 +53,7 @@
         loader.classList.add('hide');
         loader.addEventListener('transitionend', function () {
           if (loader && loader.parentNode) loader.parentNode.removeChild(loader);
+          document.dispatchEvent(new CustomEvent('loader-dismissed'));
         }, { once: true });
       }
     }, 280);

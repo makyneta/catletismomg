@@ -157,7 +157,13 @@ body {
   color: var(--text-muted);
 }
 
-/* HORÁRIOS LISTA */
+.item-text .contact-note {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-weight: 400;
+}
 .schedule-list {
   list-style: none;
   padding: 0;
