@@ -15,22 +15,14 @@
 
   loader.innerHTML =
     '<div class="loader-logo">' +
-      '<img src="assets/images/logo.png" alt="Logo CAMG" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
-      '<div class="loader-logo-fallback" style="display:none">🏅</div>' +
+      '<img src="assets/images/logo.png" alt="Logo CAMG">' +
     '</div>' +
     '<div class="loader-track">' +
       '<div class="loader-track-fill" id="loaderBar"></div>' +
     '</div>' +
-    '<div class="loader-runner-wrap">' +
-      '<span class="loader-runner">🏃</span>' +
-    '</div>' +
     '<p class="loader-club">Clube Atletismo · Marinha Grande</p>' +
-    '<p class="loader-msg" id="loaderMsg">' + msgs[0] + '</p>' +
-    '<div class="loader-lines">' +
-      '<span></span><span></span><span></span><span></span><span></span>' +
-    '</div>';
+    '<p class="loader-msg" id="loaderMsg">' + msgs[0] + '</p>';
 
-  // Insere no <html> (body pode ainda não existir quando isto corre no <head>)
   document.documentElement.appendChild(loader);
 
   var bar   = document.getElementById('loaderBar');
