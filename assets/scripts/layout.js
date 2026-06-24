@@ -146,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="${url('/termos-e-condicoes')}">Termos e Condições</a>
           <a href="${url('/politica-de-cookies')}">Política de Cookies</a>
           <a href="${url('/mapa-do-site')}">Mapa do Site</a>
-          <a href="https://www.livroreclamacoes.pt/inicio/reclamacao" target="_blank" rel="noopener">Livro de Reclamações</a>
         </div>
         <p class="footer-copy"><a href="https://makyneta.github.io" target="_blank" rel="noopener">Copyright © Makyneta Unipessoal, Lda. Todos os direitos reservados.</a></p>
       </div>
