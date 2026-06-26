@@ -1,0 +1,17 @@
+{
+  "name": "CAMG — Clube de Atletismo de Marinha Grande",
+  "short_name": "CAMG",
+  "description": "Clube de Atletismo de Marinha Grande — Fundado em 1995. Acompanhe notícias, provas e resultados.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/images/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

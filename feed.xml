@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>CAMG — Clube de Atletismo de Marinha Grande</title>
+  <link>https://catletismomg.pt/</link>
+  <description>Últimas notícias do Clube de Atletismo de Marinha Grande</description>
+  <language>pt-pt</language>
+  <lastBuildDate>Fri, 26 Jun 2026 00:00:00 +0100</lastBuildDate>
+  <atom:link href="https://catletismomg.pt/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <item>
+    <title>Equipas Sub-18 no Pódio Distrital</title>
+    <link>https://catletismomg.pt/noticia/2025.26/equipas-sub-18-no-podio-distrital</link>
+    <description>Decorreu no passado fim de semana em Pombal o Campeonato Distrital de Sub-18.</description>
+    <pubDate>Fri, 26 Jun 2026 00:00:00 +0100</pubDate>
+  </item>
+
+  <item>
+    <title>Pedro Fernandes Bate Recorde com Nova Vara</title>
+    <link>https://catletismomg.pt/noticia/2025.26/pedro-fernandes-bate-recorde-pessoal</link>
+    <description>O atleta do CAMG conquistou o 3.º lugar no Meeting Cidade de Lisboa após estrear nova vara.</description>
+    <pubDate>Thu, 25 Jun 2026 00:00:00 +0100</pubDate>
+  </item>
+
+  <item>
+    <title>João Oliveira Convocado para a Seleção</title>
+    <link>https://catletismomg.pt/noticia/2025.26/joao-oliveira-na-selecao-nacional</link>
+    <description>Representará Portugal no torneio ibérico de provas combinadas.</description>
+    <pubDate>Wed, 24 Jun 2026 00:00:00 +0100</pubDate>
+  </item>
+
+</channel>
+</rss>

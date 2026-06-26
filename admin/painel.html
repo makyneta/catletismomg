@@ -1,643 +1,216 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Painel de Gestão Diretiva | CAMG</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <script>
-        // Script de segurança rápido inline para evitar "flash" de conteúdo antes do bloqueio
-        if (sessionStorage.getItem('camg_autenticado') !== 'true') {
-            window.location.href = 'login';
-        }
-    </script>
-    <style>
-        :root {
-            --bg-app: #0c0c0e;
-            --bg-card: #141417;
-            --bg-field: #1d1d22;
-            --border-subtle: #2d2d34;
-            --brand-yellow: #facc15;
-            --brand-yellow-hover: #eab308;
-            --brand-yellow-alpha: rgba(250, 204, 21, 0.06);
-            --text-main: #f4f4f7;
-            --text-muted: #a1a1aa;
-            --text-dark: #09090b;
-            --status-green: #10b981;
-            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
-
-        body {
-            background-color: var(--bg-app);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Alterado de center para flex-start conforme o original após login */
-            overflow-x: hidden;
-            padding: 0;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        /* --- DASHBOARD LAYOUT PREMIUM --- */
-        .dashboard-wrapper {
-            display: block; /* Alterado de none para block já que esta página assume que está logado */
-            width: 100%;
-            max-width: 1340px;
-            padding: 1.5rem 1rem;
-            align-self: flex-start;
-            animation: fadeIn 0.5s ease-out;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        @media (min-width: 768px) {
-            .dashboard-wrapper {
-                padding: 2.5rem 2rem;
-            }
-        }
-
-        .dashboard-header {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 1.75rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .dashboard-header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 0;
-            }
-        }
-
-        .brand-profile {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            min-width: 0;
-        }
-
-        .dash-logo {
-            max-height: 45px;
-            width: auto;
-            flex-shrink: 0;
-        }
-
-        .brand-profile h1 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            word-break: break-word;
-        }
-
-        @media (min-width: 768px) {
-            .brand-profile h1 {
-                font-size: 1.65rem;
-            }
-        }
-
-        .status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--status-green);
-            background: rgba(16, 185, 129, 0.08);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            margin-top: 0.35rem;
-        }
-
-        @media (min-width: 768px) {
-            .status-pill {
-                font-size: 0.75rem;
-            }
-        }
-
-        .status-dot-pulse {
-            width: 6px;
-            height: 6px;
-            background: var(--status-green);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .btn-disconnect {
-            padding: 0.625rem 1.25rem;
-            background: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-subtle);
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            -webkit-appearance: none;
-            appearance: none;
-            min-height: 44px;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .btn-disconnect {
-                width: auto;
-            }
-        }
-
-        .btn-disconnect:active {
-            background: var(--bg-card);
-            border-color: var(--text-muted);
-        }
-
-        @media (hover: hover) {
-            .btn-disconnect:hover {
-                background: var(--bg-card);
-                border-color: var(--text-muted);
-            }
-        }
-
-        /* Grid Organizacional */
-        .architecture-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 1024px) {
-            .architecture-grid {
-                grid-template-columns: 1fr 1.6fr;
-                gap: 2.5rem;
-            }
-        }
-
-        .group-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .group-label {
-                font-size: 0.8rem;
-            }
-        }
-
-        .content-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .content-card {
-                padding: 2rem;
-            }
-        }
-
-        /* Launchpad (Links Externos) */
-        .launch-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.25rem;
-            background: var(--bg-field);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            text-decoration: none;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            transition: var(--transition-smooth);
-            min-height: 44px;
-            gap: 1rem;
-        }
-
-        .launch-item:active {
-            border-color: var(--brand-yellow);
-            background: var(--brand-yellow-alpha);
-        }
-
-        @media (hover: hover) {
-            .launch-item:hover {
-                border-color: var(--brand-yellow);
-                background: var(--brand-yellow-alpha);
-                transform: translateY(-2px);
-            }
-        }
-
-        .launch-item-meta {
-            flex-grow: 1;
-            min-width: 0;
-        }
-
-        .launch-item-meta font {
-            display: block;
-            font-weight: 600;
-            font-size: 0.9rem;
-            word-break: break-word;
-        }
-
-        @media (min-width: 768px) {
-            .launch-item-meta font {
-                font-size: 0.95rem;
-            }
-        }
-
-        .launch-item-meta span {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.2rem;
-            display: block;
-            word-break: break-word;
-        }
-
-        .launch-item svg {
-            flex-shrink: 0;
-        }
-
-        /* --- COFRE DE CREDENCIAIS (VAULT ROW) --- */
-        .vault-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .vault-row {
-            background: var(--bg-field);
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            transition: var(--transition-smooth);
-        }
-
-        .vault-row-header {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-            padding-bottom: 0.75rem;
-        }
-
-        @media (min-width: 768px) {
-            .vault-row-header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 1rem;
-            }
-        }
-
-        .vault-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            word-break: break-word;
-        }
-
-        .vault-user {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            background: rgba(255,255,255,0.04);
-            padding: 0.3rem 0.5rem;
-            border-radius: 4px;
-            font-family: monospace;
-            word-break: break-all;
-        }
-
-        .vault-body-action {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            background: var(--bg-app);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 1px solid transparent;
-            transition: var(--transition-smooth);
-        }
-
-        @media (min-width: 768px) {
-            .vault-body-action {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-            }
-        }
-
-        .vault-row.revealed .vault-body-action {
-            border-color: rgba(250, 204, 21, 0.2);
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .vault-input-display {
-            background: transparent;
-            border: none;
-            color: var(--brand-yellow);
-            font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            width: 100%;
-            outline: none;
-            pointer-events: none;
-            transition: var(--transition-smooth);
-            word-break: break-all;
-            -webkit-user-select: text;
-            user-select: text;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .vault-input-display {
-                font-size: 1.05rem;
-            }
-        }
-
-        .vault-input-display[type="password"] {
-            letter-spacing: 0.35em;
-            color: var(--text-muted);
-        }
-
-        .action-button-group {
-            display: flex;
-            gap: 0.5rem;
-            flex-shrink: 0;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .action-button-group {
-                width: auto;
-            }
-        }
-
-        .btn-action-pro {
-            background: var(--bg-field);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            padding: 0.5rem 0.85rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-            -webkit-appearance: none;
-            appearance: none;
-            flex: 1;
-            min-height: 44px;
-        }
-
-        @media (min-width: 768px) {
-            .btn-action-pro {
-                flex: 0 1 auto;
-                padding: 0.45rem 0.85rem;
-                min-height: auto;
-            }
-        }
-
-        .btn-action-pro:active {
-            border-color: var(--text-muted);
-            background: var(--border-subtle);
-        }
-
-        @media (hover: hover) {
-            .btn-action-pro:hover {
-                border-color: var(--text-muted);
-                background: var(--border-subtle);
-            }
-        }
-
-        .info-notice {
-            background: var(--bg-field);
-            border-left: 3px solid var(--brand-yellow);
-            padding: 1.25rem;
-            border-radius: 0 10px 10px 0;
-            font-size: 0.8rem;
-            line-height: 1.6;
-            color: var(--text-muted);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        input, button, textarea, select {
-            font-size: 16px !important;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Gestao | CAMG</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../assets/styles/layout.css">
+  <script>
+    const auth = sessionStorage.getItem('camg_autenticado') || localStorage.getItem('camg_autenticado');
+    if (auth !== 'true' && auth !== 'master') window.location.href = 'login';
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --nav-h: 76px;
+      --bg: #f8f7f4;
+      --surface: #fff;
+      --surface-alt: #f3f2ef;
+      --border: #e6e5e0;
+      --border-alt: #efeeeb;
+      --text: #1d1d1b;
+      --text-sec: #8f8e89;
+      --text-ter: #b2b1ac;
+      --yellow: #f0e800;
+      --yellow-soft: rgba(240,232,0,.1);
+      --green: #2e7d32;
+      --red: #e53935;
+      --red-bg: rgba(229,57,53,.05);
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+    body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .dash { max-width: 1040px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    .dash-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+    .dash-head h1 { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; line-height: 1; color: var(--text); }
+    .dash-head h1 span { background: var(--yellow); color: #000; padding: 0 8px 0 6px; }
+    .dash-head .head-meta { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .dash-head .head-meta .clock { font-size: .8rem; color: var(--text-sec); font-variant-numeric: tabular-nums; }
+    .dash-head .head-meta .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 8px; border-radius: 100px; background: #e8f5e9; font-size: .68rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .04em; }
+    .pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-bottom: 2rem; }
+    .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; align-items: center; gap: .85rem; box-shadow: 0 1px 2px rgba(0,0,0,.02); transition: box-shadow .2s, transform .2s; }
+    .kpi:hover { box-shadow: 0 4px 12px rgba(0,0,0,.04); transform: translateY(-1px); }
+    .kpi-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .kpi-icon svg { width: 17px; height: 17px; }
+    .kpi-info h4 { font-size: 1.1rem; font-weight: 800; line-height: 1.2; }
+    .kpi-info p { font-size: .68rem; color: var(--text-sec); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,.02); }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: .5rem; }
+    .card-header h3 { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-ter); display: flex; align-items: center; gap: 8px; }
+    .card-header h3 svg { width: 13px; height: 13px; opacity: .6; }
+    .tool-list { display: flex; flex-direction: column; gap: 6px; }
+    .tool-link { display: flex; align-items: center; gap: 12px; padding: .75rem 1rem; background: var(--surface-alt); border-radius: var(--radius); text-decoration: none; color: var(--text); transition: background .2s, border .2s, transform .2s; border: 1px solid transparent; }
+    .tool-link:hover { background: var(--yellow-soft); border-color: var(--yellow); transform: translateX(3px); }
+    .tool-link .tl { flex: 1; min-width: 0; }
+    .tool-link .tl strong { display: block; font-size: .82rem; font-weight: 600; margin-bottom: 2px; }
+    .tool-link .tl span { display: block; font-size: .7rem; color: var(--text-sec); }
+    .tool-link .arr { color: var(--text-ter); font-size: .8rem; transition: color .2s, transform .2s; }
+    .tool-link:hover .arr { color: #000; transform: translateX(3px); }
+    .vault { display: flex; flex-direction: column; gap: 8px; }
+    .v-row { background: var(--surface-alt); border-radius: var(--radius); padding: .85rem 1rem; border: 1px solid transparent; transition: border .2s; }
+    .v-row:hover { border-color: var(--border); }
+    .v-row .vh { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; flex-wrap: wrap; gap: 4px; }
+    .v-row .vh .vn { font-size: .78rem; font-weight: 600; }
+    .v-row .vh .vu { font-size: .66rem; color: var(--text-sec); font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+    .v-row .vb { display: flex; align-items: center; gap: 6px; background: var(--surface); padding: .4rem .6rem; border-radius: 8px; border: 1px solid var(--border-alt); flex-wrap: wrap; }
+    .v-row .vb input { flex: 1; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: .8rem; color: #555; background: transparent; border: none; outline: none; min-width: 60px; user-select: text; -webkit-user-select: text; }
+    .v-row .vb input[type="password"] { letter-spacing: .2em; color: var(--text-ter); }
+    .v-row .va { display: flex; gap: 4px; }
+    .v-row .va .vbtn { padding: .25rem .5rem; font-family: 'Inter', -apple-system, sans-serif; font-size: .65rem; font-weight: 600; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text-sec); cursor: pointer; transition: all .2s; -webkit-appearance: none; appearance: none; }
+    .v-row .va .vbtn:hover { background: var(--surface-alt); color: var(--text); }
+    .v-row .va .vbtn.copied { border-color: var(--green); color: var(--green); }
+    .notice { margin-top: 1rem; padding: .8rem 1rem; background: #faf9f5; border-left: 3px solid var(--yellow); border-radius: 0 var(--radius) var(--radius) 0; font-size: .73rem; line-height: 1.6; color: var(--text-sec); }
+    .logout-row { display: flex; justify-content: flex-end; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-alt); }
+    .logout-row button { padding: .55rem 1.2rem; font-family: 'Inter', -apple-system, sans-serif; font-size: .75rem; font-weight: 600; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text-sec); cursor: pointer; transition: all .2s; -webkit-appearance: none; appearance: none; }
+    .logout-row button:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    @media (max-width: 768px) { .dash { padding: 1.5rem 1rem 2rem; } .kpi-row { grid-template-columns: repeat(2, 1fr); } .grid-2 { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
 
-    <div class="dashboard-wrapper" id="dashboardScreen">
-        <header class="dashboard-header">
-            <div class="brand-profile">
-                <img src="../assets/images/logo.png" alt="CAMG Logo" class="dash-logo" onerror="this.style.display='none'">
-                <div>
-                    <h1>Clube Atletismo de Marinha Grande</h1>
-                    <div class="status-pill">
-                        <div class="status-dot-pulse"></div>
-                        <span>Acesso Centralizado Diretivo</span>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-disconnect" onclick="encerrarSessaoPro()">Desconexão</button>
-        </header>
-
-        <div class="architecture-grid">
-            <div>
-                <h3 class="group-label">Ferramentas de Operação</h3>
-                <div class="content-card">
-                    <a href="manual-do-website" target="_blank" class="launch-item">
-                        <div class="launch-item-meta">
-                            <font>Manual Técnico do Website</font>
-                            <span>Instruções de manutenção e guias de gestão</span>
-                        </div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
-                    
-                    <a href="go-to/emissor-de-cartas" target="_blank" class="launch-item">
-                        <div class="launch-item-meta">
-                            <font>Emissor de Cartas (CAMGDoc)</font>
-                            <span>Geração autónoma de documentos com formatação oficial</span>
-                        </div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
-                    
-                    <a href="gerador-de-codigo-para-noticias" target="_blank" class="launch-item">
-                        <div class="launch-item-meta">
-                            <font>Gerador de Código de Notícias</font>
-                            <span>Geração automática de códigos para notícias</span>
-                        </div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
-                    
-                    <a href="go-to/publicar-newsletter" target="_blank" class="launch-item">
-                        <div class="launch-item-meta">
-                            <font>Públicar Newsletter</font>
-                            <span>Publicar uma notícia via newsletter para fazer chegar via e-mail aos subscritores da mesma. via beehiiv</span>
-                        </div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </a>
-                </div>
-
-                <h3 class="group-label">Regulamento Interno</h3>
-                <div class="content-card">
-                    <div class="info-notice">
-                        As credenciais aqui partilhadas são de uso exclusivo da Direção. Para garantir a integridade operacional, nenhuma modificação local é guardada pelo browser. Qualquer alteração definitiva deve ser atualizada no ficheiro fonte.
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="group-label">Cofre de Credenciais Ativas</h3>
-                <div class="content-card">
-                    <div class="vault-container">
-                        
-                        <div class="vault-row">
-                            <div class="vault-row-header">
-                                <span class="vault-title">GitHub</span>
-                                <span class="vault-user">catletismomg@gmail.com</span>
-                            </div>
-                            <div class="vault-body-action">
-                                <input type="password" class="vault-input-display" value="@Camg1995" readonly>
-                                <div class="action-button-group">
-                                    <button class="btn-action-pro" onclick="controlarVisibilidade(this)">Ver</button>
-                                    <button class="btn-action-pro" onclick="executarCopia('@Camg1995', this)">Copiar</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="vault-row">
-                            <div class="vault-row-header">
-                                <span class="vault-title">Beehiiv</span>
-                                <span class="vault-user">catletismomg@gmail.com</span>
-                            </div>
-                            <div class="vault-body-action">
-                                <input type="password" class="vault-input-display" value="Baton5-Manatee-Nicotine-Mango" readonly>
-                                <div class="action-button-group">
-                                    <button class="btn-action-pro" onclick="controlarVisibilidade(this)">Ver</button>
-                                    <button class="btn-action-pro" onclick="executarCopia('Baton5-Manatee-Nicotine-Mango', this)">Copiar</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- <div class="vault-row">
-                            <div class="vault-row-header">
-                                <span class="vault-title">Cloudflare</span>
-                                <span class="vault-user">ktyorqm4+cloudflare@anonaddy.com</span>
-                            </div>
-                            <div class="vault-body-action">
-                                <input type="password" class="vault-input-display" value="Diner-Applause-Anchor6-Snipping-Dictator-Glider" readonly>
-                                <div class="action-button-group">
-                                    <button class="btn-action-pro" onclick="controlarVisibilidade(this)">Ver</button>
-                                    <button class="btn-action-pro" onclick="executarCopia('Diner-Applause-Anchor6-Snipping-Dictator-Glider', this)">Copiar</button>
-                                </div>
-                            </div>
-                        </div>-->
-                        
-                        <div class="vault-row">
-                            <div class="vault-row-header">
-                                <span class="vault-title">Formspree</span>
-                                <span class="vault-user">catletismomg@gmail.com</span>
-                            </div>
-                            <div class="vault-body-action">
-                                <input type="password" class="vault-input-display" value="@Camg1995" readonly>
-                                <div class="action-button-group">
-                                    <button class="btn-action-pro" onclick="controlarVisibilidade(this)">Ver</button>
-                                    <button class="btn-action-pro" onclick="executarCopia('@Camg1995', this)">Copiar</button>
-                                </div>
-                            </div>
-                        </div> 
-
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="dash">
+  <div class="dash-head">
+    <h1>Painel de <span>Gestao</span></h1>
+    <div class="head-meta">
+      <span class="pill"><span class="dot"></span> Ativa</span>
+      <span class="clock" id="clock"></span>
     </div>
+  </div>
 
-    <script>
-        // Segunda validação caso o utilizador tente aceder por link direto
-        if (sessionStorage.getItem('camg_autenticado') !== 'true') {
-            window.location.href = 'login.html';
-        }
+  <div class="kpi-row" id="kpiGrid"></div>
 
-        let timeoutLimpezaClipboard = null;
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3>Ferramentas</h3></div>
+      <div class="tool-list">
+        <a href="../manual-do-website" target="_blank" class="tool-link">
+          <div class="tl"><strong>Manual do Website</strong><span>Instrucoes de manutencao e gestao</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+        <a href="../gerador-de-codigo-para-noticias" target="_blank" class="tool-link">
+          <div class="tl"><strong>Gerador de Noticias</strong><span>Codigo HTML formatado para novas noticias</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+        <a href="../go-to/emissor-de-cartas" target="_blank" class="tool-link">
+          <div class="tl"><strong>Emissor de Cartas</strong><span>Documentos oficiais do clube</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+        <a href="../go-to/publicar-newsletter" target="_blank" class="tool-link">
+          <div class="tl"><strong>Publicar Newsletter</strong><span>Disparo via Beehiiv para subscritores</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Credenciais Partilhadas</h3></div>
+      <div class="vault">
+        <div class="v-row">
+          <div class="vh"><span class="vn">GitHub</span><span class="vu">catletismomg@gmail.com</span></div>
+          <div class="vb">
+            <input type="password" value="@Camg1995" readonly>
+            <div class="va">
+              <button class="vbtn" onclick="togglePW(this)">Ver</button>
+              <button class="vbtn" onclick="copyVal(this, '@Camg1995')">Copiar</button>
+            </div>
+          </div>
+        </div>
+        <div class="v-row">
+          <div class="vh"><span class="vn">Beehiiv</span><span class="vu">catletismomg@gmail.com</span></div>
+          <div class="vb">
+            <input type="password" value="Baton5-Manatee-Nicotine-Mango" readonly>
+            <div class="va">
+              <button class="vbtn" onclick="togglePW(this)">Ver</button>
+              <button class="vbtn" onclick="copyVal(this, 'Baton5-Manatee-Nicotine-Mango')">Copiar</button>
+            </div>
+          </div>
+        </div>
+        <div class="v-row">
+          <div class="vh"><span class="vn">Formspree</span><span class="vu">catletismomg@gmail.com</span></div>
+          <div class="vb">
+            <input type="password" value="@Camg1995" readonly>
+            <div class="va">
+              <button class="vbtn" onclick="togglePW(this)">Ver</button>
+              <button class="vbtn" onclick="copyVal(this, '@Camg1995')">Copiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="notice">
+        As credenciais partilhadas sao de uso exclusivo da Direcao do CAMG. Nao as partilhe com terceiros.
+      </div>
+    </div>
+  </div>
 
-        function encerrarSessaoPro() {
-            // Remove o token de autenticação e volta ao login
-            sessionStorage.removeItem('camg_autenticado');
-            window.location.href = 'login.html';
-        }
+  <div class="logout-row">
+    <button onclick="logout()">Terminar Sessao</button>
+  </div>
+</div>
 
-        function controlarVisibilidade(botao) {
-            const containerLinha = botao.closest('.vault-row');
-            const campoTexto = containerLinha.querySelector('.vault-input-display');
+<script src="../assets/scripts/layout.js" defer></script>
+<script>
+  const auth = sessionStorage.getItem('camg_autenticado') || localStorage.getItem('camg_autenticado');
+  if (auth !== 'true' && auth !== 'master') window.location.href = 'login.html';
 
-            if (campoTexto.type === "password") {
-                campoTexto.type = "text";
-                campoTexto.style.letterSpacing = "0.05em";
-                containerLinha.classList.add('revealed');
-                botao.innerText = "Ocultar";
-            } else {
-                campoTexto.type = "password";
-                campoTexto.style.letterSpacing = "0.35em";
-                containerLinha.classList.remove('revealed');
-                botao.innerText = "Ver";
-            }
-        }
+  const icons = {
+    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+    zap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+    key: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  };
 
-        function ejecutarCopia(conteudo, botao) {
-            navigator.clipboard.writeText(conteudo).then(() => {
-                const labelOriginal = botao.innerText;
-                botao.innerText = "Copiado";
-                botao.style.borderColor = "var(--status-green)";
-                botao.style.color = "var(--status-green)";
-                
-                setTimeout(() => {
-                    botao.innerText = labelOriginal;
-                    botao.style.borderColor = "var(--border-subtle)";
-                    botao.style.color = "var(--text-main)";
-                }, 1500);
+  document.getElementById('kpiGrid').innerHTML = [
+    { value: 'Ativa', label: 'Sessao', icon: 'lock', bg: '#f0e800', color: '#000' },
+    { value: '4', label: 'Ferramentas', icon: 'zap', bg: '#e3f2fd', color: '#1565c0' },
+    { value: '3', label: 'Credenciais', icon: 'key', bg: '#f3e5f5', color: '#7b1fa2' },
+    { value: '—', label: 'Utilizadores', icon: 'users', bg: '#e8f5e9', color: '#2e7d32' },
+  ].map((d, i) => `
+    <div class="kpi">
+      <div class="kpi-icon" style="background:${d.bg};color:${d.color}">${icons[d.icon]}</div>
+      <div class="kpi-info"><h4>${d.value}</h4><p>${d.label}</p></div>
+    </div>
+  `).join('');
 
-                if (timeoutLimpezaClipboard) clearTimeout(timeoutLimpezaClipboard);
+  const clockEl = document.getElementById('clock');
+  function updateClock() {
+    const d = new Date();
+    clockEl.textContent = d.toLocaleDateString('pt-PT', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+  updateClock(); setInterval(updateClock, 30000);
 
-                timeoutLimpezaClipboard = setTimeout(() => {
-                    navigator.clipboard.writeText(" ").then(() => {
-                        console.log("[Segurança] Área de transferência limpa automaticamente após 1m50s.");
-                    }).catch(err => console.warn("Erro ao limpar cache temporário:", err));
-                }, 110000);
+  function togglePW(btn) {
+    const input = btn.closest('.vb').querySelector('input');
+    input.type = input.type === 'password' ? 'text' : 'password';
+    btn.textContent = input.type === 'password' ? 'Ver' : 'Ocultar';
+  }
 
-            }).catch(err => {
-                console.error("Falha no subsistema de cópia nativa: ", err);
-            });
-        }
-    </script>
+  let clipboardTimer = null;
+  function copyVal(btn, val) {
+    navigator.clipboard.writeText(val).then(() => {
+      btn.textContent = 'Copiado'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 1500);
+      if (clipboardTimer) clearTimeout(clipboardTimer);
+      clipboardTimer = setTimeout(() => navigator.clipboard.writeText(' '), 110000);
+    });
+  }
+
+  function logout() {
+    sessionStorage.removeItem('camg_autenticado');
+    window.location.href = 'login.html';
+  }
+</script>
 </body>
 </html>

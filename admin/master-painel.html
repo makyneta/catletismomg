@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Painel | CAMG</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../assets/styles/layout.css">
+  <script>
+    if (sessionStorage.getItem('camg_autenticado') !== 'master' && localStorage.getItem('camg_autenticado') !== 'master') {
+      window.location.href = 'login';
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --nav-h: 76px;
+      --bg: #f8f7f4;
+      --surface: #fff;
+      --surface-alt: #f3f2ef;
+      --border: #e6e5e0;
+      --border-alt: #efeeeb;
+      --text: #1d1d1b;
+      --text-sec: #8f8e89;
+      --text-ter: #b2b1ac;
+      --yellow: #f0e800;
+      --yellow-soft: rgba(240,232,0,.1);
+      --green: #2e7d32;
+      --green-bg: #e8f5e9;
+      --red: #e53935;
+      --red-bg: rgba(229,57,53,.05);
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+    body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    .dash { max-width: 1040px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    .dash-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+    .dash-head h1 { font-family: 'Sofia Sans Extra Condensed', sans-serif; font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: .02em; line-height: 1; color: var(--text); }
+    .dash-head h1 span { background: var(--yellow); color: #000; padding: 0 8px 0 6px; }
+    .dash-head .head-meta { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .dash-head .head-meta .clock { font-size: .8rem; color: var(--text-sec); font-variant-numeric: tabular-nums; }
+    .dash-head .head-meta .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 8px; border-radius: 100px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .dash-head .head-meta .pill.master { background: #000; color: var(--yellow); }
+    .pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; margin-bottom: 2rem; }
+    .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; align-items: center; gap: .85rem; box-shadow: 0 1px 2px rgba(0,0,0,.02); transition: box-shadow .2s, transform .2s; }
+    .kpi:hover { box-shadow: 0 4px 12px rgba(0,0,0,.04); transform: translateY(-1px); }
+    .kpi-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .kpi-icon svg { width: 17px; height: 17px; }
+    .kpi-info h4 { font-size: 1.1rem; font-weight: 800; line-height: 1.2; }
+    .kpi-info p { font-size: .68rem; color: var(--text-sec); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,.02); }
+    .card-full { grid-column: 1 / -1; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: .5rem; }
+    .card-header h3 { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-ter); display: flex; align-items: center; gap: 8px; }
+    .card-header h3 svg { width: 13px; height: 13px; opacity: .6; }
+    .tool-list { display: flex; flex-direction: column; gap: 6px; }
+    .tool-link { display: flex; align-items: center; gap: 12px; padding: .75rem 1rem; background: var(--surface-alt); border-radius: var(--radius); text-decoration: none; color: var(--text); transition: background .2s, border .2s, transform .2s; border: 1px solid transparent; }
+    .tool-link:hover { background: var(--yellow-soft); border-color: var(--yellow); transform: translateX(3px); }
+    .tool-link .tl { flex: 1; min-width: 0; }
+    .tool-link .tl strong { display: block; font-size: .82rem; font-weight: 600; margin-bottom: 2px; }
+    .tool-link .tl span { display: block; font-size: .7rem; color: var(--text-sec); }
+    .tool-link .arr { color: var(--text-ter); font-size: .8rem; transition: color .2s, transform .2s; }
+    .tool-link:hover .arr { color: #000; transform: translateX(3px); }
+    .vault { display: flex; flex-direction: column; gap: 8px; }
+    .v-row { background: var(--surface-alt); border-radius: var(--radius); padding: .85rem 1rem; border: 1px solid transparent; transition: border .2s; }
+    .v-row:hover { border-color: var(--border); }
+    .v-row .vh { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; flex-wrap: wrap; gap: 4px; }
+    .v-row .vh .vn { font-size: .78rem; font-weight: 600; }
+    .v-row .vh .vu { font-size: .66rem; color: var(--text-sec); font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; }
+    .v-row .vb { display: flex; align-items: center; gap: 6px; background: var(--surface); padding: .4rem .6rem; border-radius: 8px; border: 1px solid var(--border-alt); flex-wrap: wrap; }
+    .v-row .vb input { flex: 1; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: .8rem; color: #555; background: transparent; border: none; outline: none; min-width: 60px; user-select: text; -webkit-user-select: text; }
+    .v-row .vb input[type="password"] { letter-spacing: .2em; color: var(--text-ter); }
+    .v-row .va { display: flex; gap: 4px; }
+    .v-row .va .vbtn { padding: .25rem .5rem; font-family: 'Inter', -apple-system, sans-serif; font-size: .65rem; font-weight: 600; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text-sec); cursor: pointer; transition: all .2s; -webkit-appearance: none; appearance: none; }
+    .v-row .va .vbtn:hover { background: var(--surface-alt); color: var(--text); }
+    .v-row .va .vbtn.copied { border-color: var(--green); color: var(--green); }
+    .notice { margin-top: 1rem; padding: .8rem 1rem; background: #faf9f5; border-left: 3px solid var(--yellow); border-radius: 0 var(--radius) var(--radius) 0; font-size: .73rem; line-height: 1.6; color: var(--text-sec); }
+    .user-form { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .user-form input { flex: 1; min-width: 150px; padding: .6rem .85rem; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; font-family: 'Inter', -apple-system, sans-serif; font-size: .8rem; color: var(--text); outline: none; transition: border .2s, background .2s; -webkit-appearance: none; appearance: none; }
+    .user-form input:focus { border-color: #000; background: var(--surface); }
+    .user-form button { padding: .6rem 1.1rem; background: #000; color: #fff; border: none; border-radius: 8px; font-family: 'Inter', -apple-system, sans-serif; font-size: .78rem; font-weight: 600; cursor: pointer; transition: background .2s, transform .15s; white-space: nowrap; -webkit-appearance: none; appearance: none; }
+    .user-form button:hover { background: #2a2a28; transform: translateY(-1px); }
+    .user-form button:active { transform: translateY(0); }
+    .user-table { width: 100%; border-collapse: collapse; font-size: .8rem; }
+    .user-table th { text-align: left; padding: .55rem .75rem; font-size: .63rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-ter); border-bottom: 1px solid var(--border-alt); }
+    .user-table td { padding: .6rem .75rem; border-bottom: 1px solid var(--border-alt); vertical-align: middle; }
+    .user-table tr:last-child td { border-bottom: none; }
+    .user-table .u-email { font-weight: 600; }
+    .user-table .u-pass-mask { font-family: 'SF Mono', 'Fira Code', monospace; color: var(--text-ter); font-size: .75rem; letter-spacing: .15em; }
+    .user-table .u-badge { display: inline-block; font-size: .58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 4px; }
+    .user-table .u-badge.system { background: rgba(0,0,0,.04); color: var(--text-sec); }
+    .user-table .u-badge.custom { background: var(--yellow-soft); color: #7a6f00; }
+    .user-table .u-del { padding: .28rem .55rem; font-family: 'Inter', -apple-system, sans-serif; font-size: .63rem; font-weight: 600; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text-sec); cursor: pointer; transition: all .2s; -webkit-appearance: none; appearance: none; }
+    .user-table .u-del:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .user-empty { text-align: center; padding: 1.5rem 0; font-size: .78rem; color: var(--text-ter); }
+    .log-table { width: 100%; border-collapse: collapse; font-size: .78rem; }
+    .log-table th { text-align: left; padding: .5rem .65rem; font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-ter); border-bottom: 1px solid var(--border-alt); }
+    .log-table td { padding: .5rem .65rem; border-bottom: 1px solid var(--border-alt); vertical-align: middle; font-variant-numeric: tabular-nums; }
+    .log-table tr:last-child td { border-bottom: none; }
+    .log-table .log-email { font-weight: 600; }
+    .log-table .log-time { color: var(--text-sec); font-size: .72rem; }
+    .log-table .log-badge { display: inline-block; font-size: .55rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 7px; border-radius: 4px; background: var(--yellow-soft); color: #7a6f00; }
+    .log-empty { text-align: center; padding: 2rem 0; font-size: .78rem; color: var(--text-ter); }
+    .log-empty svg { width: 24px; height: 24px; margin-bottom: .5rem; opacity: .3; }
+    .log-clear { padding: .25rem .5rem; font-family: 'Inter', -apple-system, sans-serif; font-size: .6rem; font-weight: 600; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text-sec); cursor: pointer; transition: all .2s; -webkit-appearance: none; appearance: none; }
+    .log-clear:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .log-pass { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .72rem; letter-spacing: .15em; color: var(--text-ter); cursor: pointer; transition: color .2s; -webkit-user-select: none; user-select: none; }
+    .log-pass.revealed { letter-spacing: normal; color: var(--text); }
+    .logout-row { display: flex; justify-content: flex-end; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-alt); }
+    .logout-row button { padding: .55rem 1.2rem; font-family: 'Inter', -apple-system, sans-serif; font-size: .75rem; font-weight: 600; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text-sec); cursor: pointer; transition: all .2s; -webkit-appearance: none; appearance: none; }
+    .logout-row button:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    @media (max-width: 768px) { .dash { padding: 1.5rem 1rem 2rem; } .kpi-row { grid-template-columns: repeat(2, 1fr); } .grid-2 { grid-template-columns: 1fr; } .user-table { font-size: .75rem; } .user-table th, .user-table td { padding: .45rem .5rem; } }
+  </style>
+</head>
+<body>
+
+<div class="dash">
+  <div class="dash-head">
+    <h1>Master <span>Painel</span></h1>
+    <div class="head-meta">
+      <span class="pill master"><span class="dot"></span> Administrador</span>
+      <span class="clock" id="clock"></span>
+    </div>
+  </div>
+
+  <div class="kpi-row" id="kpiGrid"></div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3>Ferramentas</h3></div>
+      <div class="tool-list">
+        <a href="../manual-do-website" target="_blank" class="tool-link">
+          <div class="tl"><strong>Manual do Website</strong><span>Instrucoes de manutencao e gestao</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+        <a href="../gerador-de-codigo-para-noticias" target="_blank" class="tool-link">
+          <div class="tl"><strong>Gerador de Noticias</strong><span>Codigo HTML formatado para novas noticias</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+        <a href="../go-to/emissor-de-cartas" target="_blank" class="tool-link">
+          <div class="tl"><strong>Emissor de Cartas</strong><span>Documentos oficiais do clube</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+        <a href="../go-to/publicar-newsletter" target="_blank" class="tool-link">
+          <div class="tl"><strong>Publicar Newsletter</strong><span>Disparo via Beehiiv para subscritores</span></div>
+          <span class="arr">&rarr;</span>
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Credenciais Partilhadas</h3></div>
+      <div id="vaultList"></div>
+    </div>
+  </div>
+
+  <div class="card card-full" style="margin-top:1.25rem">
+    <div class="card-header"><h3>Adicionar Utilizador</h3></div>
+    <div class="user-form">
+      <input type="email" id="newEmail" placeholder="Email" spellcheck="false">
+      <input type="password" id="newPass" placeholder="Palavra-passe">
+      <button onclick="addUser()">Adicionar</button>
+    </div>
+  </div>
+
+  <div class="card card-full" style="margin-top:1rem">
+    <div class="card-header">
+      <h3>Utilizadores Autorizados</h3>
+      <span style="font-size:.68rem;color:var(--text-ter)" id="userTotalHint"></span>
+    </div>
+    <div id="userTableWrap"></div>
+  </div>
+
+  <div class="card card-full" style="margin-top:1rem">
+    <div class="card-header">
+      <h3>Registo de Acessos</h3>
+      <span style="font-size:.68rem;color:var(--text-ter)" id="logTotalHint"></span>
+    </div>
+    <div id="logWrap"></div>
+  </div>
+
+  <div class="logout-row">
+    <button onclick="logout()">Terminar Sessao</button>
+  </div>
+</div>
+
+<script src="../assets/scripts/layout.js" defer></script>
+<script>
+  const DB = {
+    credenciais: [
+      { nome: "GitHub",    email: "catletismomg@gmail.com",  password: "@Camg1995" },
+      { nome: "Beehiiv",   email: "catletismomg@gmail.com",  password: "Baton5-Manatee-Nicotine-Mango" },
+      { nome: "Formspree", email: "catletismomg@gmail.com",  password: "@Camg1995" },
+    ],
+    users: [
+      { email: "catletismomg@gmail.com", password: "camg",     type: "system" },
+      { email: "catletismomg@gmail.com", password: "Camg1995", type: "system" },
+      { email: "catletismomg@gmail.com", password: "Camg1921", type: "system" },
+    ],
+  };
+
+  if (sessionStorage.getItem('camg_autenticado') !== 'master' && localStorage.getItem('camg_autenticado') !== 'master') {
+    window.location.href = 'login.html';
+  }
+
+  function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+  function getCustom() { try { return JSON.parse(localStorage.getItem('camg_users')) || []; } catch { return []; } }
+  function saveCustom(arr) { localStorage.setItem('camg_users', JSON.stringify(arr)); }
+  function allUsers() { return DB.users.concat(getCustom().map(u => ({ ...u, type: 'custom' }))); }
+
+  const icons = {
+    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+    zap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+    key: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  };
+
+  function renderKPI() {
+    document.getElementById('kpiGrid').innerHTML = [
+      { value: 'Master', label: 'Nivel Acesso', icon: 'lock', bg: '#000', color: '#f0e800' },
+      { value: '4', label: 'Ferramentas', icon: 'zap', bg: '#e3f2fd', color: '#1565c0' },
+      { value: DB.credenciais.length, label: 'Credenciais', icon: 'key', bg: '#f3e5f5', color: '#7b1fa2' },
+      { value: allUsers().length, label: 'Utilizadores', icon: 'users', bg: '#e8f5e9', color: '#2e7d32' },
+    ].map((d, i) => `
+      <div class="kpi">
+        <div class="kpi-icon" style="background:${d.bg};color:${d.color}">${icons[d.icon]}</div>
+        <div class="kpi-info"><h4>${d.value}</h4><p>${d.label}</p></div>
+      </div>
+    `).join('');
+  }
+
+  function renderVault() {
+    document.getElementById('vaultList').innerHTML = DB.credenciais.map(c => `
+      <div class="v-row">
+        <div class="vh"><span class="vn">${esc(c.nome)}</span><span class="vu">${esc(c.email)}</span></div>
+        <div class="vb">
+          <input type="password" value="${esc(c.password)}" readonly>
+          <div class="va">
+            <button class="vbtn" onclick="togglePW(this)">Ver</button>
+            <button class="vbtn" onclick="copyVal(this, '${esc(c.password)}')">Copiar</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderUsers() {
+    const wrap = document.getElementById('userTableWrap');
+    const hint = document.getElementById('userTotalHint');
+    const all = allUsers();
+    const sc = DB.users.length;
+    hint.textContent = all.length + ' utilizador' + (all.length !== 1 ? 'es' : '');
+    if (!all.length) { wrap.innerHTML = '<div class="user-empty">Nenhum utilizador registado.</div>'; return; }
+    wrap.innerHTML = `
+      <table class="user-table">
+        <thead><tr><th>Email</th><th>Palavra-passe</th><th>Tipo</th><th style="width:80px;text-align:right">Acao</th></tr></thead>
+        <tbody>${all.map((u, i) => {
+          const sys = i < sc;
+          return `<tr>
+            <td class="u-email">${esc(u.email)}</td>
+            <td><span class="log-pass" data-pass="${encodeURIComponent(u.password)}" onclick="togglePass(this)">${u.password.replace(/./g, '·')}</span></td>
+            <td><span class="u-badge ${sys ? 'system' : 'custom'}">${sys ? 'Sistema' : 'Personalizado'}</span></td>
+            <td style="text-align:right">${sys ? '<span style="font-size:.6rem;color:var(--text-ter)">—</span>' : `<button class="u-del" onclick="delUser(${i - sc})">Remover</button>`}</td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table>`;
+  }
+
+  function addUser() {
+    const email = document.getElementById('newEmail').value.trim();
+    const pass = document.getElementById('newPass').value;
+    if (!email || !pass) return;
+    const u = getCustom();
+    u.push({ email, password: pass });
+    saveCustom(u);
+    document.getElementById('newEmail').value = '';
+    document.getElementById('newPass').value = '';
+    document.getElementById('newEmail').focus();
+    renderUsers();
+    renderKPI();
+  }
+
+  function delUser(idx) {
+    const u = getCustom();
+    u.splice(idx, 1);
+    saveCustom(u);
+    renderUsers();
+    renderKPI();
+  }
+
+  const clockEl = document.getElementById('clock');
+  function updateClock() {
+    const d = new Date();
+    clockEl.textContent = d.toLocaleDateString('pt-PT', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  }
+  updateClock(); setInterval(updateClock, 30000);
+
+  function togglePW(btn) {
+    const input = btn.closest('.vb').querySelector('input');
+    input.type = input.type === 'password' ? 'text' : 'password';
+    btn.textContent = input.type === 'password' ? 'Ver' : 'Ocultar';
+  }
+
+  let clipboardTimer = null;
+  function copyVal(btn, val) {
+    navigator.clipboard.writeText(val).then(() => {
+      btn.textContent = 'Copiado'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 1500);
+      if (clipboardTimer) clearTimeout(clipboardTimer);
+      clipboardTimer = setTimeout(() => navigator.clipboard.writeText(' '), 110000);
+    });
+  }
+
+  function logout() {
+    sessionStorage.removeItem('camg_autenticado');
+    window.location.href = 'login.html';
+  }
+
+  function renderAccessLog() {
+    const wrap = document.getElementById('logWrap');
+    const hint = document.getElementById('logTotalHint');
+    let log = [];
+    try { log = JSON.parse(localStorage.getItem('camg_access_log')) || []; } catch {}
+
+    hint.textContent = log.length + ' entrada' + (log.length !== 1 ? 's' : '');
+
+    if (!log.length) {
+      wrap.innerHTML = '<div class="log-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><br>Nenhum acesso registado.</div>';
+      return;
+    }
+
+    wrap.innerHTML = `
+      <div style="display:flex;justify-content:flex-end;margin-bottom:.5rem">
+        <button class="log-clear" onclick="clearLog()">Limpar registo</button>
+      </div>
+      <table class="log-table">
+        <thead><tr><th>Email</th><th>Passe</th><th>Data / Hora</th></tr></thead>
+        <tbody>${log.map((e, i) => `
+          <tr>
+            <td class="log-email">${esc(e.email)}</td>
+            <td><span class="log-pass" data-pass="${encodeURIComponent(e.password || '')}" onclick="togglePass(this)">${(e.password || '').replace(/./g, '·')}</span></td>
+            <td class="log-time">${new Date(e.time).toLocaleString('pt-PT')}</td>
+          </tr>
+        `).join('')}</tbody>
+      </table>`;
+  }
+
+  function togglePass(el) {
+    const pass = decodeURIComponent(el.dataset.pass);
+    if (el.classList.contains('revealed')) {
+      el.textContent = pass.replace(/./g, '·');
+      el.classList.remove('revealed');
+    } else {
+      el.textContent = pass;
+      el.classList.add('revealed');
+    }
+  }
+
+  function clearLog() {
+    localStorage.removeItem('camg_access_log');
+    renderAccessLog();
+  }
+
+  renderKPI();
+  renderVault();
+  renderUsers();
+  renderAccessLog();
+</script>
+</body>
+</html>

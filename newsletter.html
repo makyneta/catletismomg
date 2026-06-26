@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Subscreva a newsletter do CAMG — receba notícias, resultados e novidades do Clube de Atletismo de Marinha Grande.">
+    <meta name="author" content="Makyneta Unipessoal, Lda.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://catletismomg.pt/newsletter">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Newsletter | CAMG">
+    <meta property="og:description" content="Subscreva a newsletter do CAMG e receba as últimas novidades.">
+    <meta property="og:url" content="https://catletismomg.pt/newsletter">
+    <meta property="og:image" content="https://catletismomg.pt/assets/images/logo.webp">
+    <meta property="og:site_name" content="CAMG — Clube de Atletismo de Marinha Grande">
+    <meta property="og:locale" content="pt_PT">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="assets/styles/loading.css">
+    <link rel="stylesheet" href="assets/styles/layout.css">
+    <link rel="stylesheet" href="assets/styles/legal.css">
+    <script src="assets/scripts/loading.js"></script>
+    <script src="assets/scripts/layout.js" defer></script>
+    <title>Newsletter | CAMG</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+<section class="legal-section">
+  <div class="container" style="max-width:680px;text-align:center">
+    <h1>Newsletter <span style="color:#f0e800">CAMG</span></h1>
+    <p class="last-update" style="text-align:center">Fique a par de tudo o que acontece no clube</p>
+
+    <p style="text-align:center;max-width:500px;margin:0 auto 40px">
+      Subscreva a nossa newsletter e receba diretamente no seu e-mail notícias, resultados, calendário de provas e novidades sobre o Clube de Atletismo de Marinha Grande.
+    </p>
+
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:40px 24px;margin-bottom:40px">
+      <form id="newsletter-form" action="https://embeds.beehiiv.com/e8911dae-a0f0-42bc-9dba-a4e47fff9bc2/subscribe" method="POST" target="_blank" style="max-width:400px;margin:0 auto">
+        <input type="email" name="email" required placeholder="O seu email" style="width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,0.12);border-radius:4px;background:rgba(255,255,255,0.04);color:#fff;font-size:0.95rem;margin-bottom:12px;outline:none;transition:border-color 0.2s">
+        <button type="submit" style="width:100%;padding:12px 16px;border:none;border-radius:4px;background:#f0e800;color:#000;font-family:'Sofia Sans Extra Condensed',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;cursor:pointer;transition:opacity 0.2s">Subscrever Newsletter</button>
+        <p id="newsletter-msg" style="margin-top:12px;font-size:0.8rem;color:rgba(255,255,255,0.4);text-align:center"></p>
+      </form>
+      <script>
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+          var msg = document.getElementById('newsletter-msg');
+          msg.textContent = 'A enviar…';
+          var form = this;
+          var fd = new FormData(form);
+          fetch(form.action, { method: 'POST', body: fd, mode: 'no-cors' })
+            .then(function() { msg.textContent = 'Obrigado! Verifique a sua caixa de email para confirmar.'; form.reset(); })
+            .catch(function() { msg.textContent = 'Ocorreu um erro. Tente novamente.'; });
+          e.preventDefault();
+        });
+      </script>
+    </div>
+
+    <p style="font-size:0.75rem;color:rgba(255,255,255,0.25);text-align:center">
+      Pode cancelar a subscrição a qualquer momento. Respeitamos a sua privacidade — os seus dados serão tratados conforme a nossa <a href="politica-de-privacidade">Política de Privacidade</a>.
+    </p>
+
+  </div>
+</section>
+
+</body>
+</html>

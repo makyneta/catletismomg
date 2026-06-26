@@ -11,20 +11,17 @@
     <meta property="og:title" content="Contacto | CAMG">
     <meta property="og:description" content="Contacte o Clube de Atletismo de Marinha Grande. Envie-nos uma mensagem e junte-se à família CAMG.">
     <meta property="og:url" content="https://catletismomg.pt/contacto.html">
-    <meta property="og:image" content="https://catletismomg.pt/assets/images/logo.png">
+    <meta property="og:image" content="https://catletismomg.pt/assets/images/logo.webp">
     <meta property="og:site_name" content="CAMG — Clube de Atletismo de Marinha Grande">
     <meta property="og:locale" content="pt_PT">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Contacto | CAMG">
     <meta name="twitter:description" content="Contacte o Clube de Atletismo de Marinha Grande e junte-se à família CAMG.">
-    <meta name="twitter:image" content="https://catletismomg.pt/assets/images/logo.png">
+    <meta name="twitter:image" content="https://catletismomg.pt/assets/images/logo.webp">
     <!-- Styles -->
         <link rel="stylesheet" href="assets/styles/loading.css">
         <link rel="stylesheet" href="assets/styles/layout.css">
         <link rel="stylesheet" href="assets/styles/contacto.css">
-    <!-- Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Script -->
         <script src="assets/scripts/loading.js"></script>
         <script src="assets/scripts/contacto.js"></script>
@@ -109,7 +106,9 @@
               <p>Preencha os dados abaixo e a nossa equipa responderá o mais breve possível.</p>
             </div>
 
-            <form action="https://formspree.io/f/mlgkzjny" method="POST" class="premium-form">
+            <form action="https://formspree.io/f/mlgkzjny" method="POST" id="ctt-form" class="premium-form">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="text" name="_gotcha" style="display:none">
               <div class="form-row inputs-2">
                 <div class="input-component">
                   <input type="text" id="fullname" name="CAMGWeb.Nome" required placeholder=" ">
@@ -142,7 +141,7 @@
                 <div class="input-focus-line"></div>
               </div>
 
-              <button type="submit" class="action-submit-btn">
+              <button type="submit" id="form-btn" class="action-submit-btn">
                 <span class="btn-text">Enviar Mensagem</span>
                 <span class="btn-icon"><i class="fa-solid fa-arrow-right"></i></span>
               </button>
@@ -175,21 +174,21 @@
             </div>
 
             <div class="modern-social-links">
-              <a href="instagram" target="_blank" rel="noopener" class="social-card-link instagram">
+              <a href="https://www.instagram.com/camg_atletismo" target="_blank" rel="noopener" class="social-card-link instagram">
                 <div class="s-icon"><i class="fa-brands fa-instagram"></i></div>
                 <div class="s-info">
                   <h4>Instagram</h4>
                   <span>@camg_atletismo</span>
                 </div>
               </a>
-              <a href="facebook" target="_blank" rel="noopener" class="social-card-link facebook">
+              <a href="https://www.facebook.com/catletismomg" target="_blank" rel="noopener" class="social-card-link facebook">
                 <div class="s-icon"><i class="fa-brands fa-facebook-f"></i></div>
                 <div class="s-info">
                   <h4>Facebook</h4>
                   <span>/catletismomg</span>
                 </div>
               </a>
-              <a href="youtube" target="_blank" rel="noopener" class="social-card-link youtube">
+              <a href="https://www.youtube.com/@catletismomg" target="_blank" rel="noopener" class="social-card-link youtube">
                 <div class="s-icon"><i class="fa-brands fa-youtube"></i></div>
                 <div class="s-info">
                   <h4>YouTube</h4>

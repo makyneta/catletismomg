@@ -5,50 +5,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (form) {
     form.addEventListener("submit", async (e) => {
-      e.preventDefault(); // Impede o redirecionamento para o Formspree
-      
-      // Feedback visual de carregamento
-      btn.disabled = true;
-      btn.innerText = "A enviar...";
-      status.className = "form-status"; 
-      status.innerText = "";
+      e.preventDefault();
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
+      btn.disabled = true;
+      btn.textContent = "A enviar...";
+      status.className = "form-status";
+      status.textContent = "";
+
+      const data = new FormData(form);
 
       try {
         const response = await fetch(form.action, {
           method: form.method,
-          body: JSON.stringify(data),
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
+          body: data,
+          headers: { 'Accept': 'application/json' }
         });
 
         if (response.ok) {
-          // Sucesso
           status.classList.add("success");
-          status.innerText = "🏆 Mensagem enviada com sucesso! Obrigado pelo contacto.";
-          form.reset(); // Limpa os campos do formulário
+          status.textContent = "Mensagem enviada com sucesso! Obrigado pelo contacto.";
+          form.reset();
         } else {
-          // Erro retornado pelo servidor
-          const responseData = await response.json();
-          if (responseData.hasOwnProperty('errors')) {
-            status.innerText = responseData.errors.map(error => error.message).join(", ");
-          } else {
-            status.innerText = "❌ Ocorreu um problema ao enviar. Por favor, tenta novamente.";
-          }
           status.classList.add("error");
+          status.textContent = "Ocorreu um problema ao enviar. Tente novamente.";
         }
       } catch (error) {
-        // Erro de rede/conexão
         status.classList.add("error");
-        status.innerText = "❌ Erro de ligação. Verifica a tua internet.";
+        status.textContent = "Erro de ligacao. Verifique a sua internet.";
       } finally {
-        // Restaura o botão
         btn.disabled = false;
-        btn.innerText = "Enviar Mensagem";
+        btn.textContent = "Enviar Mensagem";
       }
     });
   }

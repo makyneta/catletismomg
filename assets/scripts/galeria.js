@@ -8,23 +8,23 @@ const museumData = [
     label: '2025/26',
     year: '2026',
     items: [
-      { type: 'photo', src: 'assets/images/gallery/2025.26/bark-no-campeonato-do-mundo-de-sub-20.jpg',
+      { type: 'photo', src: 'assets/images/gallery/2025.26/bark-no-campeonato-do-mundo-de-sub-20.webp',
         title: 'Bark no Campeonato do Mundo de Sub-20' },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/joao-e-tomas-no-nacional-de-sub-16.jpg',
+      { type: 'photo', src: 'assets/images/gallery/2025.26/joao-e-tomas-no-nacional-de-sub-16.webp',
         title: 'João e Tomás no Nacional de Sub-16' },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/olimpico-jovem-nacional.jpg',
+      { type: 'photo', src: 'assets/images/gallery/2025.26/olimpico-jovem-nacional.webp',
         title: 'Olímpico Jovem Nacional' },
       ...Array.from({ length: 10 }, (_, i) => ({
         type: 'photo',
-        src: `assets/images/gallery/2025.26/tacapassovite_${String(i + 1).padStart(2, '0')}.jpg`,
+        src: `assets/images/gallery/2025.26/tacapassovite_${String(i + 1).padStart(2, '0')}.webp`,
         title: 'Taça Passovite - Almeirim' })),
-      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01335.JPG', title: 'Equipa Jovem' },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/galeria_2-1024x683.jpg', title: '200 Metros' },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01524.JPG', title: 'Meeting Fernando Alves' },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/702677456.jpg', title: 'Tiago Sucena' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01335.webp', title: 'Equipa Jovem' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/galeria_2-1024x683.webp', title: '200 Metros' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/DSC01524.webp', title: 'Meeting Fernando Alves' },
+      { type: 'photo', src: 'assets/images/gallery/2025.26/702677456.webp', title: 'Tiago Sucena' },
       ...Array.from({ length: 11 }, (_, i) => ({
         type: 'photo',
-        src: `assets/images/gallery/2025.26/equipas-sub-16-conquistam-3-lugar-distrital_${String(i + 1).padStart(2, '0')}.jpg`,
+        src: `assets/images/gallery/2025.26/equipas-sub-16-conquistam-3-lugar-distrital_${String(i + 1).padStart(2, '0')}.webp`,
         title: 'Equipas Sub-16 Conquistam 3º Lugar Distrital' })),
     ],
   },
@@ -36,7 +36,7 @@ const museumData = [
       { type: 'youtube', id: '3uGbSJC2WzU', title: 'Resumo do Meeting' },
       ...Array.from({ length: 11 }, (_, i) => ({
         type: 'photo',
-        src: `assets/images/gallery/2025.26/12mfa_${String(i + 1).padStart(2, '0')}.jpg`,
+        src: `assets/images/gallery/2025.26/12mfa_${String(i + 1).padStart(2, '0')}.webp`,
         title: '12º Meeting Fernando Alves' })),
     ]
   },
@@ -48,10 +48,10 @@ const museumData = [
       { type: 'youtube', id: 'R2Oj7gshaNA', title: 'Resumo do Meeting' },
       ...Array.from({ length: 12 }, (_, i) => ({
         type: 'photo',
-        src: `assets/images/gallery/2025.26/9mj_${String(i + 1).padStart(2, '0')}.jpg`,
+        src: `assets/images/gallery/2025.26/9mj_${String(i + 1).padStart(2, '0')}.webp`,
         title: '9º Meeting Jovem' })),
-      { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_01.jpg', title: '9º Meeting Jovem' },
-      { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_02.jpg', title: '9º Meeting Jovem', size: 'large' },
+  { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_01.webp', title: '9º Meeting Jovem' },
+  { type: 'photo', src: 'assets/images/gallery/2025.26/9mj_all_02.webp', title: '9º Meeting Jovem', size: 'large' },
     ]
   },
   {
@@ -61,7 +61,7 @@ const museumData = [
     items: [
       ...Array.from({ length: 55 }, (_, i) => ({
         type: 'photo',
-        src: `assets/images/gallery/2025.26/36mc_${String(i + 1).padStart(2, '0')}.jpg`,
+        src: `assets/images/gallery/2025.26/36mc_${String(i + 1).padStart(2, '0')}.webp`,
         title: '36ª Milha Cristal' })),
     ]
   },

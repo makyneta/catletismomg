@@ -14,6 +14,24 @@ document.addEventListener('DOMContentLoaded', function () {
   faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
   document.head.appendChild(faLink);
 
+  var manifestLink = document.createElement('link');
+  manifestLink.rel = 'manifest';
+  manifestLink.href = url('/manifest.json');
+  document.head.appendChild(manifestLink);
+
+  var rssLink = document.createElement('link');
+  rssLink.rel = 'alternate';
+  rssLink.type = 'application/rss+xml';
+  rssLink.title = 'CAMG — Notícias';
+  rssLink.href = url('/feed.xml');
+  document.head.appendChild(rssLink);
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register(url('/sw.js'));
+    });
+  }
+
   const headerHTML = `
     <nav id="mainNav">
       <a href="${url('/')}" class="nav-logo">
@@ -54,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <li><a href="${url('/imprensa')}">Imprensa</a></li>
         <li><a href="${url('/galeria')}">Galeria</a></li>
         <li><a href="${url('/contacto')}">Contacto</a></li>
+        <li><a href="${url('/admin/login')}">Login</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
         <span></span><span></span><span></span>
@@ -123,6 +142,12 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="${url('/contacto')}" class="simple-link">
               <span class="link-num">07</span>
               <span class="link-label">Contacto</span>
+            </a>
+          </li>
+          <li>
+            <a href="${url('/admin/login')}" class="simple-link">
+              <span class="link-num">08</span>
+              <span class="link-label">Login</span>
             </a>
           </li>
         </ul>
@@ -267,4 +292,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (link.href && linkPath === currentPath) link.classList.add('active');
   });
 
+  /* ── LAZY LOADING ───────────────────────────────── */
+  document.querySelectorAll('img:not([loading])').forEach(function (img) {
+    if (!img.closest('.slide')) img.loading = 'lazy';
+  });
 });

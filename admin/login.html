@@ -1,212 +1,501 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Painel de Gestão Diretiva | CAMG</title>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <style>
-        :root {
-            --bg-app: #0c0c0e;
-            --bg-card: #141417;
-            --bg-field: #1d1d22;
-            --border-subtle: #2d2d34;
-            --brand-yellow: #facc15;
-            --brand-yellow-hover: #eab308;
-            --brand-yellow-alpha: rgba(250, 204, 21, 0.06);
-            --text-main: #f4f4f7;
-            --text-muted: #a1a1aa;
-            --text-dark: #09090b;
-            --status-green: #10b981;
-            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Acesso Privado | CAMG</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="../assets/styles/layout.css">
+  <style>
+    :root {
+      --nav-h: 76px;
+      --bg: #f5f5f0;
+      --card-bg: #ffffff;
+      --card-border: #e4e3de;
+      --text-main: #1a1a18;
+      --text-muted: #8a8984;
+      --text-faint: #b0afaa;
+      --accent: #f0e800;
+      --accent-soft: rgba(240,232,0,.15);
+      --green: #2e7d32;
+      --green-bg: #e8f5e9;
+      --red: #c62828;
+      --red-bg: #ffebee;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+    body {
+      background: var(--bg);
+    }
 
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
+    .login-section {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+      padding: 2rem 1rem;
+    }
 
-        body {
-            background-color: var(--bg-app);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            padding: 0;
-            -webkit-user-select: none;
-            user-select: none;
-        }
+    .login-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    }
 
-        /* --- TELA DE LOGIN ENTERPRISE --- */
-        .auth-container {
-            width: 100%;
-            max-width: 420px;
-            padding: 2rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            animation: fadeIn 0.4s ease-out;
-            margin: 1rem;
-        }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(240,232,0,.08), transparent);
+      top: -15%; right: -10%;
+      animation: orbFloat 14s ease-in-out infinite;
+    }
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,0,0,.03), transparent);
+      bottom: -20%; left: -10%;
+      animation: orbFloat 18s ease-in-out 5s infinite reverse;
+    }
 
-        .auth-logo {
-            max-width: 100px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-        }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(30px, -25px); }
+      66% { transform: translate(-20px, 15px); }
+    }
 
-        .auth-container h2 {
-            font-size: 1.35rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.35rem;
-        }
+    .login-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 3rem 2.25rem 2.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.04);
+      animation: cardIn .6s cubic-bezier(.16,1,.3,1) both;
+    }
 
-        .auth-container p {
-            color: var(--text-muted);
-            font-size: 0.875rem;
-            margin-bottom: 2rem;
-        }
+    @keyframes cardIn {
+      0% { opacity: 0; transform: translateY(30px) scale(.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
 
-        .form-control-group {
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
+    .login-card h1 {
+      font-family: 'Sofia Sans Extra Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .3px;
+      color: var(--text-main);
+      line-height: 1.1;
+      margin-bottom: .35rem;
+    }
 
-        .form-control-group label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
+    .login-card h1 .highlight {
+      background: #000;
+      color: var(--accent);
+      padding: 0 6px 0 4px;
+    }
 
-        .input-text {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            background: var(--bg-field);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-main);
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition-smooth);
-            -webkit-appearance: none;
-            appearance: none;
-        }
+    .login-card .sub {
+      font-size: .85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
 
-        .input-text:focus {
-            border-color: var(--brand-yellow);
-            box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.12);
-        }
+    .form-group {
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
 
-        .btn-submit-pro {
-            width: 100%;
-            padding: 0.875rem;
-            background: var(--brand-yellow);
-            color: var(--text-dark);
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: var(--transition-smooth);
-            -webkit-appearance: none;
-            appearance: none;
-            min-height: 44px;
-        }
+    .form-group .floating-label {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      font-size: .85rem;
+      color: var(--text-faint);
+      pointer-events: none;
+      transition: all .2s ease;
+      background: transparent;
+      padding: 0 4px;
+    }
 
-        .btn-submit-pro:active {
-            background: var(--brand-yellow-hover);
-            transform: translateY(-1px);
-        }
+    .form-group input {
+      width: 100%;
+      padding: .95rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: .95rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all .25s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
 
-        @media (hover: hover) {
-            .btn-submit-pro:hover {
-                background: var(--brand-yellow-hover);
-                transform: translateY(-1px);
-            }
-        }
+    .form-group input::placeholder { color: transparent; }
 
-        .error-banner-pro {
-            background: rgba(239, 68, 68, 0.08);
-            border: 1px solid #ef4444;
-            color: #f87171;
-            padding: 0.875rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin-top: 1.25rem;
-            display: none;
-        }
+    .form-group input:focus,
+    .form-group input:not(:placeholder-shown) {
+      border-color: #000;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(0,0,0,.04);
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .form-group input:focus ~ .floating-label,
+    .form-group input:not(:placeholder-shown) ~ .floating-label {
+      top: 0;
+      transform: translateY(-50%) scale(.8);
+      background: var(--card-bg);
+      color: #000;
+      font-weight: 600;
+    }
 
-        input, button, textarea, select {
-            font-size: 16px !important;
-        }
-    </style>
+    .pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-faint);
+      cursor: pointer;
+      padding: 6px;
+      font-size: .85rem;
+      transition: color .2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .pw-toggle:hover { color: var(--text-muted); }
+
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .remember-me input[type="checkbox"] {
+      width: 16px; height: 16px;
+      cursor: pointer;
+      -webkit-appearance: none;
+      appearance: none;
+      border: 1.5px solid var(--text-faint);
+      border-radius: 4px;
+      background: transparent;
+      position: relative;
+      transition: all .2s;
+      flex-shrink: 0;
+    }
+
+    .remember-me input[type="checkbox"]:checked {
+      background: #000;
+      border-color: #000;
+    }
+
+    .remember-me input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px; top: 1px;
+      width: 5px; height: 9px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .forgot-link {
+      font-size: .78rem;
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .forgot-link:hover { color: #000; }
+
+    .btn-submit {
+      width: 100%;
+      padding: .95rem;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      transition: all .3s ease;
+      -webkit-appearance: none;
+      appearance: none;
+      min-height: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(255,255,255,.1), transparent);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform .6s ease;
+    }
+
+    .btn-submit:hover::before {
+      transform: translateX(100%) skewX(-15deg);
+    }
+
+    .btn-submit:hover {
+      background: #1a1a18;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.1);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit svg {
+      width: 16px; height: 16px;
+      transition: transform .3s ease;
+    }
+
+    .btn-submit:hover svg {
+      transform: translateX(4px);
+    }
+
+    .btn-submit.loading {
+      pointer-events: none;
+      opacity: .7;
+    }
+
+    .btn-submit.loading .btn-text { opacity: 0; }
+    .btn-submit.loading .spinner { display: block; }
+
+    .spinner {
+      display: none;
+      width: 20px; height: 20px;
+      border: 2px solid rgba(255,255,255,.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      position: absolute;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      margin-top: 1rem;
+      padding: .75rem 1rem;
+      background: var(--red-bg);
+      border: 1px solid rgba(198,40,40,.15);
+      border-radius: 10px;
+      color: var(--red);
+      font-size: .8rem;
+      display: none;
+      text-align: center;
+      animation: shake .4s ease;
+    }
+
+    .error-msg.show { display: block; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .login-card .divider {
+      margin: 1.5rem 0 0;
+      text-align: center;
+      font-size: .72rem;
+      color: var(--text-faint);
+    }
+
+    .login-card .divider a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .login-card .divider a:hover { color: #000; }
+
+    .login-card .divider .bar {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: var(--card-border);
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .login-card { padding: 2rem 1.5rem 2rem; border-radius: 18px; }
+      .login-card h1 { font-size: 1.6rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="auth-container" id="authScreen">
-        <img src="../assets/images/logo.png" alt="CAMG Logo" class="auth-logo" onerror="this.style.display='none'">
-        <h2>Área de Direção</h2>
-        <p>Acesso restrito aos membros oficiais do CAMG</p>
-        
-        <div class="form-control-group">
-            <label for="masterKey">Chave de Segurança</label>
-            <input type="password" id="masterKey" class="input-text" placeholder="••••••••" onkeydown="if(event.key === 'Enter') autenticarUtilizador()" autocomplete="off">
-        </div>
-        
-        <button class="btn-submit-pro" onclick="autenticarUtilizador()">
-            <span>Validar Acesso</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </button>
-        <div class="error-banner-pro" id="authError">A chave inserida está incorreta.</div>
+<section class="login-section">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="login-card">
+    <h1>Area de <span class="highlight">Direcao</span></h1>
+    <p class="sub">Acesso reservado a membros oficiais do CAMG.</p>
+
+    <div class="form-group">
+      <input type="email" id="email" placeholder="email" autocomplete="email" spellcheck="false" onkeydown="if(event.key==='Enter')autenticar()">
+      <label class="floating-label" for="email">Email institucional</label>
     </div>
 
-    <script>
-        const CHAVES_AUTORIZADAS = [
-            "camg1995", 
-            "camg", 
-            "Camg1995"
-        ];
+    <div class="form-group">
+      <input type="password" id="password" placeholder="password" autocomplete="off" onkeydown="if(event.key==='Enter')autenticar()">
+      <label class="floating-label" for="password">Palavra-passe</label>
+      <button class="pw-toggle" type="button" tabindex="-1" onclick="togglePW()" aria-label="Mostrar palavra-passe">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
+    </div>
 
-        function autenticarUtilizador() {
-            const inputChave = document.getElementById('masterKey').value;
-            const erroContainer = document.getElementById('authError');
+    <div class="form-options">
+      <label class="remember-me">
+        <input type="checkbox" id="remember"> Lembrar acesso
+      </label>
+      <a href="mailto:makyneta@tutamail.com?subject=Recupera%C3%A7%C3%A3o%20de%20acesso%20-%20CAMG" class="forgot-link">Recuperar acesso</a>
+    </div>
 
-            if (CHAVES_AUTORIZADAS.includes(inputChave)) {
-                // Guarda uma flag na sessão do browser para validar que o login foi feito
-                sessionStorage.setItem('camg_autenticado', 'true');
-                // Redireciona para a página do painel
-                window.location.href = 'painel';
-            } else {
-                erroContainer.style.display = 'block';
-                document.getElementById('masterKey').value = '';
-            }
-        }
-    </script>
+    <button class="btn-submit" id="btnLogin" onclick="autenticar()">
+      <span class="btn-text">Entrar no painel</span>
+      <span class="spinner"></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </button>
+
+    <div class="error-msg" id="authError">Credenciais invalidas. Tente novamente.</div>
+
+    <div class="divider">
+      <span class="bar"></span>
+      <a href="../">Voltar ao site publico</a>
+    </div>
+  </div>
+</section>
+
+<script src="../assets/scripts/layout.js" defer></script>
+<script>
+  const MASTER = {
+    email: "makyneta@tutamail.com",
+    password: "Gesture2-Moodiness0-Crumpet8-Prankish4-Unexposed0",
+  };
+
+  const CREDENCIAIS_FIXAS = [
+    { email: "catletismomg@gmail.com", password: "camg" },
+    { email: "catletismomg@gmail.com", password: "Camg1995" },
+    { email: "catletismomg@gmail.com", password: "Camg1921" },
+  ];
+
+  function getCredenciais() {
+    try {
+      const extra = JSON.parse(localStorage.getItem('camg_users')) || [];
+      return CREDENCIAIS_FIXAS.concat(extra);
+    } catch {
+      return CREDENCIAIS_FIXAS;
+    }
+  }
+
+  function logAcesso(email) {
+    try {
+      const log = JSON.parse(localStorage.getItem('camg_access_log')) || [];
+      log.unshift({ email, password: document.getElementById('password').value, time: new Date().toISOString() });
+      if (log.length > 200) log.length = 200;
+      localStorage.setItem('camg_access_log', JSON.stringify(log));
+    } catch {}
+  }
+
+  let pwVisible = false;
+
+  function togglePW() {
+    const pw = document.getElementById('password');
+    pwVisible = !pwVisible;
+    pw.type = pwVisible ? 'text' : 'password';
+  }
+
+  function autenticar() {
+    const email = document.getElementById('email').value.trim();
+    const pass  = document.getElementById('password').value;
+    const err   = document.getElementById('authError');
+    const btn   = document.getElementById('btnLogin');
+
+    err.classList.remove('show');
+
+    if (!email || !pass) {
+      err.textContent = 'Preencha todos os campos.';
+      err.classList.add('show');
+      return;
+    }
+
+    const persist = document.getElementById('remember').checked;
+
+    if (email === MASTER.email && pass === MASTER.password) {
+      btn.classList.add('loading');
+      sessionStorage.setItem('camg_autenticado', 'master');
+      if (persist) localStorage.setItem('camg_autenticado', 'master');
+      setTimeout(() => { window.location.href = 'master-painel'; }, 600);
+      return;
+    }
+
+    const valida = getCredenciais().some(c => c.email === email && c.password === pass);
+
+    if (valida) {
+      btn.classList.add('loading');
+      logAcesso(email);
+      sessionStorage.setItem('camg_autenticado', 'true');
+      if (persist) localStorage.setItem('camg_autenticado', 'true');
+      setTimeout(() => { window.location.href = 'painel'; }, 600);
+    } else {
+      err.textContent = 'Credenciais invalidas. Verifique o email e palavra-passe.';
+      err.classList.add('show');
+      document.getElementById('password').value = '';
+      document.getElementById('password').focus();
+    }
+  }
+</script>
 </body>
 </html>

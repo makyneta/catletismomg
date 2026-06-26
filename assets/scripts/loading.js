@@ -15,7 +15,7 @@
 
   loader.innerHTML =
     '<div class="loader-logo">' +
-      '<img src="assets/images/logo.png" alt="Logo CAMG">' +
+      '<img src="assets/images/logo.webp" alt="Logo CAMG">' +
     '</div>' +
     '<div class="loader-track">' +
       '<div class="loader-track-fill" id="loaderBar"></div>' +

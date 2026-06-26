@@ -21,8 +21,38 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://catletismomg.pt/imprensa.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://catletismomg.pt/mapa-do-site.html</loc>
+    <priority>0.4</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://catletismomg.pt/newsletter.html</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://catletismomg.pt/404.html</loc>
     <priority>0.1</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://catletismomg.pt/politica-de-privacidade.html</loc>
+    <priority>0.3</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://catletismomg.pt/termos-e-condicoes.html</loc>
+    <priority>0.3</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://catletismomg.pt/politica-de-cookies.html</loc>
+    <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
   <url>
@@ -53,36 +83,6 @@
   <url>
     <loc>https://catletismomg.pt/provas/volta-aos-7-vidrala.html</loc>
     <priority>0.8</priority>
-    <changefreq>yearly</changefreq>
-  </url>
-  <url>
-    <loc>https://catletismomg.pt/noticia/entrevista-ana-paula-andre-tvmg/</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://catletismomg.pt/mapa-do-site.html</loc>
-    <priority>0.4</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://catletismomg.pt/imprensa.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://catletismomg.pt/politica-de-privacidade.html</loc>
-    <priority>0.3</priority>
-    <changefreq>yearly</changefreq>
-  </url>
-  <url>
-    <loc>https://catletismomg.pt/termos-e-condicoes.html</loc>
-    <priority>0.3</priority>
-    <changefreq>yearly</changefreq>
-  </url>
-  <url>
-    <loc>https://catletismomg.pt/politica-de-cookies.html</loc>
-    <priority>0.3</priority>
     <changefreq>yearly</changefreq>
   </url>
 </urlset>
