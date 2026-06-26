@@ -1,0 +1,163 @@
+body {
+  background: #0b0b0b;
+  color: rgba(255,255,255,0.85);
+}
+
+.press-hero {
+  background: #0c0c0c;
+  padding: 100px 24px 60px;
+  text-align: center;
+  position: relative;
+}
+
+.press-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #f0e800 0px,
+    #f0e800 20px,
+    transparent 20px,
+    transparent 30px
+  );
+}
+
+.press-hero h1 {
+  font-family: 'Sofia Sans Extra Condensed', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--light);
+  margin: 0 0 10px;
+  line-height: 1;
+}
+
+.press-hero h1 span {
+  color: var(--secondary);
+}
+
+.press-hero p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.3);
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1140px;
+  margin: -40px auto 80px;
+  padding: 0 24px;
+}
+
+.press-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+
+.press-card {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.press-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(240,232,0,0.15);
+}
+
+.press-card-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.press-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.press-card:hover .press-card-img img {
+  transform: scale(1.04);
+}
+
+.press-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.press-source {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
+.press-card-body h3 {
+  font-family: 'Sofia Sans Extra Condensed', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--light);
+  margin: 0 0 10px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.press-card-body p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.45);
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.press-link {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.2s ease;
+}
+
+.press-card:hover .press-link {
+  color: var(--secondary);
+}
+
+@media (max-width: 900px) {
+  .press-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .press-hero {
+    padding: 80px 20px 40px;
+  }
+
+  .press-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    margin-top: -30px;
+  }
+}

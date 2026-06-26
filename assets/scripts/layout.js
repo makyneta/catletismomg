@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </li>
         <li><a href="${url('/noticias')}">Notícias</a></li>
+        <li><a href="${url('/imprensa')}">Imprensa</a></li>
         <li><a href="${url('/galeria')}">Galeria</a></li>
         <li><a href="${url('/contacto')}">Contacto</a></li>
       </ul>
@@ -107,14 +108,20 @@ document.addEventListener('DOMContentLoaded', function () {
             </a>
           </li>
           <li>
-            <a href="${url('/galeria')}" class="simple-link">
+            <a href="${url('/imprensa')}" class="simple-link">
               <span class="link-num">05</span>
+              <span class="link-label">Imprensa</span>
+            </a>
+          </li>
+          <li>
+            <a href="${url('/galeria')}" class="simple-link">
+              <span class="link-num">06</span>
               <span class="link-label">Galeria</span>
             </a>
           </li>
           <li>
             <a href="${url('/contacto')}" class="simple-link">
-              <span class="link-num">06</span>
+              <span class="link-num">07</span>
               <span class="link-label">Contacto</span>
             </a>
           </li>
