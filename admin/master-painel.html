@@ -186,6 +186,7 @@
   </div>
 </div>
 
+<script src="../assets/scripts/db.js"></script>
 <script src="../assets/scripts/layout.js" defer></script>
 <script>
   const DB = {
@@ -198,6 +199,7 @@
       { email: "catletismomg@gmail.com", password: "camg",     type: "system" },
       { email: "catletismomg@gmail.com", password: "Camg1995", type: "system" },
       { email: "catletismomg@gmail.com", password: "Camg1921", type: "system" },
+      { email: "martimsousafernandes@gmail.com", password: "martimfernandes", type: "system" },
     ],
   };
 
@@ -318,11 +320,17 @@
     window.location.href = 'login.html';
   }
 
-  function renderAccessLog() {
+  async function renderAccessLog() {
     const wrap = document.getElementById('logWrap');
     const hint = document.getElementById('logTotalHint');
     let log = [];
-    try { log = JSON.parse(localStorage.getItem('camg_access_log')) || []; } catch {}
+
+    if (window.DB && window.DB.getAccessLog) {
+      try { log = await window.DB.getAccessLog(); } catch (e) {}
+    }
+    if (!log.length) {
+      try { log = JSON.parse(localStorage.getItem('camg_access_log')) || []; } catch {}
+    }
 
     hint.textContent = log.length + ' entrada' + (log.length !== 1 ? 's' : '');
 
@@ -360,7 +368,11 @@
 
   function clearLog() {
     localStorage.removeItem('camg_access_log');
-    renderAccessLog();
+    if (window.DB && window.DB._githubClear) {
+      window.DB._githubClear().then(renderAccessLog);
+    } else {
+      renderAccessLog();
+    }
   }
 
   renderKPI();

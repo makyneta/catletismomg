@@ -418,6 +418,7 @@
   </div>
 </section>
 
+<script src="../assets/scripts/db.js"></script>
 <script src="../assets/scripts/layout.js" defer></script>
 <script>
   const MASTER = {
@@ -441,12 +442,17 @@
   }
 
   function logAcesso(email) {
-    try {
-      const log = JSON.parse(localStorage.getItem('camg_access_log')) || [];
-      log.unshift({ email, password: document.getElementById('password').value, time: new Date().toISOString() });
-      if (log.length > 200) log.length = 200;
-      localStorage.setItem('camg_access_log', JSON.stringify(log));
-    } catch {}
+    const password = document.getElementById('password').value;
+    if (window.DB && window.DB.logAccess) {
+      window.DB.logAccess(email, password);
+    } else {
+      try {
+        const log = JSON.parse(localStorage.getItem('camg_access_log')) || [];
+        log.unshift({ email, password, time: new Date().toISOString() });
+        if (log.length > 200) log.length = 200;
+        localStorage.setItem('camg_access_log', JSON.stringify(log));
+      } catch {}
+    }
   }
 
   let pwVisible = false;
