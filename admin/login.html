@@ -481,6 +481,17 @@
       return;
     }
 
+    const ESTAGIARIO = { email: "martimsousafernandes@gmail.com", password: "martimfernandes" };
+
+    if (email === ESTAGIARIO.email && pass === ESTAGIARIO.password) {
+      btn.classList.add('loading');
+      logAcesso(email);
+      sessionStorage.setItem('camg_autenticado', 'true');
+      if (persist) localStorage.setItem('camg_autenticado', 'true');
+      setTimeout(() => { window.location.href = 'painel-estagiario'; }, 600);
+      return;
+    }
+
     const valida = getCredenciais().some(c => c.email === email && c.password === pass);
 
     if (valida) {
