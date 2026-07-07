@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <ul class="submenu">
               <li><a href="${url('/clube/sobre')}">Sobre o Clube</a></li>
               <li><a href="${url('/clube/corpos-sociais')}">Corpos Sociais</a></li>
-              <li><a href="${url('/clube/campeoes-nacionais')}">Campeões Nacionais</a></li>
+              <li><a href="${url('/clube/medalhdos-nacionais')}">Medalhados Nacionais</a></li>
               <li><a href="${url('/clube/estatisticas')}">Estatísticas</a></li>
               <li><a href="${url('/newsletter')}">Newsletter</a></li>
             </ul>
