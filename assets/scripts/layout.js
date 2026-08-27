@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="${url('/politica-de-cookies')}">Política de Cookies</a>
           <a href="${url('/mapa-do-site')}">Mapa do Site</a>
         </div>
-        <p class="footer-copy"><a href="https://makyneta.github.io" target="_blank" rel="noopener">Copyright © Makyneta Unipessoal, Lda. Todos os direitos reservados.</a></p>
+        <p class="footer-copy"><a>Copyright © 2026 Clube Atletismo de Marinha Grande. Todos os direitos reservados.<br>Website por <a href="https://makyneta.github.io" target="_blank" rel="noopener">Makyneta Unipessoal, Lda.</a></p>
       </div>
     </footer>
   `;
