@@ -262,12 +262,13 @@
     users: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
   };
 
-  function renderKPI() {
+  async function renderKPI() {
+    const usersCount = (await getAllUsers()).length;
     document.getElementById('kpiGrid').innerHTML = [
       { value: 'Master', label: 'Nivel Acesso', icon: 'lock', bg: '#000', color: '#f0e800' },
       { value: '4', label: 'Ferramentas', icon: 'zap', bg: '#e3f2fd', color: '#1565c0' },
       { value: DB.credenciais.length, label: 'Credenciais', icon: 'key', bg: '#f3e5f5', color: '#7b1fa2' },
-      { value: allUsers().length, label: 'Utilizadores', icon: 'users', bg: '#e8f5e9', color: '#2e7d32' },
+      { value: usersCount, label: 'Utilizadores', icon: 'users', bg: '#e8f5e9', color: '#2e7d32' },
     ].map((d, i) => `
       <div class="kpi">
         <div class="kpi-icon" style="background:${d.bg};color:${d.color}">${icons[d.icon]}</div>
@@ -291,10 +292,35 @@
     `).join('');
   }
 
-  function renderUsers() {
+  async function getAllUsers() {
+    let users = [];
+    try {
+      const local = JSON.parse(localStorage.getItem('camg_users_db') || '[]');
+      users = Array.isArray(local) ? local : [];
+    } catch (e) {}
+
+    if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.getUsers) {
+      try {
+        const dbUsers = await window.CAMG_SUPABASE.getUsers();
+        if (Array.isArray(dbUsers) && dbUsers.length) {
+          const map = new Map();
+          [...users, ...dbUsers].forEach((u) => {
+            if (!u || !u.email) return;
+            map.set(String(u.email).toLowerCase(), { ...u, role: u.role || 'admin' });
+          });
+          users = Array.from(map.values());
+          saveCustom(users);
+        }
+      } catch (e) {}
+    }
+
+    return users;
+  }
+
+  async function renderUsers() {
     const wrap = document.getElementById('userTableWrap');
     const hint = document.getElementById('userTotalHint');
-    const all = allUsers();
+    const all = await getAllUsers();
     hint.textContent = all.length + ' utilizador' + (all.length !== 1 ? 'es' : '');
     if (!all.length) { wrap.innerHTML = '<div class="user-empty">Nenhum utilizador registado.</div>'; return; }
     wrap.innerHTML = `
@@ -307,7 +333,7 @@
           else if (role === 'estagiario') label = 'Estagiário';
           return `<tr>
             <td class="u-email">${esc(u.email)}</td>
-            <td><span class="log-pass" data-pass="${encodeURIComponent(u.password)}" onclick="togglePass(this)">${u.password.replace(/./g, '·')}</span></td>
+            <td><span class="log-pass" data-pass="${encodeURIComponent(u.password)}" onclick="togglePass(this)">${(u.password || '').replace(/./g, '·')}</span></td>
             <td><span class="u-badge ${role === 'master_admin' || role === 'masteradmin' ? 'custom' : 'system'}">${label}</span></td>
             <td style="text-align:right"><button class="u-del" onclick="delUser(${i})">Remover</button></td>
           </tr>`;
@@ -320,27 +346,34 @@
     const pass = document.getElementById('newPass').value;
     const role = document.getElementById('newRole').value || 'admin';
     if (!email || !pass) return;
-    const u = getCustom();
     const customUser = { email, password: pass, role };
-    u.push(customUser);
-    saveCustom(u);
     if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.addUser) {
       await window.CAMG_SUPABASE.addUser(customUser);
     }
+    const u = getCustom();
+    const existing = u.findIndex(item => String(item.email).toLowerCase() === email.toLowerCase());
+    if (existing >= 0) u[existing] = customUser; else u.push(customUser);
+    saveCustom(u);
     document.getElementById('newEmail').value = '';
     document.getElementById('newPass').value = '';
     document.getElementById('newRole').value = 'admin';
     document.getElementById('newEmail').focus();
-    renderUsers();
-    renderKPI();
+    await renderUsers();
+    await renderKPI();
   }
 
-  function delUser(idx) {
+  async function delUser(idx) {
     const u = getCustom();
-    u.splice(idx, 1);
-    saveCustom(u);
-    renderUsers();
-    renderKPI();
+    if (idx >= 0 && idx < u.length) {
+      const userToDelete = u[idx];
+      u.splice(idx, 1);
+      saveCustom(u);
+      if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.deleteUser) {
+        await window.CAMG_SUPABASE.deleteUser(userToDelete.email);
+      }
+    }
+    await renderUsers();
+    await renderKPI();
   }
 
   const clockEl = document.getElementById('clock');

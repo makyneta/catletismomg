@@ -167,6 +167,11 @@
   </div>
 
   <div class="card card-full" style="margin-top:1rem">
+    <div class="card-header"><h3>Utilizadores registados</h3></div>
+    <div id="userListWrap" style="min-height:80px;"></div>
+  </div>
+
+  <div class="card card-full" style="margin-top:1rem">
     <div class="card-header"><h3>Publicar notícia 2026/27</h3></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
       <input type="text" id="newsTitle" placeholder="Título da notícia" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
@@ -267,7 +272,60 @@
     window.location.href = 'login.html';
   }
 
-  function addUser() {
+  function renderUserList(users) {
+    const wrap = document.getElementById('userListWrap');
+    if (!Array.isArray(users) || !users.length) {
+      wrap.innerHTML = '<div class="user-empty" style="padding:1rem 0;color:var(--text-ter);">Nenhum utilizador registado.</div>';
+      return;
+    }
+
+    wrap.innerHTML = `
+      <table class="user-table" style="width:100%;border-collapse:collapse;font-size:.8rem;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:.55rem .75rem;border-bottom:1px solid var(--border-alt);color:var(--text-ter);">Email</th>
+            <th style="text-align:left;padding:.55rem .75rem;border-bottom:1px solid var(--border-alt);color:var(--text-ter);">Perfil</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${users.map((u) => {
+            const role = (u.role || 'admin').toLowerCase();
+            const label = role === 'master_admin' || role === 'masteradmin' ? 'Master Admin' : role === 'estagiario' ? 'Estagiário' : 'Administrador';
+            return `
+              <tr>
+                <td style="padding:.6rem .75rem;border-bottom:1px solid var(--border-alt);">${u.email}</td>
+                <td style="padding:.6rem .75rem;border-bottom:1px solid var(--border-alt);"><span class="u-badge" style="display:inline-block;padding:2px 8px;border-radius:4px;background:${role === 'estagiario' ? 'rgba(240,232,0,.15)' : 'rgba(0,0,0,.04)'};color:${role === 'estagiario' ? '#7a6f00' : '#555'};font-size:.58rem;letter-spacing:.04em;text-transform:uppercase;font-weight:700;">${label}</span></td>
+              </tr>`;
+          }).join('')}
+        </tbody>
+      </table>`;
+  }
+
+  async function loadUsersList() {
+    let users = [];
+    try {
+      const local = JSON.parse(localStorage.getItem('camg_users_db') || '[]');
+      users = Array.isArray(local) ? local : [];
+    } catch {}
+
+    if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.getUsers) {
+      try {
+        const supa = await window.CAMG_SUPABASE.getUsers();
+        if (Array.isArray(supa) && supa.length) {
+          const map = new Map();
+          [...users, ...supa].forEach((u) => {
+            if (!u || !u.email) return;
+            map.set(String(u.email).toLowerCase(), { ...u, role: u.role || 'admin' });
+          });
+          users = Array.from(map.values());
+        }
+      } catch (err) {}
+    }
+
+    renderUserList(users);
+  }
+
+  async function addUser() {
     const email = document.getElementById('newEmail').value.trim();
     const password = document.getElementById('newPass').value;
     const role = document.getElementById('newRole').value || 'admin';
@@ -276,12 +334,12 @@
       return;
     }
     if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.addUser) {
-      window.CAMG_SUPABASE.addUser({ email, password, role }).then(() => {
-        document.getElementById('newEmail').value = '';
-        document.getElementById('newPass').value = '';
-        document.getElementById('newRole').value = 'admin';
-        alert('Utilizador guardado com sucesso.');
-      });
+      await window.CAMG_SUPABASE.addUser({ email, password, role });
+      document.getElementById('newEmail').value = '';
+      document.getElementById('newPass').value = '';
+      document.getElementById('newRole').value = 'admin';
+      await loadUsersList();
+      alert('Utilizador guardado com sucesso.');
       return;
     }
     const users = JSON.parse(localStorage.getItem('camg_users_db') || '[]');
@@ -290,6 +348,7 @@
     document.getElementById('newEmail').value = '';
     document.getElementById('newPass').value = '';
     document.getElementById('newRole').value = 'admin';
+    await loadUsersList();
     alert('Utilizador guardado com sucesso.');
   }
 
@@ -396,6 +455,8 @@
     localStorage.setItem('camg_gallery_db', JSON.stringify(items));
     alert('Imagem guardada localmente.');
   }
+
+  loadUsersList();
 </script>
 </body>
 </html>
