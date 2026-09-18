@@ -157,11 +157,14 @@
   </div>
 
   <div class="card card-full" style="margin-top:1.25rem">
-    <div class="card-header"><h3>Criar Master Admin</h3></div>
+    <div class="card-header"><h3>Adicionar utilizador</h3></div>
     <div class="user-form">
       <input type="email" id="newEmail" placeholder="Email" spellcheck="false">
       <input type="password" id="newPass" placeholder="Palavra-passe">
-      <input type="text" id="newRole" value="master_admin" readonly aria-label="Tipo de utilizador" style="flex:0 0 200px; padding:.6rem .85rem; background:var(--surface-alt); border:1px solid var(--border); border-radius:8px; font-size:.8rem; color:var(--text);">
+      <select id="newRole" aria-label="Tipo de utilizador" style="flex:0 0 200px; padding:.6rem .85rem; background:var(--surface-alt); border:1px solid var(--border); border-radius:8px; font-size:.8rem; color:var(--text);">
+        <option value="admin">Administrador</option>
+        <option value="estagiario">Estagiário</option>
+      </select>
       <button onclick="addUser()">Adicionar</button>
     </div>
   </div>
@@ -293,16 +296,19 @@
     const hint = document.getElementById('userTotalHint');
     const all = allUsers();
     hint.textContent = all.length + ' utilizador' + (all.length !== 1 ? 'es' : '');
-    if (!all.length) { wrap.innerHTML = '<div class="user-empty">Nenhum master admin registado.</div>'; return; }
+    if (!all.length) { wrap.innerHTML = '<div class="user-empty">Nenhum utilizador registado.</div>'; return; }
     wrap.innerHTML = `
       <table class="user-table">
         <thead><tr><th>Email</th><th>Palavra-passe</th><th>Perfil</th><th style="width:80px;text-align:right">Acao</th></tr></thead>
         <tbody>${all.map((u, i) => {
-          const role = (u.role || 'master_admin').toLowerCase();
+          const role = (u.role || 'admin').toLowerCase();
+          let label = 'Administrador';
+          if (role === 'master_admin' || role === 'masteradmin') label = 'Master Admin';
+          else if (role === 'estagiario') label = 'Estagiário';
           return `<tr>
             <td class="u-email">${esc(u.email)}</td>
             <td><span class="log-pass" data-pass="${encodeURIComponent(u.password)}" onclick="togglePass(this)">${u.password.replace(/./g, '·')}</span></td>
-            <td><span class="u-badge ${role === 'master_admin' || role === 'masteradmin' ? 'custom' : 'system'}">${role === 'master_admin' || role === 'masteradmin' ? 'Master Admin' : 'Administrador'}</span></td>
+            <td><span class="u-badge ${role === 'master_admin' || role === 'masteradmin' ? 'custom' : 'system'}">${label}</span></td>
             <td style="text-align:right"><button class="u-del" onclick="delUser(${i})">Remover</button></td>
           </tr>`;
         }).join('')}</tbody>
@@ -312,7 +318,7 @@
   async function addUser() {
     const email = document.getElementById('newEmail').value.trim();
     const pass = document.getElementById('newPass').value;
-    const role = 'master_admin';
+    const role = document.getElementById('newRole').value || 'admin';
     if (!email || !pass) return;
     const u = getCustom();
     const customUser = { email, password: pass, role };
@@ -323,7 +329,7 @@
     }
     document.getElementById('newEmail').value = '';
     document.getElementById('newPass').value = '';
-    document.getElementById('newRole').value = 'master_admin';
+    document.getElementById('newRole').value = 'admin';
     document.getElementById('newEmail').focus();
     renderUsers();
     renderKPI();
