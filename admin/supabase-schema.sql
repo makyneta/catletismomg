@@ -1,0 +1,87 @@
+-- 1) Cria a tabela de utilizadores do painel
+create table if not exists public.admin_users (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique,
+  password text not null,
+  role text not null check (role in ('admin', 'estagiario')),
+  is_active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+
+-- 2) Cria a tabela de notícias do ano 2026/27 e seguintes
+create table if not exists public.news (
+  id uuid primary key default gen_random_uuid(),
+  slug text not null unique,
+  title text not null,
+  summary text,
+  image_url text,
+  content text,
+  season text not null default '2026/27',
+  status text not null default 'published' check (status in ('draft', 'published')),
+  category text not null default 'geral',
+  featured boolean not null default false,
+  published_at timestamptz not null default now(),
+  author_role text not null default 'admin',
+  page_path text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table if not exists public.gallery_images (
+  id text primary key,
+  title text not null,
+  alt text,
+  description text,
+  image_url text not null,
+  season text not null default '2026/27',
+  category text not null default 'geral',
+  author_role text not null default 'admin',
+  created_at timestamptz not null default now()
+);
+
+-- 3) Segurança: leitura pública das notícias; escrita restrita aos administradores
+alter table public.news enable row level security;
+alter table public.gallery_images enable row level security;
+alter table public.admin_users enable row level security;
+
+create policy "Noticias publicas" on public.news
+  for select using (true);
+
+create policy "Admin users public read" on public.admin_users
+  for select using (true);
+
+create policy "Admins podem escrever users" on public.admin_users
+  for insert with check (true);
+
+create policy "Admins podem atualizar users" on public.admin_users
+  for update using (true) with check (true);
+
+create policy "Admins podem inserir noticias" on public.news
+  for insert with check (true);
+
+create policy "Admins podem atualizar noticias" on public.news
+  for update using (true) with check (true);
+
+create policy "Galeria publica" on public.gallery_images
+  for select using (true);
+
+create policy "Admins podem inserir galeria" on public.gallery_images
+  for insert with check (true);
+
+create policy "Admins podem atualizar galeria" on public.gallery_images
+  for update using (true) with check (true);
+
+-- 4) Exemplo de seed para o primeiro administrador
+insert into public.admin_users (email, password, role, is_active)
+values ('catletismomg@gmail.com', 'camg', 'admin', true)
+on conflict (email) do nothing;
+
+insert into public.admin_users (email, password, role, is_active)
+values ('martimsousafernandes@gmail.com', 'martimfernandes', 'estagiario', true)
+on conflict (email) do nothing;
+
+-- 5) Para o editor de Supabase (ou no SQL editor):
+--    - Vá a Database > SQL Editor
+--    - Execute este ficheiro
+--    - Depois, em Authentication > Users, crie um utilizador para login real do painel (opcional)
+--    - Configure RLS depois para restringir as operações conforme as regras reais da sua organização

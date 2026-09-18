@@ -83,13 +83,47 @@ let lbMediaImg = null;
 // ═══════════════════════════════════════════════════════════════
 //  INIT
 // ═══════════════════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  await hydrateGalleryFromDb();
   buildFilters();
   buildGallery('all');
   updateHeroStats();
   initLightbox();
   initScrollReveal();
 });
+
+async function hydrateGalleryFromDb() {
+  try {
+    const dbItems = (window.CAMG_SUPABASE && window.CAMG_SUPABASE.getGalleryItems)
+      ? await window.CAMG_SUPABASE.getGalleryItems({ season: '2026/27' })
+      : [];
+
+    const fallbackItems = (() => {
+      try { return JSON.parse(localStorage.getItem('camg_gallery_db') || '[]'); } catch { return []; }
+    })();
+
+    const items = (dbItems && dbItems.length ? dbItems : fallbackItems).filter(Boolean);
+    if (!items.length) return;
+
+    const extraCollection = {
+      id: 'db-gallery-202627',
+      label: 'Galeria 2026/27',
+      year: '2026',
+      items: items.map(item => ({
+        type: 'photo',
+        src: item.image_url || item.src || '',
+        title: item.title || item.alt || 'Imagem CAMG',
+        description: item.description || ''
+      })).filter(item => item.src)
+    };
+
+    if (extraCollection.items.length) {
+      museumData.push(extraCollection);
+    }
+  } catch (e) {
+    console.warn('Galeria externa indisponível:', e);
+  }
+}
 
 function updateHeroStats() {
   let fotos = 0, videos = 0;

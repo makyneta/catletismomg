@@ -161,6 +161,10 @@
     <div class="user-form">
       <input type="email" id="newEmail" placeholder="Email" spellcheck="false">
       <input type="password" id="newPass" placeholder="Palavra-passe">
+      <select id="newRole" aria-label="Tipo de utilizador" style="flex:0 0 180px; padding:.6rem .85rem; background:var(--surface-alt); border:1px solid var(--border); border-radius:8px; font-size:.8rem; color:var(--text);">
+        <option value="admin">Administrador</option>
+        <option value="estagiario">Estagiário</option>
+      </select>
       <button onclick="addUser()">Adicionar</button>
     </div>
   </div>
@@ -171,6 +175,48 @@
       <span style="font-size:.68rem;color:var(--text-ter)" id="userTotalHint"></span>
     </div>
     <div id="userTableWrap"></div>
+  </div>
+
+  <div class="card card-full" style="margin-top:1rem">
+    <div class="card-header"><h3>Publicar notícia 2026/27</h3></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <input type="text" id="newsTitle" placeholder="Título da notícia" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <input type="text" id="newsSlug" placeholder="Slug (ex: nova-noticia)" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <input type="text" id="newsImage" placeholder="Imagem URL" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <input type="text" id="newsPagePath" placeholder="Página (opcional, ex: noticia/2026.27/nova-noticia)" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <textarea id="newsSummary" rows="3" placeholder="Resumo da notícia" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;resize:vertical;"></textarea>
+      <textarea id="newsContent" rows="8" placeholder="Conteúdo completo da notícia" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;resize:vertical;"></textarea>
+      <select id="newsStatus" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.8rem;">
+        <option value="published">Publicada</option>
+        <option value="draft">Rascunho</option>
+      </select>
+      <select id="newsRole" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.8rem;">
+        <option value="admin">Autor: Administrador</option>
+        <option value="estagiario">Autor: Estagiário</option>
+      </select>
+      <button onclick="saveNewsFromPanel()" style="grid-column:1 / -1;padding:.8rem 1rem;background:#000;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Guardar notícia na base de dados</button>
+    </div>
+  </div>
+
+  <div class="card card-full" style="margin-top:1rem">
+    <div class="card-header"><h3>Adicionar imagem à galeria</h3></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+      <input type="text" id="galleryTitle" placeholder="Título da imagem" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <input type="text" id="galleryAlt" placeholder="Texto alternativo (opcional)" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <input type="text" id="galleryImage" placeholder="URL da imagem" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <input type="file" id="galleryFile" accept="image/*" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <textarea id="galleryDescription" rows="3" placeholder="Descrição da imagem" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;resize:vertical;"></textarea>
+      <select id="gallerySeason" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.8rem;">
+        <option value="2026/27">2026/27</option>
+        <option value="2025/26">2025/26</option>
+      </select>
+      <select id="galleryCategory" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.8rem;">
+        <option value="geral">Geral</option>
+        <option value="meeting">Meeting</option>
+        <option value="prova">Prova</option>
+      </select>
+      <button onclick="saveGalleryFromPanel()" style="grid-column:1 / -1;padding:.8rem 1rem;background:#000;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Guardar imagem na galeria</button>
+    </div>
   </div>
 
   <div class="card card-full" style="margin-top:1rem">
@@ -187,6 +233,8 @@
 </div>
 
 <script src="../assets/scripts/db.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/scripts/camg-supabase.js"></script>
 <script src="../assets/scripts/layout.js" defer></script>
 <script>
   const DB = {
@@ -196,10 +244,10 @@
       { nome: "Formspree", email: "catletismomg@gmail.com",  password: "@Camg1995" },
     ],
     users: [
-      { email: "catletismomg@gmail.com", password: "camg",     type: "system" },
-      { email: "catletismomg@gmail.com", password: "Camg1995", type: "system" },
-      { email: "catletismomg@gmail.com", password: "Camg1921", type: "system" },
-      { email: "martimsousafernandes@gmail.com", password: "martimfernandes", type: "system" },
+      { email: "catletismomg@gmail.com", password: "camg", role: "admin", type: "system" },
+      { email: "catletismomg@gmail.com", password: "Camg1995", role: "admin", type: "system" },
+      { email: "catletismomg@gmail.com", password: "Camg1921", role: "admin", type: "system" },
+      { email: "martimsousafernandes@gmail.com", password: "martimfernandes", role: "estagiario", type: "system" },
     ],
   };
 
@@ -257,28 +305,36 @@
     if (!all.length) { wrap.innerHTML = '<div class="user-empty">Nenhum utilizador registado.</div>'; return; }
     wrap.innerHTML = `
       <table class="user-table">
-        <thead><tr><th>Email</th><th>Palavra-passe</th><th>Tipo</th><th style="width:80px;text-align:right">Acao</th></tr></thead>
+        <thead><tr><th>Email</th><th>Palavra-passe</th><th>Tipo</th><th>Perfil</th><th style="width:80px;text-align:right">Acao</th></tr></thead>
         <tbody>${all.map((u, i) => {
           const sys = i < sc;
+          const role = (u.role || 'admin').toLowerCase();
           return `<tr>
             <td class="u-email">${esc(u.email)}</td>
             <td><span class="log-pass" data-pass="${encodeURIComponent(u.password)}" onclick="togglePass(this)">${u.password.replace(/./g, '·')}</span></td>
             <td><span class="u-badge ${sys ? 'system' : 'custom'}">${sys ? 'Sistema' : 'Personalizado'}</span></td>
+            <td><span class="u-badge ${role === 'estagiario' ? 'custom' : 'system'}">${role === 'estagiario' ? 'Estagiário' : 'Administrador'}</span></td>
             <td style="text-align:right">${sys ? '<span style="font-size:.6rem;color:var(--text-ter)">—</span>' : `<button class="u-del" onclick="delUser(${i - sc})">Remover</button>`}</td>
           </tr>`;
         }).join('')}</tbody>
       </table>`;
   }
 
-  function addUser() {
+  async function addUser() {
     const email = document.getElementById('newEmail').value.trim();
     const pass = document.getElementById('newPass').value;
+    const role = document.getElementById('newRole').value || 'admin';
     if (!email || !pass) return;
     const u = getCustom();
-    u.push({ email, password: pass });
+    const customUser = { email, password: pass, role };
+    u.push(customUser);
     saveCustom(u);
+    if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.addUser) {
+      await window.CAMG_SUPABASE.addUser(customUser);
+    }
     document.getElementById('newEmail').value = '';
     document.getElementById('newPass').value = '';
+    document.getElementById('newRole').value = 'admin';
     document.getElementById('newEmail').focus();
     renderUsers();
     renderKPI();
@@ -373,6 +429,110 @@
     } else {
       renderAccessLog();
     }
+  }
+
+  async function saveNewsFromPanel() {
+    const title = document.getElementById('newsTitle').value.trim();
+    const slug = (document.getElementById('newsSlug').value || title).trim();
+    const summary = document.getElementById('newsSummary').value.trim();
+    const content = document.getElementById('newsContent').value.trim();
+    const status = document.getElementById('newsStatus').value || 'published';
+    const authorRole = document.getElementById('newsRole').value || 'admin';
+    const imageUrl = document.getElementById('newsImage').value.trim();
+    const pagePath = document.getElementById('newsPagePath').value.trim();
+
+    if (!title || !content) {
+      alert('Preencha pelo menos o título e o conteúdo da notícia.');
+      return;
+    }
+
+    const payload = {
+      title,
+      slug,
+      summary,
+      content,
+      image_url: imageUrl || 'assets/images/news/default.webp',
+      season: '2026/27',
+      status,
+      author_role: authorRole,
+      page_path: pagePath || `noticia/2026.27/${slug}`,
+      featured: false,
+      published_at: new Date().toISOString()
+    };
+
+    if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.saveNews) {
+      await window.CAMG_SUPABASE.saveNews(payload);
+      alert('Notícia guardada com sucesso na base de dados (ou em fallback local).');
+      document.getElementById('newsTitle').value = '';
+      document.getElementById('newsSlug').value = '';
+      document.getElementById('newsSummary').value = '';
+      document.getElementById('newsContent').value = '';
+      document.getElementById('newsImage').value = '';
+      document.getElementById('newsPagePath').value = '';
+      return;
+    }
+
+    alert('A configuração do Supabase ainda não foi definida.');
+  }
+
+  function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function saveGalleryFromPanel() {
+    const title = document.getElementById('galleryTitle').value.trim();
+    const alt = document.getElementById('galleryAlt').value.trim() || title;
+    const description = document.getElementById('galleryDescription').value.trim();
+    const season = document.getElementById('gallerySeason').value || '2026/27';
+    const category = document.getElementById('galleryCategory').value || 'geral';
+    const fileInput = document.getElementById('galleryFile');
+    const urlInput = document.getElementById('galleryImage');
+    let imageUrl = urlInput.value.trim();
+
+    if (!title) {
+      alert('Preencha o título da imagem.');
+      return;
+    }
+
+    if (fileInput && fileInput.files && fileInput.files[0]) {
+      imageUrl = await readFileAsDataUrl(fileInput.files[0]);
+    }
+
+    if (!imageUrl) {
+      alert('Selecione uma imagem ou indique uma URL.');
+      return;
+    }
+
+    const payload = {
+      title,
+      alt,
+      description,
+      image_url: imageUrl,
+      season,
+      category,
+      author_role: 'admin'
+    };
+
+    if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.saveGalleryItem) {
+      await window.CAMG_SUPABASE.saveGalleryItem(payload);
+      alert('Imagem adicionada à galeria.');
+      document.getElementById('galleryTitle').value = '';
+      document.getElementById('galleryAlt').value = '';
+      document.getElementById('galleryImage').value = '';
+      document.getElementById('galleryDescription').value = '';
+      fileInput.value = '';
+      return;
+    }
+
+    const items = JSON.parse(localStorage.getItem('camg_gallery_db') || '[]');
+    items.unshift({ ...payload, created_at: new Date().toISOString() });
+    localStorage.setItem('camg_gallery_db', JSON.stringify(items));
+    alert('Imagem guardada localmente.');
   }
 
   renderKPI();
