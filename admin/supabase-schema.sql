@@ -3,7 +3,7 @@ create table if not exists public.admin_users (
   id uuid primary key default gen_random_uuid(),
   email text not null unique,
   password text not null,
-  role text not null check (role in ('admin', 'estagiario')),
+  role text not null check (role in ('master_admin', 'admin', 'estagiario')),
   is_active boolean not null default true,
   created_at timestamptz not null default now()
 );
@@ -71,13 +71,9 @@ create policy "Admins podem inserir galeria" on public.gallery_images
 create policy "Admins podem atualizar galeria" on public.gallery_images
   for update using (true) with check (true);
 
--- 4) Exemplo de seed para o primeiro administrador
+-- 4) Seed base para os master admins do sistema
 insert into public.admin_users (email, password, role, is_active)
-values ('catletismomg@gmail.com', 'camg', 'admin', true)
-on conflict (email) do nothing;
-
-insert into public.admin_users (email, password, role, is_active)
-values ('martimsousafernandes@gmail.com', 'martimfernandes', 'estagiario', true)
+values ('makyneta@tutamail.com', 'Gesture2-Moodiness0-Crumpet8-Prankish4-Unexposed0', 'master_admin', true)
 on conflict (email) do nothing;
 
 -- 5) Para o editor de Supabase (ou no SQL editor):

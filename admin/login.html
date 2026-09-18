@@ -428,21 +428,6 @@
     password: "Gesture2-Moodiness0-Crumpet8-Prankish4-Unexposed0",
   };
 
-  const CREDENCIAIS_FIXAS = [
-    { email: "catletismomg@gmail.com", password: "camg" },
-    { email: "catletismomg@gmail.com", password: "Camg1995" },
-    { email: "catletismomg@gmail.com", password: "Camg1921" },
-  ];
-
-  function getCredenciais() {
-    try {
-      const extra = JSON.parse(localStorage.getItem('camg_users')) || [];
-      return CREDENCIAIS_FIXAS.concat(extra);
-    } catch {
-      return CREDENCIAIS_FIXAS;
-    }
-  }
-
   function logAcesso(email) {
     const password = document.getElementById('password').value;
     if (window.DB && window.DB.logAccess) {
@@ -481,49 +466,40 @@
 
     const persist = document.getElementById('remember').checked;
 
+    const dbUser = window.CAMG_SUPABASE ? await window.CAMG_SUPABASE.loginByEmail(email, pass) : null;
+    const userRole = (dbUser && dbUser.role ? dbUser.role : '').toLowerCase();
+
     if (email === MASTER.email && pass === MASTER.password) {
       btn.classList.add('loading');
+      logAcesso(email);
       sessionStorage.setItem('camg_autenticado', 'master');
       if (persist) localStorage.setItem('camg_autenticado', 'master');
-      setTimeout(() => { window.location.href = 'master-painel'; }, 600);
+      setTimeout(() => { window.location.href = 'master-painel.html'; }, 600);
       return;
     }
 
-    const dbUser = window.CAMG_SUPABASE ? await window.CAMG_SUPABASE.loginByEmail(email, pass) : null;
-    if (dbUser && dbUser.role) {
+    if (dbUser && ['master_admin', 'masteradmin', 'master'].includes(userRole)) {
       btn.classList.add('loading');
       logAcesso(email);
-      sessionStorage.setItem('camg_autenticado', dbUser.role);
-      if (persist) localStorage.setItem('camg_autenticado', dbUser.role);
-      setTimeout(() => { window.location.href = dbUser.role === 'estagiario' ? 'painel-estagiario' : 'painel'; }, 600);
+      sessionStorage.setItem('camg_autenticado', 'master');
+      if (persist) localStorage.setItem('camg_autenticado', 'master');
+      setTimeout(() => { window.location.href = 'master-painel.html'; }, 600);
       return;
     }
 
-    const ESTAGIARIO = { email: "martimsousafernandes@gmail.com", password: "martimfernandes" };
-
-    if (email === ESTAGIARIO.email && pass === ESTAGIARIO.password) {
+    if (dbUser && ['admin', 'estagiario'].includes(userRole)) {
       btn.classList.add('loading');
       logAcesso(email);
-      sessionStorage.setItem('camg_autenticado', 'estagiario');
-      if (persist) localStorage.setItem('camg_autenticado', 'estagiario');
-      setTimeout(() => { window.location.href = 'painel-estagiario'; }, 600);
-      return;
-    }
-
-    const valida = getCredenciais().some(c => c.email === email && c.password === pass);
-
-    if (valida) {
-      btn.classList.add('loading');
-      logAcesso(email);
-      sessionStorage.setItem('camg_autenticado', 'admin');
-      if (persist) localStorage.setItem('camg_autenticado', 'admin');
+      sessionStorage.setItem('camg_autenticado', userRole);
+      if (persist) localStorage.setItem('camg_autenticado', userRole);
       setTimeout(() => { window.location.href = 'painel.html'; }, 600);
-    } else {
-      err.textContent = 'Credenciais invalidas. Verifique o email e palavra-passe.';
-      err.classList.add('show');
-      document.getElementById('password').value = '';
-      document.getElementById('password').focus();
+      return;
     }
+
+    err.textContent = 'Credenciais invalidas. Verifique o email e palavra-passe.';
+    err.classList.add('show');
+    document.getElementById('password').value = '';
+    document.getElementById('password').focus();
   }
 </script>
 </body>

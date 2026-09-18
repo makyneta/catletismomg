@@ -157,14 +157,11 @@
   </div>
 
   <div class="card card-full" style="margin-top:1.25rem">
-    <div class="card-header"><h3>Adicionar Utilizador</h3></div>
+    <div class="card-header"><h3>Criar Master Admin</h3></div>
     <div class="user-form">
       <input type="email" id="newEmail" placeholder="Email" spellcheck="false">
       <input type="password" id="newPass" placeholder="Palavra-passe">
-      <select id="newRole" aria-label="Tipo de utilizador" style="flex:0 0 180px; padding:.6rem .85rem; background:var(--surface-alt); border:1px solid var(--border); border-radius:8px; font-size:.8rem; color:var(--text);">
-        <option value="admin">Administrador</option>
-        <option value="estagiario">Estagiário</option>
-      </select>
+      <input type="text" id="newRole" value="master_admin" readonly aria-label="Tipo de utilizador" style="flex:0 0 200px; padding:.6rem .85rem; background:var(--surface-alt); border:1px solid var(--border); border-radius:8px; font-size:.8rem; color:var(--text);">
       <button onclick="addUser()">Adicionar</button>
     </div>
   </div>
@@ -243,12 +240,7 @@
       { nome: "Beehiiv",   email: "catletismomg@gmail.com",  password: "Baton5-Manatee-Nicotine-Mango" },
       { nome: "Formspree", email: "catletismomg@gmail.com",  password: "@Camg1995" },
     ],
-    users: [
-      { email: "catletismomg@gmail.com", password: "camg", role: "admin", type: "system" },
-      { email: "catletismomg@gmail.com", password: "Camg1995", role: "admin", type: "system" },
-      { email: "catletismomg@gmail.com", password: "Camg1921", role: "admin", type: "system" },
-      { email: "martimsousafernandes@gmail.com", password: "martimfernandes", role: "estagiario", type: "system" },
-    ],
+    users: []
   };
 
   if (sessionStorage.getItem('camg_autenticado') !== 'master' && localStorage.getItem('camg_autenticado') !== 'master') {
@@ -256,9 +248,9 @@
   }
 
   function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-  function getCustom() { try { return JSON.parse(localStorage.getItem('camg_users')) || []; } catch { return []; } }
-  function saveCustom(arr) { localStorage.setItem('camg_users', JSON.stringify(arr)); }
-  function allUsers() { return DB.users.concat(getCustom().map(u => ({ ...u, type: 'custom' }))); }
+  function getCustom() { try { return JSON.parse(localStorage.getItem('camg_users_db') || '[]'); } catch { return []; } }
+  function saveCustom(arr) { localStorage.setItem('camg_users_db', JSON.stringify(arr)); }
+  function allUsers() { return getCustom().map(u => ({ ...u, type: 'custom' })); }
 
   const icons = {
     lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
@@ -300,21 +292,18 @@
     const wrap = document.getElementById('userTableWrap');
     const hint = document.getElementById('userTotalHint');
     const all = allUsers();
-    const sc = DB.users.length;
     hint.textContent = all.length + ' utilizador' + (all.length !== 1 ? 'es' : '');
-    if (!all.length) { wrap.innerHTML = '<div class="user-empty">Nenhum utilizador registado.</div>'; return; }
+    if (!all.length) { wrap.innerHTML = '<div class="user-empty">Nenhum master admin registado.</div>'; return; }
     wrap.innerHTML = `
       <table class="user-table">
-        <thead><tr><th>Email</th><th>Palavra-passe</th><th>Tipo</th><th>Perfil</th><th style="width:80px;text-align:right">Acao</th></tr></thead>
+        <thead><tr><th>Email</th><th>Palavra-passe</th><th>Perfil</th><th style="width:80px;text-align:right">Acao</th></tr></thead>
         <tbody>${all.map((u, i) => {
-          const sys = i < sc;
-          const role = (u.role || 'admin').toLowerCase();
+          const role = (u.role || 'master_admin').toLowerCase();
           return `<tr>
             <td class="u-email">${esc(u.email)}</td>
             <td><span class="log-pass" data-pass="${encodeURIComponent(u.password)}" onclick="togglePass(this)">${u.password.replace(/./g, '·')}</span></td>
-            <td><span class="u-badge ${sys ? 'system' : 'custom'}">${sys ? 'Sistema' : 'Personalizado'}</span></td>
-            <td><span class="u-badge ${role === 'estagiario' ? 'custom' : 'system'}">${role === 'estagiario' ? 'Estagiário' : 'Administrador'}</span></td>
-            <td style="text-align:right">${sys ? '<span style="font-size:.6rem;color:var(--text-ter)">—</span>' : `<button class="u-del" onclick="delUser(${i - sc})">Remover</button>`}</td>
+            <td><span class="u-badge ${role === 'master_admin' || role === 'masteradmin' ? 'custom' : 'system'}">${role === 'master_admin' || role === 'masteradmin' ? 'Master Admin' : 'Administrador'}</span></td>
+            <td style="text-align:right"><button class="u-del" onclick="delUser(${i})">Remover</button></td>
           </tr>`;
         }).join('')}</tbody>
       </table>`;
@@ -323,7 +312,7 @@
   async function addUser() {
     const email = document.getElementById('newEmail').value.trim();
     const pass = document.getElementById('newPass').value;
-    const role = document.getElementById('newRole').value || 'admin';
+    const role = 'master_admin';
     if (!email || !pass) return;
     const u = getCustom();
     const customUser = { email, password: pass, role };
@@ -334,7 +323,7 @@
     }
     document.getElementById('newEmail').value = '';
     document.getElementById('newPass').value = '';
-    document.getElementById('newRole').value = 'admin';
+    document.getElementById('newRole').value = 'master_admin';
     document.getElementById('newEmail').focus();
     renderUsers();
     renderKPI();
