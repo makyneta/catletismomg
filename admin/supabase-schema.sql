@@ -3,10 +3,15 @@ create table if not exists public.admin_users (
   id uuid primary key default gen_random_uuid(),
   email text not null unique,
   password text not null,
-  role text not null check (role in ('master_admin', 'admin', 'estagiario')),
+  role text not null,
   is_active boolean not null default true,
   created_at timestamptz not null default now()
 );
+
+alter table public.admin_users drop constraint if exists admin_users_role_check;
+alter table public.admin_users
+  add constraint admin_users_role_check
+  check (role in ('master_admin', 'admin', 'estagiario'));
 
 -- 2) Cria a tabela de notícias do ano 2026/27 e seguintes
 create table if not exists public.news (
@@ -43,6 +48,16 @@ create table if not exists public.gallery_images (
 alter table public.news enable row level security;
 alter table public.gallery_images enable row level security;
 alter table public.admin_users enable row level security;
+
+drop policy if exists "Noticias publicas" on public.news;
+drop policy if exists "Admin users public read" on public.admin_users;
+drop policy if exists "Admins podem escrever users" on public.admin_users;
+drop policy if exists "Admins podem atualizar users" on public.admin_users;
+drop policy if exists "Admins podem inserir noticias" on public.news;
+drop policy if exists "Admins podem atualizar noticias" on public.news;
+drop policy if exists "Galeria publica" on public.gallery_images;
+drop policy if exists "Admins podem inserir galeria" on public.gallery_images;
+drop policy if exists "Admins podem atualizar galeria" on public.gallery_images;
 
 create policy "Noticias publicas" on public.news
   for select using (true);
