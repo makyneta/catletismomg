@@ -168,6 +168,27 @@
     }
   }
 
+  async function deleteUser(email) {
+    const targetEmail = (email || '').trim().toLowerCase();
+    if (!targetEmail) return null;
+
+    const client = getClient();
+    const updatedLocal = localUsers().filter(item => item.email && item.email.toLowerCase() !== targetEmail);
+    saveLocalUsers(updatedLocal);
+
+    if (!client) {
+      return true;
+    }
+
+    try {
+      const { error } = await client.from('admin_users').delete().eq('email', targetEmail);
+      if (error) throw error;
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   async function loginByEmail(email, password) {
     const targetEmail = (email || '').trim().toLowerCase();
     const targetPassword = password || '';
@@ -249,6 +270,46 @@
     }
   }
 
+  async function deleteNews(idOrSlug) {
+    if (!idOrSlug) return false;
+    const client = getClient();
+    if (!client) {
+      const items = localNews().filter(item => item.id !== idOrSlug && item.slug !== idOrSlug);
+      saveLocalNews(items);
+      return true;
+    }
+
+    try {
+      const { error } = await client.from('news').delete().or(`id.eq.${idOrSlug},slug.eq.${idOrSlug}`);
+      if (error) throw error;
+      return true;
+    } catch (e) {
+      const items = localNews().filter(item => item.id !== idOrSlug && item.slug !== idOrSlug);
+      saveLocalNews(items);
+      return false;
+    }
+  }
+
+  async function deleteGalleryItem(id) {
+    if (!id) return false;
+    const client = getClient();
+    if (!client) {
+      const items = localGallery().filter(item => item.id !== id);
+      saveLocalGallery(items);
+      return true;
+    }
+
+    try {
+      const { error } = await client.from('gallery_images').delete().eq('id', id);
+      if (error) throw error;
+      return true;
+    } catch (e) {
+      const items = localGallery().filter(item => item.id !== id);
+      saveLocalGallery(items);
+      return false;
+    }
+  }
+
   function buildNewsCard(article) {
     const slug = article.slug || 'nova-noticia';
     const season = article.season || config.defaultSeason;
@@ -278,9 +339,12 @@
     saveNews,
     getUsers,
     addUser,
+    deleteUser,
+    deleteNews,
     loginByEmail,
     getGalleryItems,
     saveGalleryItem,
+    deleteGalleryItem,
     buildNewsCard
   };
 })();

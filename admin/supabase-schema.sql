@@ -53,11 +53,14 @@ drop policy if exists "Noticias publicas" on public.news;
 drop policy if exists "Admin users public read" on public.admin_users;
 drop policy if exists "Admins podem escrever users" on public.admin_users;
 drop policy if exists "Admins podem atualizar users" on public.admin_users;
+drop policy if exists "Admins podem apagar users" on public.admin_users;
 drop policy if exists "Admins podem inserir noticias" on public.news;
 drop policy if exists "Admins podem atualizar noticias" on public.news;
+drop policy if exists "Admins podem apagar noticias" on public.news;
 drop policy if exists "Galeria publica" on public.gallery_images;
 drop policy if exists "Admins podem inserir galeria" on public.gallery_images;
 drop policy if exists "Admins podem atualizar galeria" on public.gallery_images;
+drop policy if exists "Admins podem apagar galeria" on public.gallery_images;
 
 create policy "Noticias publicas" on public.news
   for select using (true);
@@ -71,11 +74,17 @@ create policy "Admins podem escrever users" on public.admin_users
 create policy "Admins podem atualizar users" on public.admin_users
   for update using (true) with check (true);
 
+create policy "Admins podem apagar users" on public.admin_users
+  for delete using (true);
+
 create policy "Admins podem inserir noticias" on public.news
   for insert with check (true);
 
 create policy "Admins podem atualizar noticias" on public.news
   for update using (true) with check (true);
+
+create policy "Admins podem apagar noticias" on public.news
+  for delete using (true);
 
 create policy "Galeria publica" on public.gallery_images
   for select using (true);
@@ -85,6 +94,9 @@ create policy "Admins podem inserir galeria" on public.gallery_images
 
 create policy "Admins podem atualizar galeria" on public.gallery_images
   for update using (true) with check (true);
+
+create policy "Admins podem apagar galeria" on public.gallery_images
+  for delete using (true);
 
 -- 4) Seed base para os master admins do sistema
 insert into public.admin_users (email, password, role, is_active)

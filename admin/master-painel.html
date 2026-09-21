@@ -331,14 +331,61 @@
           let label = 'Administrador';
           if (role === 'master_admin' || role === 'masteradmin') label = 'Master Admin';
           else if (role === 'estagiario') label = 'Estagiário';
+          const safeEmail = String(u.email || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
           return `<tr>
             <td class="u-email">${esc(u.email)}</td>
             <td><span class="log-pass" data-pass="${encodeURIComponent(u.password)}" onclick="togglePass(this)">${(u.password || '').replace(/./g, '·')}</span></td>
             <td><span class="u-badge ${role === 'master_admin' || role === 'masteradmin' ? 'custom' : 'system'}">${label}</span></td>
-            <td style="text-align:right"><button class="u-del" onclick="delUser(${i})">Remover</button></td>
+            <td style="text-align:right"><button class="u-del" onclick="delUser('${safeEmail}')">Remover</button></td>
           </tr>`;
         }).join('')}</tbody>
       </table>`;
+  }
+
+  async function renderRecentNews() {
+    const wrap = document.getElementById('masterNewsList');
+    if (!wrap) return;
+    try {
+      const items = await window.CAMG_SUPABASE.getNews({ season: '2026/27' });
+      if (!items || !items.length) {
+        wrap.innerHTML = '<div class="user-empty">Nenhuma notícia guardada.</div>';
+        return;
+      }
+      wrap.innerHTML = items.slice(0, 8).map((item) => `
+        <div style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--surface-alt);display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;">
+          <div>
+            <strong style="display:block;font-size:.82rem;">${esc(item.title || 'Sem título')}</strong>
+            <span style="font-size:.68rem;color:var(--text-sec);">${esc(item.author_role || 'admin')} · ${esc(item.status || 'published')}</span>
+          </div>
+          <span style="font-size:.68rem;color:var(--text-sec);">${esc(item.slug || item.title || 'sem-slug')}</span>
+        </div>
+      `).join('');
+    } catch (e) {
+      wrap.innerHTML = '<div class="user-empty">Não foi possível carregar as notícias.</div>';
+    }
+  }
+
+  async function renderRecentGallery() {
+    const wrap = document.getElementById('masterGalleryList');
+    if (!wrap) return;
+    try {
+      const items = await window.CAMG_SUPABASE.getGalleryItems({ season: '2026/27' });
+      if (!items || !items.length) {
+        wrap.innerHTML = '<div class="user-empty" style="grid-column:1 / -1;">Nenhuma imagem guardada.</div>';
+        return;
+      }
+      wrap.innerHTML = items.slice(0, 8).map((item) => `
+        <div style="border:1px solid var(--border);border-radius:12px;background:var(--surface-alt);overflow:hidden;">
+          <img src="${esc(item.image_url || '')}" alt="${esc(item.alt || item.title || 'Imagem da galeria')}" style="display:block;width:100%;height:160px;object-fit:cover;">
+          <div style="padding:.75rem;">
+            <strong style="display:block;font-size:.78rem;margin-bottom:4px;">${esc(item.title || 'Imagem')}</strong>
+            <span style="font-size:.66rem;color:var(--text-sec);">${esc(item.category || 'geral')} · ${esc(item.author_role || 'admin')}</span>
+          </div>
+        </div>
+      `).join('');
+    } catch (e) {
+      wrap.innerHTML = '<div class="user-empty" style="grid-column:1 / -1;">Não foi possível carregar a galeria.</div>';
+    }
   }
 
   async function addUser() {
@@ -360,20 +407,29 @@
     document.getElementById('newEmail').focus();
     await renderUsers();
     await renderKPI();
+    await renderRecentNews();
+    await renderRecentGallery();
   }
 
-  async function delUser(idx) {
-    const u = getCustom();
-    if (idx >= 0 && idx < u.length) {
-      const userToDelete = u[idx];
-      u.splice(idx, 1);
-      saveCustom(u);
-      if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.deleteUser) {
-        await window.CAMG_SUPABASE.deleteUser(userToDelete.email);
+  async function delUser(emailOrIndex) {
+    const all = await getAllUsers();
+    const email = typeof emailOrIndex === 'string' ? emailOrIndex.trim().toLowerCase() : null;
+    const userToDelete = email ? all.find(u => String(u.email || '').toLowerCase() === email) : all[Number(emailOrIndex)];
+
+    const nextLocal = getCustom().filter(u => !userToDelete || String(u.email || '').toLowerCase() !== String(userToDelete.email || '').toLowerCase());
+    saveCustom(nextLocal);
+
+    if (userToDelete && window.CAMG_SUPABASE && window.CAMG_SUPABASE.deleteUser) {
+      const deleted = await window.CAMG_SUPABASE.deleteUser(userToDelete.email);
+      if (!deleted) {
+        console.warn('Remoção do utilizador falhou no Supabase, mas foi removido do painel local.');
       }
     }
+
     await renderUsers();
     await renderKPI();
+    await renderRecentNews();
+    await renderRecentGallery();
   }
 
   const clockEl = document.getElementById('clock');
@@ -497,6 +553,7 @@
       document.getElementById('newsContent').value = '';
       document.getElementById('newsImage').value = '';
       document.getElementById('newsPagePath').value = '';
+      await renderRecentNews();
       return;
     }
 
@@ -554,6 +611,7 @@
       document.getElementById('galleryImage').value = '';
       document.getElementById('galleryDescription').value = '';
       fileInput.value = '';
+      await renderRecentGallery();
       return;
     }
 
@@ -566,6 +624,8 @@
   renderKPI();
   renderVault();
   renderUsers();
+  renderRecentNews();
+  renderRecentGallery();
   renderAccessLog();
 </script>
 </body>
