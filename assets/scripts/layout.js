@@ -32,6 +32,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const getRegulamentoPdfUrl = () => {
+    try {
+      const customPdf = localStorage.getItem('camg_regulamento_pdf');
+      if (customPdf && customPdf.startsWith('data:application/pdf')) {
+        return customPdf;
+      }
+    } catch (e) {}
+    return url('/assets/pdf/regulamento.pdf');
+  };
+
   const headerHTML = `
     <nav id="mainNav">
       <a href="${url('/')}" class="nav-logo">
@@ -55,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <li>
           <a role="button" tabindex="0">Inscrição <span class="arrow-down">&#9662;</span></a>
           <ul class="dropdown">
-            <li><a href="${url('/inscricao/regulamento')}" target="_blank">Regulamento</a></li>
+            <li><a href="${getRegulamentoPdfUrl()}" target="_blank" rel="noopener">Regulamento</a></li>
             <li><a href="${url('/inscricao/inscrever')}" target="_blank">Inscrever</a></li>
           </ul>
         </li>
@@ -103,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <span class="arrow">&#8599;</span>
             </button>
             <ul class="submenu">
-              <li><a href="${url('/inscricao/regulamento')}" target="_blank">Regulamento</a></li>
+              <li><a href="${getRegulamentoPdfUrl()}" target="_blank" rel="noopener">Regulamento</a></li>
               <li><a href="${url('/inscricao/inscrever')}" target="_blank">Inscrever</a></li>
             </ul>
           </li>

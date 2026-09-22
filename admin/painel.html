@@ -214,6 +214,16 @@
   </div>
 
   <div class="card card-full" style="margin-top:1rem">
+    <div class="card-header"><h3>Atualizar regulamento PDF</h3></div>
+    <div style="display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;">
+      <input type="file" id="regulamentoFile" accept="application/pdf" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
+      <button onclick="uploadRegulamentoPdf()" style="padding:.8rem 1rem;background:#000;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Guardar regulamento</button>
+      <button onclick="resetRegulamentoPdf()" style="padding:.8rem 1rem;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:8px;font-weight:700;cursor:pointer;">Repor padrão</button>
+    </div>
+    <div id="regulamentoStatus" style="margin-top:12px;font-size:.74rem;color:var(--text-sec);"></div>
+  </div>
+
+  <div class="card card-full" style="margin-top:1rem">
     <div class="card-header"><h3>Notícias guardadas</h3></div>
     <div id="panelNewsList" style="display:grid;gap:10px;"></div>
   </div>
@@ -408,6 +418,49 @@
     alert('Utilizador guardado com sucesso.');
   }
 
+  async function uploadRegulamentoPdf() {
+    const fileInput = document.getElementById('regulamentoFile');
+    const file = fileInput && fileInput.files ? fileInput.files[0] : null;
+    if (!file) {
+      alert('Selecione um ficheiro PDF para o regulamento.');
+      return;
+    }
+    if (file.type && !file.type.toLowerCase().includes('pdf')) {
+      alert('O ficheiro carregado tem de ser um PDF.');
+      return;
+    }
+
+    try {
+      const dataUrl = await readFileAsDataUrl(file);
+      localStorage.setItem('camg_regulamento_pdf', dataUrl);
+      localStorage.setItem('camg_regulamento_name', file.name);
+      const status = document.getElementById('regulamentoStatus');
+      if (status) status.textContent = `Regulamento guardado: ${file.name}. O link do menu passa a usar este PDF.`;
+      if (fileInput) fileInput.value = '';
+    } catch (error) {
+      alert('Não foi possível carregar o PDF do regulamento.');
+      console.error(error);
+    }
+  }
+
+  function resetRegulamentoPdf() {
+    localStorage.removeItem('camg_regulamento_pdf');
+    localStorage.removeItem('camg_regulamento_name');
+    const status = document.getElementById('regulamentoStatus');
+    if (status) status.textContent = 'Regulamento reposto para o PDF padrão do site.';
+  }
+
+  function renderRegulamentoStatus() {
+    const status = document.getElementById('regulamentoStatus');
+    if (!status) return;
+    const customName = localStorage.getItem('camg_regulamento_name');
+    if (customName) {
+      status.textContent = `PDF atual: ${customName}.`;
+      return;
+    }
+    status.textContent = 'PDF atual: regulamento.pdf (padrão do site).';
+  }
+
   async function saveNewsFromPanel() {
     const title = document.getElementById('newsTitle').value.trim();
     const slug = (document.getElementById('newsSlug').value || title).trim();
@@ -514,6 +567,7 @@
     alert('Imagem guardada localmente.');
   }
 
+  renderRegulamentoStatus();
   loadUsersList();
   renderRecentNews();
   renderRecentGallery();
