@@ -65,6 +65,15 @@
     return !!config.url && !config.url.includes('SEU-PROJETO') && !!config.anonKey && !config.anonKey.includes('SUA_');
   }
 
+  const REGULAMENTO_BUCKET = 'regulamentos';
+  const REGULAMENTO_FILE_NAME = 'regulamento.pdf';
+
+  function getRegulamentoStoragePublicUrl() {
+    if (!isConfigured()) return '';
+    const base = (config.url || '').replace(/\/$/, '');
+    return `${base}/storage/v1/object/public/${REGULAMENTO_BUCKET}/${REGULAMENTO_FILE_NAME}`;
+  }
+
   function getClient() {
     if (!isConfigured()) return null;
     if (!window.supabase) return null;
@@ -233,6 +242,107 @@
     }
   }
 
+  async function saveRegulamentoPdf(file) {
+    if (!file) return null;
+
+    const client = getClient();
+    const publicUrl = getRegulamentoStoragePublicUrl();
+
+    if (!client) {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      localStorage.setItem('camg_regulamento_pdf', dataUrl);
+      localStorage.setItem('camg_regulamento_pdf_url', dataUrl);
+      localStorage.setItem('camg_regulamento_url', dataUrl);
+      localStorage.setItem('camg_regulamento_name', file.name || REGULAMENTO_FILE_NAME);
+      return { url: dataUrl, fileName: file.name || REGULAMENTO_FILE_NAME };
+    }
+
+    try {
+      const uploadResult = await client.storage.from(REGULAMENTO_BUCKET).upload(REGULAMENTO_FILE_NAME, file, {
+        upsert: true,
+        contentType: file.type || 'application/pdf',
+        cacheControl: '3600'
+      });
+
+      if (uploadResult && uploadResult.error) throw uploadResult.error;
+
+      const resolvedUrl = publicUrl || (uploadResult && uploadResult.data && uploadResult.data.path
+        ? `${config.url}/storage/v1/object/public/${REGULAMENTO_BUCKET}/${uploadResult.data.path}`
+        : '');
+
+      if (resolvedUrl) {
+        try {
+          const { data: rows, error: selectError } = await client.from('regulamento_documents').select('*').eq('file_name', REGULAMENTO_FILE_NAME).limit(1);
+          const payload = {
+            title: 'Regulamento',
+            file_name: REGULAMENTO_FILE_NAME,
+            file_url: resolvedUrl,
+            mime_type: file.type || 'application/pdf',
+            size_bytes: Number(file.size || 0),
+            is_active: true,
+            uploaded_by: 'admin',
+            updated_at: new Date().toISOString()
+          };
+
+          if (!selectError && rows && rows.length) {
+            await client.from('regulamento_documents').update(payload).eq('id', rows[0].id);
+          } else if (!selectError) {
+            await client.from('regulamento_documents').insert({ ...payload, created_at: new Date().toISOString() });
+          }
+        } catch (dbError) {
+          console.warn('Supabase regulamento metadata not saved:', dbError);
+        }
+      }
+
+      localStorage.setItem('camg_regulamento_pdf', resolvedUrl || '');
+      localStorage.setItem('camg_regulamento_pdf_url', resolvedUrl || '');
+      localStorage.setItem('camg_regulamento_url', resolvedUrl || '');
+      localStorage.setItem('camg_regulamento_name', file.name || REGULAMENTO_FILE_NAME);
+
+      return { url: resolvedUrl || publicUrl, fileName: file.name || REGULAMENTO_FILE_NAME };
+    } catch (e) {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      localStorage.setItem('camg_regulamento_pdf', dataUrl);
+      localStorage.setItem('camg_regulamento_pdf_url', dataUrl);
+      localStorage.setItem('camg_regulamento_url', dataUrl);
+      localStorage.setItem('camg_regulamento_name', file.name || REGULAMENTO_FILE_NAME);
+      return { url: dataUrl, fileName: file.name || REGULAMENTO_FILE_NAME };
+    }
+  }
+
+  function getRegulamentoPdfUrl() {
+    const publicUrl = getRegulamentoStoragePublicUrl();
+    if (publicUrl) return publicUrl;
+
+    try {
+      const candidates = [
+        localStorage.getItem('camg_regulamento_pdf_url'),
+        localStorage.getItem('camg_regulamento_url'),
+        localStorage.getItem('camg_regulamento_pdf')
+      ];
+
+      const match = candidates.find((value) => value && (
+        value.startsWith('data:application/pdf') || /^https?:\/\//i.test(value)
+      ));
+
+      if (match) return match;
+    } catch (e) {}
+
+    return '';
+  }
+
   async function saveGalleryItem(item) {
     const payload = {
       id: item.id || `gallery-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
@@ -345,6 +455,8 @@
     getGalleryItems,
     saveGalleryItem,
     deleteGalleryItem,
+    saveRegulamentoPdf,
+    getRegulamentoPdfUrl,
     buildNewsCard
   };
 })();

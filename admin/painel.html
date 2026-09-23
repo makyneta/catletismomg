@@ -431,8 +431,21 @@
     }
 
     try {
-      const dataUrl = await readFileAsDataUrl(file);
-      localStorage.setItem('camg_regulamento_pdf', dataUrl);
+      let resolvedPdfUrl = '';
+      if (window.CAMG_SUPABASE && typeof window.CAMG_SUPABASE.saveRegulamentoPdf === 'function') {
+        const saved = await window.CAMG_SUPABASE.saveRegulamentoPdf(file);
+        resolvedPdfUrl = saved && saved.url ? saved.url : '';
+      }
+
+      if (!resolvedPdfUrl) {
+        const dataUrl = await readFileAsDataUrl(file);
+        localStorage.setItem('camg_regulamento_pdf', dataUrl);
+        localStorage.setItem('camg_regulamento_pdf_url', dataUrl);
+        localStorage.setItem('camg_regulamento_url', dataUrl);
+        localStorage.setItem('camg_regulamento_name', file.name);
+        resolvedPdfUrl = dataUrl;
+      }
+
       localStorage.setItem('camg_regulamento_name', file.name);
       const status = document.getElementById('regulamentoStatus');
       if (status) status.textContent = `Regulamento guardado: ${file.name}. O link do menu passa a usar este PDF.`;
@@ -445,6 +458,8 @@
 
   function resetRegulamentoPdf() {
     localStorage.removeItem('camg_regulamento_pdf');
+    localStorage.removeItem('camg_regulamento_pdf_url');
+    localStorage.removeItem('camg_regulamento_url');
     localStorage.removeItem('camg_regulamento_name');
     const status = document.getElementById('regulamentoStatus');
     if (status) status.textContent = 'Regulamento reposto para o PDF padrão do site.';
@@ -454,7 +469,8 @@
     const status = document.getElementById('regulamentoStatus');
     if (!status) return;
     const customName = localStorage.getItem('camg_regulamento_name');
-    if (customName) {
+    const hasCustomPdf = !!localStorage.getItem('camg_regulamento_pdf') || !!localStorage.getItem('camg_regulamento_pdf_url') || !!localStorage.getItem('camg_regulamento_url');
+    if (customName && hasCustomPdf) {
       status.textContent = `PDF atual: ${customName}.`;
       return;
     }

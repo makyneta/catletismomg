@@ -34,9 +34,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const getRegulamentoPdfUrl = () => {
     try {
+      if (window.CAMG_SUPABASE && typeof window.CAMG_SUPABASE.getRegulamentoPdfUrl === 'function') {
+        const supabaseUrl = window.CAMG_SUPABASE.getRegulamentoPdfUrl();
+        if (supabaseUrl) return supabaseUrl;
+      }
+
       const customPdf = localStorage.getItem('camg_regulamento_pdf');
       if (customPdf && customPdf.startsWith('data:application/pdf')) {
         return customPdf;
+      }
+
+      const customPdfUrl = localStorage.getItem('camg_regulamento_pdf_url');
+      if (customPdfUrl && /^https?:\/\//i.test(customPdfUrl)) {
+        return customPdfUrl;
+      }
+
+      const legacyPdfUrl = localStorage.getItem('camg_regulamento_url');
+      if (legacyPdfUrl && /^https?:\/\//i.test(legacyPdfUrl)) {
+        return legacyPdfUrl;
       }
     } catch (e) {}
     return url('/assets/pdf/regulamento.pdf');

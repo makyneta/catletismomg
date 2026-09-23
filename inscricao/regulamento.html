@@ -2,7 +2,29 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=../assets/pdf/regulamento.pdf">
+  <script>
+    (function () {
+      function getStoredRegulamentoPdfUrl() {
+        try {
+          const candidates = [
+            localStorage.getItem('camg_regulamento_pdf_url'),
+            localStorage.getItem('camg_regulamento_url'),
+            localStorage.getItem('camg_regulamento_pdf')
+          ];
+
+          const match = candidates.find((value) => value && (
+            value.startsWith('data:application/pdf') || /^https?:\/\//i.test(value)
+          ));
+
+          return match || 'https://kcisuhgmubqyjpuexaar.supabase.co/storage/v1/object/public/regulamentos/regulamento.pdf';
+        } catch (e) {
+          return 'https://kcisuhgmubqyjpuexaar.supabase.co/storage/v1/object/public/regulamentos/regulamento.pdf';
+        }
+      }
+
+      window.location.replace(getStoredRegulamentoPdfUrl());
+    })();
+  </script>
 </head>
 <body>
 </body>

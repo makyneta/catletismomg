@@ -22,13 +22,31 @@
 <script>
   const normalizePath = p => p.replace(/\/+$/, '').toLowerCase();
 
+  const getStoredRegulamentoPdfUrl = () => {
+    try {
+      const candidates = [
+        localStorage.getItem('camg_regulamento_pdf_url'),
+        localStorage.getItem('camg_regulamento_url'),
+        localStorage.getItem('camg_regulamento_pdf')
+      ];
+
+      const match = candidates.find((value) => value && (
+        value.startsWith('data:application/pdf') || /^https?:\/\//i.test(value)
+      ));
+
+      return match || 'https://kcisuhgmubqyjpuexaar.supabase.co/storage/v1/object/public/regulamentos/regulamento.pdf';
+    } catch (e) {
+      return 'https://kcisuhgmubqyjpuexaar.supabase.co/storage/v1/object/public/regulamentos/regulamento.pdf';
+    }
+  };
+
   const redirectsMap = {
     '/instagram': 'https://www.instagram.com/camg_atletismo',
     '/facebook': 'https://www.facebook.com/catletismomg',
     '/youtube': 'https://www.youtube.com/@catletismomg',
     '/inscricoes': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
     '/inscrever': 'https://app.clube.pt/CAMG/Processes/CreatePreRegistration',
-    '/regulamento': 'https://makyneta.github.io/catletismomg/assets/pdf/regulamento.pdf',
+    '/regulamento': getStoredRegulamentoPdfUrl(),
     '/calendario': 'https://www.adal.pt/ficheirosmenu/69c6c57294009.pdf',
     '/volta-aos-7-vidrala': 'https://www.facebook.com/profile.php?id=61579718960280',
     '/editar-regulamento': 'https://canva.link/l380nzavpmj5ew4',
