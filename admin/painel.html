@@ -430,6 +430,16 @@
       return;
     }
 
+    const status = document.getElementById('regulamentoStatus');
+    const uploadButton = document.querySelector('button[onclick="uploadRegulamentoPdf()"]');
+    const originalButtonText = uploadButton ? uploadButton.textContent : '';
+
+    if (status) status.textContent = 'A enviar o regulamento para o Supabase...';
+    if (uploadButton) {
+      uploadButton.disabled = true;
+      uploadButton.textContent = 'A enviar...';
+    }
+
     try {
       let resolvedPdfUrl = '';
       if (window.CAMG_SUPABASE && typeof window.CAMG_SUPABASE.saveRegulamentoPdf === 'function') {
@@ -447,12 +457,17 @@
       }
 
       localStorage.setItem('camg_regulamento_name', file.name);
-      const status = document.getElementById('regulamentoStatus');
       if (status) status.textContent = `Regulamento guardado: ${file.name}. O link do menu passa a usar este PDF.`;
       if (fileInput) fileInput.value = '';
     } catch (error) {
+      if (status) status.textContent = 'Não foi possível carregar o PDF do regulamento.';
       alert('Não foi possível carregar o PDF do regulamento.');
       console.error(error);
+    } finally {
+      if (uploadButton) {
+        uploadButton.disabled = false;
+        uploadButton.textContent = originalButtonText || 'Guardar regulamento';
+      }
     }
   }
 
@@ -581,14 +596,6 @@
     items.unshift({ ...payload, created_at: new Date().toISOString() });
     localStorage.setItem('camg_gallery_db', JSON.stringify(items));
     alert('Imagem guardada localmente.');
-  }
-
-  const regulamentoFileInput = document.getElementById('regulamentoFile');
-  if (regulamentoFileInput) {
-    regulamentoFileInput.addEventListener('change', async () => {
-      if (!regulamentoFileInput.files || !regulamentoFileInput.files.length) return;
-      await uploadRegulamentoPdf();
-    });
   }
 
   renderRegulamentoStatus();
