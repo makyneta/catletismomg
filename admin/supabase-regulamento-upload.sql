@@ -72,12 +72,14 @@ on conflict (id) do update set
 
 -- 5) Policies para o bucket de storage
 -- leitura pública dos PDFs
+ drop policy if exists "regulamentos_public_read" on storage.objects;
 create policy "regulamentos_public_read"
 on storage.objects
 for select
 using (bucket_id = 'regulamentos');
 
 -- upload permitido para o site/admin local, sem depender de sessão do Supabase
+ drop policy if exists "regulamentos_admin_insert" on storage.objects;
 create policy "regulamentos_admin_insert"
 on storage.objects
 for insert
@@ -86,6 +88,7 @@ with check (
 );
 
 -- atualização permitida para o site/admin local
+ drop policy if exists "regulamentos_admin_update" on storage.objects;
 create policy "regulamentos_admin_update"
 on storage.objects
 for update
@@ -97,6 +100,7 @@ with check (
 );
 
 -- remoção permitida para o site/admin local
+ drop policy if exists "regulamentos_admin_delete" on storage.objects;
 create policy "regulamentos_admin_delete"
 on storage.objects
 for delete
