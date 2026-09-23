@@ -583,6 +583,14 @@
     alert('Imagem guardada localmente.');
   }
 
+  const regulamentoFileInput = document.getElementById('regulamentoFile');
+  if (regulamentoFileInput) {
+    regulamentoFileInput.addEventListener('change', async () => {
+      if (!regulamentoFileInput.files || !regulamentoFileInput.files.length) return;
+      await uploadRegulamentoPdf();
+    });
+  }
+
   renderRegulamentoStatus();
   loadUsersList();
   renderRecentNews();

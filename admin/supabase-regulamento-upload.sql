@@ -77,35 +77,31 @@ on storage.objects
 for select
 using (bucket_id = 'regulamentos');
 
--- upload por utilizadores autenticados/admins
+-- upload permitido para o site/admin local, sem depender de sessão do Supabase
 create policy "regulamentos_admin_insert"
 on storage.objects
 for insert
 with check (
   bucket_id = 'regulamentos'
-  and auth.role() = 'authenticated'
 );
 
--- atualização por admins autenticados
+-- atualização permitida para o site/admin local
 create policy "regulamentos_admin_update"
 on storage.objects
 for update
 using (
   bucket_id = 'regulamentos'
-  and auth.role() = 'authenticated'
 )
 with check (
   bucket_id = 'regulamentos'
-  and auth.role() = 'authenticated'
 );
 
--- remoção por admins autenticados
+-- remoção permitida para o site/admin local
 create policy "regulamentos_admin_delete"
 on storage.objects
 for delete
 using (
   bucket_id = 'regulamentos'
-  and auth.role() = 'authenticated'
 );
 
 -- 6) Registo inicial do PDF padrão (opcional)
