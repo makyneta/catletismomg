@@ -44,9 +44,17 @@ create table if not exists public.gallery_images (
   created_at timestamptz not null default now()
 );
 
+create table if not exists public.gallery_categories (
+  id text primary key,
+  name text not null unique,
+  slug text not null unique,
+  created_at timestamptz not null default now()
+);
+
 -- 3) Segurança: leitura pública das notícias; escrita restrita aos administradores
 alter table public.news enable row level security;
 alter table public.gallery_images enable row level security;
+alter table public.gallery_categories enable row level security;
 alter table public.admin_users enable row level security;
 
 drop policy if exists "Noticias publicas" on public.news;
@@ -61,6 +69,8 @@ drop policy if exists "Galeria publica" on public.gallery_images;
 drop policy if exists "Admins podem inserir galeria" on public.gallery_images;
 drop policy if exists "Admins podem atualizar galeria" on public.gallery_images;
 drop policy if exists "Admins podem apagar galeria" on public.gallery_images;
+drop policy if exists "Galeria categorias publicas" on public.gallery_categories;
+drop policy if exists "Admins podem gerir categorias galeria" on public.gallery_categories;
 
 create policy "Noticias publicas" on public.news
   for select using (true);
@@ -96,6 +106,18 @@ create policy "Admins podem atualizar galeria" on public.gallery_images
   for update using (true) with check (true);
 
 create policy "Admins podem apagar galeria" on public.gallery_images
+  for delete using (true);
+
+create policy "Galeria categorias publicas" on public.gallery_categories
+  for select using (true);
+
+create policy "Admins podem gerir categorias galeria" on public.gallery_categories
+  for insert with check (true);
+
+create policy "Admins podem atualizar categorias galeria" on public.gallery_categories
+  for update using (true) with check (true);
+
+create policy "Admins podem apagar categorias galeria" on public.gallery_categories
   for delete using (true);
 
 -- 4) Seed base para os master admins do sistema

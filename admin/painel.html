@@ -79,6 +79,8 @@
     .logout-row { display: flex; justify-content: flex-end; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-alt); }
     .logout-row button { padding: .55rem 1.2rem; font-family: 'Inter', -apple-system, sans-serif; font-size: .75rem; font-weight: 600; background: transparent; border: 1px solid var(--border); border-radius: 8px; color: var(--text-sec); cursor: pointer; transition: all .2s; -webkit-appearance: none; appearance: none; }
     .logout-row button:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+    .mini-btn { border: 1px solid var(--border); border-radius: 8px; padding: .35rem .6rem; background: var(--surface-alt); color: var(--text); font-size: .68rem; font-weight: 700; cursor: pointer; }
+    .mini-btn.danger { border-color: rgba(229,57,53,.2); background: rgba(229,57,53,.06); color: var(--red); }
     @media (max-width: 768px) { .dash { padding: 1.5rem 1rem 2rem; } .kpi-row { grid-template-columns: repeat(2, 1fr); } .grid-2 { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -206,9 +208,8 @@
       </select>
       <select id="galleryCategory" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.8rem;">
         <option value="geral">Geral</option>
-        <option value="meeting">Meeting</option>
-        <option value="prova">Prova</option>
       </select>
+      <input type="text" id="galleryNewCategory" placeholder="Nova secção (ex: Reuniões, Treinos, Meeting)" style="grid-column:1 / -1;padding:.8rem 1rem;border:1px solid var(--border);border-radius:8px;background:var(--surface-alt);font-size:.82rem;">
       <button onclick="saveGalleryFromPanel()" style="grid-column:1 / -1;padding:.8rem 1rem;background:#000;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Guardar imagem na galeria</button>
     </div>
   </div>
@@ -331,12 +332,15 @@
         return;
       }
       wrap.innerHTML = items.slice(0, 8).map((item) => `
-        <div style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--surface-alt);display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;">
+        <div data-item-card="news" style="padding:.8rem 1rem;border:1px solid var(--border);border-radius:10px;background:var(--surface-alt);display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap;">
           <div>
             <strong style="display:block;font-size:.82rem;">${item.title || 'Sem título'}</strong>
             <span style="font-size:.68rem;color:var(--text-sec);">${item.author_role || 'admin'} · ${item.status || 'published'}</span>
           </div>
-          <span style="font-size:.68rem;color:var(--text-sec);">${item.slug || item.title || 'sem-slug'}</span>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:.68rem;color:var(--text-sec);">${item.slug || item.title || 'sem-slug'}</span>
+            <button type="button" class="mini-btn danger" data-delete-id="${item.id || item.slug || item.title}" onclick="deleteNewsFromPanel(this)">Eliminar</button>
+          </div>
         </div>
       `).join('');
     } catch (e) {
@@ -354,16 +358,34 @@
         return;
       }
       wrap.innerHTML = items.slice(0, 8).map((item) => `
-        <div style="border:1px solid var(--border);border-radius:12px;background:var(--surface-alt);overflow:hidden;">
+        <div data-item-card="gallery" style="border:1px solid var(--border);border-radius:12px;background:var(--surface-alt);overflow:hidden;">
           <img src="${item.image_url || ''}" alt="${item.alt || item.title || 'Imagem da galeria'}" style="display:block;width:100%;height:160px;object-fit:cover;">
           <div style="padding:.75rem;">
             <strong style="display:block;font-size:.78rem;margin-bottom:4px;">${item.title || 'Imagem'}</strong>
             <span style="font-size:.66rem;color:var(--text-sec);">${item.category || 'geral'} · ${item.author_role || 'admin'}</span>
+            <div style="margin-top:8px;display:flex;justify-content:flex-end;">
+              <button type="button" class="mini-btn danger" data-delete-id="${item.id || item.title}" onclick="deleteGalleryFromPanel(this)">Eliminar</button>
+            </div>
           </div>
         </div>
       `).join('');
     } catch (e) {
       wrap.innerHTML = '<div class="user-empty" style="grid-column:1 / -1;padding:1rem 0;color:var(--text-ter);">Não foi possível carregar a galeria.</div>';
+    }
+  }
+
+  async function loadGalleryCategoryOptions() {
+    const select = document.getElementById('galleryCategory');
+    if (!select || !window.CAMG_SUPABASE || !window.CAMG_SUPABASE.getGalleryCategories) return;
+    try {
+      const categories = await window.CAMG_SUPABASE.getGalleryCategories();
+      const selectedValue = select.value || 'geral';
+      select.innerHTML = categories.map((category) => `<option value="${category}">${category}</option>`).join('');
+      if (categories.includes(selectedValue)) select.value = selectedValue;
+      else select.value = categories[0] || 'geral';
+    } catch (e) {
+      select.innerHTML = '<option value="geral">Geral</option>';
+      select.value = 'geral';
     }
   }
 
@@ -537,6 +559,22 @@
     alert('A configuração do Supabase ainda não foi definida.');
   }
 
+  async function deleteNewsFromPanel(button) {
+    const id = button && button.dataset ? button.dataset.deleteId : null;
+    if (!id) return;
+    if (!window.confirm('Quer mesmo eliminar esta notícia?')) return;
+    if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.deleteNews) {
+      const removed = await window.CAMG_SUPABASE.deleteNews(id);
+      if (removed) {
+        const card = button.closest('[data-item-card]');
+        if (card) card.remove();
+        await renderRecentNews();
+      } else {
+        alert('Não foi possível eliminar a notícia.');
+      }
+    }
+  }
+
   function readFileAsDataUrl(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -546,12 +584,30 @@
     });
   }
 
+  async function deleteGalleryFromPanel(button) {
+    const id = button && button.dataset ? button.dataset.deleteId : null;
+    if (!id) return;
+    if (!window.confirm('Quer mesmo eliminar esta imagem da galeria?')) return;
+    if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.deleteGalleryItem) {
+      const removed = await window.CAMG_SUPABASE.deleteGalleryItem(id);
+      if (removed) {
+        const card = button.closest('[data-item-card]');
+        if (card) card.remove();
+        await renderRecentGallery();
+      } else {
+        alert('Não foi possível eliminar a imagem.');
+      }
+    }
+  }
+
   async function saveGalleryFromPanel() {
     const title = document.getElementById('galleryTitle').value.trim();
     const alt = document.getElementById('galleryAlt').value.trim() || title;
     const description = document.getElementById('galleryDescription').value.trim();
     const season = document.getElementById('gallerySeason').value || '2026/27';
-    const category = document.getElementById('galleryCategory').value || 'geral';
+    const categorySelect = document.getElementById('galleryCategory');
+    const customCategoryInput = document.getElementById('galleryNewCategory');
+    const categoryValue = (customCategoryInput && customCategoryInput.value.trim()) || (categorySelect && categorySelect.value) || 'geral';
     const fileInput = document.getElementById('galleryFile');
     const urlInput = document.getElementById('galleryImage');
     let imageUrl = urlInput.value.trim();
@@ -568,6 +624,14 @@
     if (!imageUrl) {
       alert('Selecione uma imagem ou indique uma URL.');
       return;
+    }
+
+    let category = categoryValue;
+    if (customCategoryInput && customCategoryInput.value.trim()) {
+      if (window.CAMG_SUPABASE && window.CAMG_SUPABASE.createGalleryCategory) {
+        await window.CAMG_SUPABASE.createGalleryCategory(customCategoryInput.value);
+      }
+      category = customCategoryInput.value.trim();
     }
 
     const payload = {
@@ -587,7 +651,9 @@
       document.getElementById('galleryAlt').value = '';
       document.getElementById('galleryImage').value = '';
       document.getElementById('galleryDescription').value = '';
+      if (customCategoryInput) customCategoryInput.value = '';
       if (fileInput) fileInput.value = '';
+      await loadGalleryCategoryOptions();
       await renderRecentGallery();
       return;
     }
@@ -600,6 +666,7 @@
 
   renderRegulamentoStatus();
   loadUsersList();
+  loadGalleryCategoryOptions();
   renderRecentNews();
   renderRecentGallery();
 </script>

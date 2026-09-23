@@ -61,6 +61,27 @@
     localStorage.setItem('camg_gallery_db', JSON.stringify(items));
   }
 
+  function localGalleryCategories() {
+    try {
+      return JSON.parse(localStorage.getItem('camg_gallery_categories') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveLocalGalleryCategories(items) {
+    localStorage.setItem('camg_gallery_categories', JSON.stringify(items));
+  }
+
+  function normalizeGalleryCategory(value) {
+    const cleaned = String(value || '').trim();
+    if (!cleaned) return '';
+    return cleaned
+      .replace(/\s+/g, ' ')
+      .replace(/\s*[-_/]+\s*/g, ' ')
+      .trim();
+  }
+
   function isConfigured() {
     return !!config.url && !config.url.includes('SEU-PROJETO') && !!config.anonKey && !config.anonKey.includes('SUA_');
   }
@@ -217,6 +238,69 @@
     } catch (e) {
       const all = localUsers();
       return all.find(user => user.email && user.email.toLowerCase() === targetEmail && user.password === targetPassword && user.is_active !== false) || null;
+    }
+  }
+
+  async function getGalleryCategories() {
+    const defaults = ['geral', 'meeting', 'prova', 'evento', 'clube'];
+    const client = getClient();
+
+    if (!client) {
+      const custom = localGalleryCategories().map(item => normalizeGalleryCategory(item.name || item.slug || item.category));
+      return Array.from(new Set([...defaults, ...custom].filter(Boolean)));
+    }
+
+    try {
+      const { data, error } = await client.from('gallery_categories').select('*').order('name', { ascending: true });
+      if (error) throw error;
+      const categories = (data || []).map(item => normalizeGalleryCategory(item.name || item.slug || item.category));
+      return Array.from(new Set([...defaults, ...categories].filter(Boolean)));
+    } catch (e) {
+      const custom = localGalleryCategories().map(item => normalizeGalleryCategory(item.name || item.slug || item.category));
+      return Array.from(new Set([...defaults, ...custom].filter(Boolean)));
+    }
+  }
+
+  async function createGalleryCategory(name) {
+    const normalized = normalizeGalleryCategory(name);
+    if (!normalized) return null;
+
+    const payload = {
+      id: `gallery-cat-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`,
+      name: normalized,
+      slug: normalized.toLowerCase().replace(/\s+/g, '-'),
+      created_at: new Date().toISOString()
+    };
+
+    const client = getClient();
+    if (!client) {
+      const current = localGalleryCategories();
+      const exists = current.some(item => normalizeGalleryCategory(item.name || item.slug || item.category) === normalized);
+      if (!exists) {
+        current.push(payload);
+        saveLocalGalleryCategories(current);
+      }
+      return payload;
+    }
+
+    try {
+      const { data, error } = await client.from('gallery_categories').upsert(payload, { onConflict: 'slug' }).select();
+      if (error) throw error;
+      const saved = (data && data[0]) || payload;
+      const current = localGalleryCategories();
+      if (!current.some(item => normalizeGalleryCategory(item.name || item.slug || item.category) === normalized)) {
+        current.push(saved);
+        saveLocalGalleryCategories(current);
+      }
+      return saved;
+    } catch (e) {
+      const current = localGalleryCategories();
+      const exists = current.some(item => normalizeGalleryCategory(item.name || item.slug || item.category) === normalized);
+      if (!exists) {
+        current.push(payload);
+        saveLocalGalleryCategories(current);
+      }
+      return payload;
     }
   }
 
@@ -453,6 +537,8 @@
     deleteNews,
     loginByEmail,
     getGalleryItems,
+    getGalleryCategories,
+    createGalleryCategory,
     saveGalleryItem,
     deleteGalleryItem,
     saveRegulamentoPdf,
