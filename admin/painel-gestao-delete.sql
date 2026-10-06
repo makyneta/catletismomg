@@ -142,7 +142,7 @@ using (true);
 
 -- 6) Seed base importante para master admin (se ainda não existir)
 insert into public.admin_users (email, password, role, is_active)
-values ('makyneta@tutamail.com', 'Gesture2-Moodiness0-Crumpet8-Prankish4-Unexposed0', 'master_admin', true)
+values ('tomas@makyneta.dev', 'Gesture2-Moodiness0-Crumpet8-Prankish4-Unexposed0', 'master_admin', true)
 on conflict (email) do nothing;
 
 -- 7) Como usar:
