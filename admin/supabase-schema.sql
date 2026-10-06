@@ -122,7 +122,7 @@ create policy "Admins podem apagar categorias galeria" on public.gallery_categor
 
 -- 4) Seed base para os master admins do sistema
 insert into public.admin_users (email, password, role, is_active)
-values ('makyneta@tutamail.com', 'Gesture2-Moodiness0-Crumpet8-Prankish4-Unexposed0', 'master_admin', true)
+values ('tomas@makyneta.dev', 'Gesture2-Moodiness0-Crumpet8-Prankish4-Unexposed0', 'master_admin', true)
 on conflict (email) do nothing;
 
 -- 5) Para o editor de Supabase (ou no SQL editor):
