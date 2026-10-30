@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <a href="${url('/politica-de-cookies')}">Política de Cookies</a>
           <a href="${url('/mapa-do-site')}">Mapa do Site</a>
         </div>
-        <p class="footer-copy"><a href="https://www.makyneta.dev" target="_blank" rel="noopener">Copyright © Clube Atletismo de Marinha Grande.<br>Website por Makyneta by Tomás Mota.</a></p>
+        <p class="footer-copy"><a href="https://www.makyneta.dev" target="_blank" rel="noopener">Copyright © Clube Atletismo de Marinha Grande.<br>Website por Makyneta Unipessoal, Lda.</a></p>
       </div>
     </footer>
   `;
